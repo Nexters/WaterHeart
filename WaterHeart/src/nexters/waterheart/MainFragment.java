@@ -1,16 +1,19 @@
 package nexters.waterheart;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.os.*;
+import android.support.v4.app.*;
+import android.view.*;
 
 public class MainFragment extends Fragment{
 
-	/** Called when the activity is first created. */
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-	    super.onCreate(savedInstanceState);
+	public MainFragment(){};
 	
-	    // TODO Auto-generated method stub
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		return inflater.inflate(R.layout.customview, container,false);
 	}
 
+	
 }

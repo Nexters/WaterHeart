@@ -163,3 +163,13 @@ org.eclipse.core.internal.resources.ResourceException: Marker id 15 not found.
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
 !SUBENTRY 1 org.eclipse.core.resources 4 376 2013-07-29 14:34:59.519
 !MESSAGE Marker id 15 not found.
+!SESSION 2013-07-29 19:13:02.991 -----------------------------------------------
+eclipse.buildId=M20120914-1800
+java.version=1.7.0_13
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2013-07-29 19:13:43.704
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.

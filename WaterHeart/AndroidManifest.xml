@@ -23,7 +23,6 @@
             </intent-filter>
         </activity>
         <activity android:name="IntroActivity"></activity>
-        <activity android:name="CustomActivity"></activity>
     </application>
 
 </manifest>

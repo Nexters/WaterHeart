@@ -29,7 +29,7 @@ public class DBManager extends SQLiteOpenHelper {
 	private static final String KEY_DATE = "date";
 	private static final String KEY_REWARD_TEXT = "rewardText";
 	private static final String KEY_REWARD_IMAGE = "rewardImage"; 
-
+//git test
 	public DBManager(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		// TODO Auto-generated constructor stub

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;nexters.waterheart.CustomFragment&apos; to &apos;CustomActivity&apos;&#x0D;&#x0A;- Original project: &apos;WaterHeart&apos;&#x0D;&#x0A;- Original element: &apos;nexters.waterheart.CustomFragment&apos;&#x0D;&#x0A;- Renamed element: &apos;nexters.waterheart.CustomActivity&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;CustomFragment&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;nexters.waterheart{CustomFragment.java[CustomFragment" matchStrategy="1" name="CustomActivity" qualified="false" references="true" similarDeclarations="false" stamp="1375198013069" textual="false" version="1.0"/>
+</session>

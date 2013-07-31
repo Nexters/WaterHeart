@@ -1006,6 +1006,7 @@ containing a value of this type.
         public static final int results_page=0x7f03001a;
         public static final int sherlock_spinner_dropdown_item=0x7f03001b;
         public static final int sherlock_spinner_item=0x7f03001c;
+        public static final int tutorial=0x7f03001d;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;
@@ -2194,7 +2195,7 @@ containing a value of this type.
          */
         public static final int[] SherlockSpinner = {
             0x010100af, 0x01010175, 0x01010176, 0x0101017b,
-            0x01010262, 0x010102ac, 0x010102ad, 0x010103fd
+            0x01010262, 0x010102ac, 0x010102ad, 0x01010411
         };
         /**
           <p>

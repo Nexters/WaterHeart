@@ -28,7 +28,7 @@ public class DBManager extends SQLiteOpenHelper {
 	private static final String KEY_NO = "no";
 	private static final String KEY_DATE = "date";
 	private static final String KEY_REWARD_TEXT = "rewardText";
-	private static final String KEY_REWARD_IMAGE = "rewardImage"; 
+	private static final String KEY_REWARD_IMAGE = "rewardImage"; //¿Ö ¾È¸¸µé¾îÁ® ºýÄ£´Ù¤Ñ¤Ñ..
 
 	public DBManager(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -54,7 +54,7 @@ public class DBManager extends SQLiteOpenHelper {
 		onCreate(db);
 	}
 
-	// ï¿½ï¿½ï¿½Î¿ï¿½Writeï¿½Ô¼ï¿½ ï¿½ß°ï¿½
+	// »õ·Î¿îWriteÇÔ¼ö Ãß°¡
 	public void addWrite(Write write) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();		
@@ -70,13 +70,13 @@ public class DBManager extends SQLiteOpenHelper {
 		db.close(); // Closing database connection
 	}
 
-	// noï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Writeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// no°ªÀ¸·Î Write°¡Á®¿À±â
 	public Write getWrite(int no) {
 		return null;
 
 	}
 
-	// ï¿½ï¿½ï¿½ Writeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// ¸ðµç Write°¡Á®¿À±â
 	public List<Write> getAllWrite() {
 		List<Write> writeList = new ArrayList<Write>();
 		// Select All Query
@@ -102,8 +102,8 @@ public class DBManager extends SQLiteOpenHelper {
 		return writeList;
 	}
 
-	//ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½È°ï¿½Ä£ï¿½Îºï¿½
-	// //Contact ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
+	//º¹ºÙÇÏ°í ¾È°íÄ£ºÎºÐ
+	// //Contact Á¤º¸ ¾÷µ¥ÀÌÆ®
 	// public int updateContact(Write write) {
 	// SQLiteDatabase db = this.getWritableDatabase();
 	//
@@ -117,7 +117,7 @@ public class DBManager extends SQLiteOpenHelper {
 	// new String[] { String.valueOf(write.getNo()) });
 	// }
 	//
-	// // Contact ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
+	// // Contact Á¤º¸ »èÁ¦ÇÏ±â
 	// public void deleteContact(Write write) {
 	// SQLiteDatabase db = this.getWritableDatabase();
 	// db.delete(DATABASE_TABLE, KEY_NO + " = ?",
@@ -125,7 +125,7 @@ public class DBManager extends SQLiteOpenHelper {
 	// db.close();
 	// }
 	//
-	// // Contact ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// // Contact Á¤º¸ ¼ýÀÚ
 	// public int getContactsCount() {
 	// String countQuery = "SELECT  * FROM " + DATABASE_TABLE;
 	// SQLiteDatabase db = this.getReadableDatabase();

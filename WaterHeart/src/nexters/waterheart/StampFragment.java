@@ -1,16 +1,21 @@
 package nexters.waterheart;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-public class StampFragment extends Activity {
+import com.actionbarsherlock.app.SherlockFragment;
 
-	/** Called when the activity is first created. */
+public class StampFragment extends SherlockFragment {
+
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-	    super.onCreate(savedInstanceState);
-	
-	    // TODO Auto-generated method stub
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		return inflater.inflate(R.layout.results_page, container,false);
 	}
+
+	
 
 }

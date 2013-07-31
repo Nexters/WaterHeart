@@ -1,12 +1,12 @@
 package nexters.waterheart;
 
-import java.util.*;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 
-import android.os.*;
-import android.support.v4.app.*;
-import android.support.v4.view.*;
-
-import com.actionbarsherlock.app.*;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 
 public class MainActivity extends SherlockFragmentActivity {
 	SectionsPagerAdapter mSectionsPagerAdapter;

@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 
 import nexters.waterheart.dto.Write;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -28,8 +27,8 @@ public class DBManager extends SQLiteOpenHelper {
 	private static final String KEY_NO = "no";
 	private static final String KEY_DATE = "date";
 	private static final String KEY_REWARD_TEXT = "rewardText";
-	private static final String KEY_REWARD_IMAGE = "rewardImage"; 
-//git test
+	private static final String KEY_REWARD_IMAGE = "rewardImage";
+
 	public DBManager(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		// TODO Auto-generated constructor stub
@@ -40,7 +39,7 @@ public class DBManager extends SQLiteOpenHelper {
 		// TODO Auto-generated method stub
 		String CREATE_TABLE = "CREATE TABLE " + DATABASE_TABLE + "(" + KEY_NO
 				+ " INTEGER PRIMARY KEY," + KEY_DATE + " TEXT NOT NULL,"
-				+ KEY_REWARD_TEXT + " TEXT" + ")";
+				+ KEY_REWARD_TEXT + " TEXT," + KEY_REWARD_IMAGE + " TEXT" + ")";
 		db.execSQL(CREATE_TABLE);
 	}
 
@@ -54,7 +53,7 @@ public class DBManager extends SQLiteOpenHelper {
 		onCreate(db);
 	}
 
-	// ï¿½ï¿½ï¿½Î¿ï¿½Writeï¿½Ô¼ï¿½ ï¿½ß°ï¿½
+	// »õ·Î¿îWriteÇÔ¼ö Ãß°¡
 	public void addWrite(Write write) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();		
@@ -63,21 +62,21 @@ public class DBManager extends SQLiteOpenHelper {
 
 		values.put(KEY_DATE, dateFormat.format(date));
 		values.put(KEY_REWARD_TEXT, write.getRewardText());
-//		values.put(KEY_REWARD_IMAGE, write.getRewardImage());
+		values.put(KEY_REWARD_IMAGE, write.getRewardImage());
 
 		// Inserting Row
 		db.insert(DATABASE_TABLE, null, values);
 		db.close(); // Closing database connection
 	}
 
-	// noï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Writeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// no°ªÀ¸·Î Write°¡Á®¿À±â
 	public Write getWrite(int no) {
 		return null;
 
 	}
 
-	// ï¿½ï¿½ï¿½ Writeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	public List<Write> getAllWrite() {
+	// ¸ðµç Write°¡Á®¿À±â
+	public List<Write> getAllWrites() {
 		List<Write> writeList = new ArrayList<Write>();
 		// Select All Query
 		String selectQuery = "SELECT  * FROM " + DATABASE_TABLE;
@@ -92,7 +91,7 @@ public class DBManager extends SQLiteOpenHelper {
 				write.setNo(Integer.parseInt(cursor.getString(0)));
 				write.setDate(cursor.getString(1));
 				write.setRewardText(cursor.getString(2));
-//				write.setRewardImage(cursor.getString(3));
+				write.setRewardImage(cursor.getString(3));
 
 				writeList.add(write);
 			} while (cursor.moveToNext());
@@ -102,13 +101,13 @@ public class DBManager extends SQLiteOpenHelper {
 		return writeList;
 	}
 
-	//ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½È°ï¿½Ä£ï¿½Îºï¿½
-	// //Contact ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
+	//º¹ºÙÇÏ°í ¾È°íÄ£ºÎºÐ
+	// //Contact Á¤º¸ ¾÷µ¥ÀÌÆ®
 	// public int updateContact(Write write) {
 	// SQLiteDatabase db = this.getWritableDatabase();
 	//
 	// ContentValues values = new ContentValues();
-	// values.put(KEY_DATE, "");
+	// values.put(KEY_DATE, "date('now', 'localtime')");
 	// values.put(KEY_REWARD_TEXT, write.getRewardText());
 	// values.put(KEY_REWARD_IMAGE, write.getRewardImage());
 	//
@@ -117,7 +116,7 @@ public class DBManager extends SQLiteOpenHelper {
 	// new String[] { String.valueOf(write.getNo()) });
 	// }
 	//
-	// // Contact ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
+	// // Contact Á¤º¸ »èÁ¦ÇÏ±â
 	// public void deleteContact(Write write) {
 	// SQLiteDatabase db = this.getWritableDatabase();
 	// db.delete(DATABASE_TABLE, KEY_NO + " = ?",
@@ -125,15 +124,15 @@ public class DBManager extends SQLiteOpenHelper {
 	// db.close();
 	// }
 	//
-	// // Contact ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	// public int getContactsCount() {
-	// String countQuery = "SELECT  * FROM " + DATABASE_TABLE;
-	// SQLiteDatabase db = this.getReadableDatabase();
-	// Cursor cursor = db.rawQuery(countQuery, null);
-	// cursor.close();
-	//
-	// // return count
-	// return cursor.getCount();
-	// }
+	 // Write Á¤º¸ ¼ýÀÚ
+	 public int getWritesCount() {
+	 String countQuery = "SELECT  * FROM " + DATABASE_TABLE;
+	 SQLiteDatabase db = this.getReadableDatabase();
+	 Cursor cursor = db.rawQuery(countQuery, null);
+	 cursor.close();
+	
+	 // return count
+	 return cursor.getCount();
+	 }
 
 }

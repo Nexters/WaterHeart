@@ -7,7 +7,8 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
-
+    <!-- 튜토리얼이 최상단에 오게 하기 위한 퍼미션 -->
+	<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/> 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"

@@ -2,4 +2,15 @@
 <ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    ></ViewFlipper>
+    android:focusableInTouchMode="true"
+    android:id="@+id/tutorialFlipper"
+    >
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#44000000"></RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#88000000"></RelativeLayout>
+</ViewFlipper>

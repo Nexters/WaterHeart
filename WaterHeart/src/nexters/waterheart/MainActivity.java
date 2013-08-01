@@ -32,14 +32,19 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter{
 	@Override
 	public Fragment getItem(int position) {
 		// TODO Auto-generated method stub
-		
-		return new MainFragment();
+		Fragment fragment = new Fragment();
+		switch(position){
+		case 0: fragment = new MainFragment(); break;
+		case 1: fragment = new StampFragment(); break;
+		case 2: fragment = new HistoryFragment(); break;
+		}
+		return fragment;
 	}
 
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 4;
+		return 3;
 	}
 
 	@Override

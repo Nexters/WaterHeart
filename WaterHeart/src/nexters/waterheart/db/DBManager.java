@@ -6,22 +6,28 @@ import java.util.Date;
 import java.util.List;
 
 import nexters.waterheart.dto.Write;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabase.CursorFactory;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DBManager extends SQLiteOpenHelper {
+public class DBManager {
 	// All Static variables
-	// Database Version
+	// Database Version private
+	private final Context context;
+	private DBOpenHelper dbHelper;
+	private SQLiteDatabase db;
 	private static final int DATABASE_VERSION = 1;
 
 	// Database Name
 	private static final String DATABASE_NAME = "heartManager";
 
 	// Contacts table name
-	static final String DATABASE_TABLE = "waterHeartDB";
+	static final String DATABASE_TABLE_NMAE = "waterHeartDB";
 
 	// Contacts Table Columns names
 	private static final String KEY_NO = "no";
@@ -29,59 +35,90 @@ public class DBManager extends SQLiteOpenHelper {
 	private static final String KEY_REWARD_TEXT = "rewardText";
 	private static final String KEY_REWARD_IMAGE = "rewardImage";
 
+	private static class DBOpenHelper extends SQLiteOpenHelper {
+
+		public DBOpenHelper(Context context, String name,
+				CursorFactory factory, int version) {
+			super(context, DATABASE_NAME, null, DATABASE_VERSION);
+			// TODO Auto-generated constructor stub
+		}
+
+		@Override
+		public void onCreate(SQLiteDatabase db) {
+			// TODO Auto-generated method stub
+			String CREATE_TABLE = "CREATE TABLE " + DATABASE_TABLE_NMAE + "("
+					+ KEY_NO + " INTEGER PRIMARY KEY," + KEY_DATE
+					+ " TEXT NOT NULL," + KEY_REWARD_TEXT + " TEXT,"
+					+ KEY_REWARD_IMAGE + " TEXT" + ")";
+			db.execSQL(CREATE_TABLE);
+		}
+
+		@Override
+		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+			// TODO Auto-generated method stub
+			// Drop older table if existed
+			db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_NMAE);
+
+			// Create tables again
+			onCreate(db);
+		}
+	}
+
 	public DBManager(Context context) {
-		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		// TODO Auto-generated constructor stub
+		this.context = context;
+		dbHelper = new DBOpenHelper(context, DATABASE_NAME, null,
+				DATABASE_VERSION);
 	}
 
-	@Override
-	public void onCreate(SQLiteDatabase db) {
-		// TODO Auto-generated method stub
-		String CREATE_TABLE = "CREATE TABLE " + DATABASE_TABLE + "(" + KEY_NO
-				+ " INTEGER PRIMARY KEY," + KEY_DATE + " TEXT NOT NULL,"
-				+ KEY_REWARD_TEXT + " TEXT," + KEY_REWARD_IMAGE + " TEXT" + ")";
-		db.execSQL(CREATE_TABLE);
+	public void open() throws SQLiteException {
+		try {
+			db = dbHelper.getWritableDatabase(); // Write mode Open
+		} catch (SQLiteException ex) {
+			db = dbHelper.getReadableDatabase(); // Read mode Open
+		}
 	}
 
-	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// TODO Auto-generated method stub
-		// Drop older table if existed
-		db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE);
-
-		// Create tables again
-		onCreate(db);
+	// close DB
+	public void close() {
+		db.close();
 	}
 
-	// 새로운Write함수 추가
+	// insert new write
 	public void addWrite(Write write) {
-		SQLiteDatabase db = this.getWritableDatabase();
-		ContentValues values = new ContentValues();		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
-		Date date = new Date(); 
+		ContentValues values = new ContentValues();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
 
 		values.put(KEY_DATE, dateFormat.format(date));
 		values.put(KEY_REWARD_TEXT, write.getRewardText());
 		values.put(KEY_REWARD_IMAGE, write.getRewardImage());
 
 		// Inserting Row
-		db.insert(DATABASE_TABLE, null, values);
-		db.close(); // Closing database connection
+		db.insert(DATABASE_TABLE_NMAE, null, values);
 	}
 
-	// no값으로 Write가져오기
+	// select a write by no
 	public Write getWrite(int no) {
-		return null;
+		Cursor cursor = db.query(DATABASE_TABLE_NMAE, new String[] { KEY_NO,
+				KEY_DATE, KEY_REWARD_TEXT, KEY_REWARD_IMAGE }, KEY_NO + "=?",
+				new String[] { String.valueOf(no) }, null, null, null, null);
+		if (cursor != null)
+			cursor.moveToFirst();
+
+		Write write = new Write();
+		write.setNo(Integer.parseInt(cursor.getString(0)));
+		write.setDate(cursor.getString(1));
+		write.setRewardText(cursor.getString(2));
+		write.setRewardImage(cursor.getString(3));
+		return write;
 
 	}
 
-	// 모든 Write가져오기
+	// select all Write
 	public List<Write> getAllWrites() {
 		List<Write> writeList = new ArrayList<Write>();
 		// Select All Query
-		String selectQuery = "SELECT  * FROM " + DATABASE_TABLE;
-
-		SQLiteDatabase db = this.getWritableDatabase();
+		String selectQuery = "SELECT * FROM " + DATABASE_TABLE_NMAE;
 		Cursor cursor = db.rawQuery(selectQuery, null);
 
 		// looping through all rows and adding to list
@@ -101,38 +138,45 @@ public class DBManager extends SQLiteOpenHelper {
 		return writeList;
 	}
 
-	//복붙하고 안고친부분
-	// //Contact 정보 업데이트
-	// public int updateContact(Write write) {
-	// SQLiteDatabase db = this.getWritableDatabase();
-	//
+	// delete at MainActivity
+	// int no;
+	// db.open();
+	// num = db.getWritesCount();
+	// db.deleteWrite(no);
+	public void deleteWrite(int no) {
+		DBManager manager = new DBManager(null);
+		db.delete(DATABASE_TABLE_NMAE, KEY_NO + " = ?",
+				new String[] { String.valueOf(no) });
+	}
+
+	public int getWritesCount() {
+		String countQuery = "SELECT * FROM " + DATABASE_TABLE_NMAE;
+		Cursor cursor = db.rawQuery(countQuery, null);
+		return cursor.getCount();
+	}
+
+
+
+
+
+
+
+
+
+	// no use?..
+	// // update
+	// public int updateWrite(Write write) {
 	// ContentValues values = new ContentValues();
-	// values.put(KEY_DATE, "date('now', 'localtime')");
+	// SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	// Date date = new Date();
+	//
+	// values.put(KEY_DATE, dateFormat.format(date));
 	// values.put(KEY_REWARD_TEXT, write.getRewardText());
 	// values.put(KEY_REWARD_IMAGE, write.getRewardImage());
 	//
 	// // updating row
 	// return db.update(DATABASE_TABLE, values, KEY_NO + " = ?",
 	// new String[] { String.valueOf(write.getNo()) });
-	// }
-	//
-	// // Contact 정보 삭제하기
-	// public void deleteContact(Write write) {
-	// SQLiteDatabase db = this.getWritableDatabase();
-	// db.delete(DATABASE_TABLE, KEY_NO + " = ?",
-	// new String[] { String.valueOf(write.getNo()) });
-	// db.close();
-	// }
-	//
-	 // Write 정보 숫자
-	 public int getWritesCount() {
-	 String countQuery = "SELECT  * FROM " + DATABASE_TABLE;
-	 SQLiteDatabase db = this.getReadableDatabase();
-	 Cursor cursor = db.rawQuery(countQuery, null);
-	 cursor.close();
-	
-	 // return count
-	 return cursor.getCount();
-	 }
+	// 
 
 }

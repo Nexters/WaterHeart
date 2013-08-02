@@ -16,7 +16,5 @@ public class AnimationManager {
 	/*
 	 * 이 뒤로는 getFadeoutAnimation(), getCupCustomizerAnimation() 등등 넣을계획?
 	 */
-	public Animation getShowCustomAnimation(){
-		return AnimationUtils.loadAnimation(mActivity, R.anim.show_custom);
-	}
+
 }

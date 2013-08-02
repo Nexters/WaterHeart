@@ -33,6 +33,9 @@ public class TutorialManager {
 	 * TYPE_PHONE을 위해 USES-PERMISSION 등록함
 	 */
 	public void showTutorial(){
+		if(wm==null){
+			wm=(WindowManager)mActivity.getSystemService(Service.WINDOW_SERVICE);
+		}
 		WindowManager.LayoutParams param = new WindowManager.LayoutParams();
 		param.x=0; param.y=0;
 		param.width=WindowManager.LayoutParams.MATCH_PARENT;
@@ -51,8 +54,11 @@ public class TutorialManager {
 	public void finishTutorial(){
 		//튜토리얼이 끝났을 때 viewflipper를 다시 처음상태를 보여주도록하고
 		//windowmanager에서 뷰를 없앤다.
+		if(wm!=null){
 		tutorial.setDisplayedChild(0);
-		if(wm!=null)
 		wm.removeView(tutorial);
+		wm=null;
+		}
+		
 	}
 }

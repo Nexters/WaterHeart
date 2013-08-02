@@ -153,6 +153,7 @@ public class DBManager {
 		return cursor.getCount();
 	}
 
+<<<<<<< HEAD
 	public void updatedb(){
 		int version = db.getVersion();
 		String log = "version" + version;
@@ -160,6 +161,16 @@ public class DBManager {
 		version += 1;
 	    DBManager dbincrement = new DBManager(context, version);
 	}
+=======
+
+
+
+
+
+
+
+
+>>>>>>> e1b1a87ec1d4756775fcf19466b4d5c0de872f4d
 	// no use?..
 	// // update
 	// public int updateWrite(Write write) {

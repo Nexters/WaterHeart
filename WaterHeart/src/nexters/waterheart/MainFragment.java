@@ -1,30 +1,34 @@
 package nexters.waterheart;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ViewFlipper;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
 public class MainFragment extends SherlockFragment{
+	Button btn01;
+	Button btn02;
 	ViewFlipper tutorialFlipper;
-	WindowManager wm;
 	TutorialManager tutorial;
+	AnimationManager animationManager;
 	private static final int TUTORIAL_NUMBER = 0;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.mainview, container,false);
-		Button btn = (Button)view.findViewById(R.id.button);
-		btn.setOnClickListener(mOnClickListener);
+		btn01 = (Button)view.findViewById(R.id.button);
+		btn01.setOnClickListener(mOnClickListener);
+		btn02 = (Button)view.findViewById(R.id.toCustom); btn02.setOnClickListener(mOnClickListener);
 		tutorial = new TutorialManager();
+		animationManager = new AnimationManager(getActivity());
 		tutorialFlipper = tutorial.getTutorial(TUTORIAL_NUMBER, getActivity());
 		tutorialFlipper.setOnTouchListener(mOnTouchListener);
 		return view;
@@ -34,7 +38,16 @@ public class MainFragment extends SherlockFragment{
 		
 		@Override
 		public void onClick(View v) {
-			tutorial.showTutorial();
+			switch(v.getId()){
+			case R.id.button:
+				tutorial.showTutorial();
+				break;
+			case R.id.toCustom:
+				Intent intent = new Intent(getActivity(), CustomActivity.class);
+				startActivity(intent);
+				getActivity().overridePendingTransition(R.anim.show_custom, 0);
+			}
+			
 		}
 	};
 	/*
@@ -56,8 +69,21 @@ public class MainFragment extends SherlockFragment{
 		
 	};
 	
+	
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		// TODO Auto-generated method stub
+/*
+ * saveFragmentBasicState nullpointerexception 에러 방지용....
+ */
+		outState.putString("Don't crash", "Please");
+		super.onSaveInstanceState(outState);
+	}
+
+
 	public void onDestroy(){
 		tutorial.finishTutorial();
 		super.onDestroy();
 	}
+	
 }

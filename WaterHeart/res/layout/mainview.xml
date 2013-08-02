@@ -9,5 +9,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button"/>
-
+	<Button
+	    android:text="toCustom"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:id="@+id/toCustom"
+	    android:layout_below="@id/button"/>
 </RelativeLayout>

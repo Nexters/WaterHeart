@@ -11,6 +11,7 @@ public final class R {
     public static final class anim {
         public static final int intro_fadeout=0x7f040000;
         public static final int main_fadein=0x7f040001;
+        public static final int show_custom=0x7f040002;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
@@ -956,7 +957,7 @@ containing a value of this type.
         public static final int abs__textButton=0x7f050013;
         public static final int abs__title=0x7f05001b;
         public static final int abs__up=0x7f05000b;
-        public static final int action_settings=0x7f050037;
+        public static final int action_settings=0x7f050038;
         public static final int button=0x7f050035;
         public static final int disableHome=0x7f050009;
         public static final int edit_query=0x7f050026;
@@ -970,7 +971,8 @@ containing a value of this type.
         public static final int showHome=0x7f050005;
         public static final int showTitle=0x7f050007;
         public static final int tabMode=0x7f050003;
-        public static final int tutorialFlipper=0x7f050036;
+        public static final int toCustom=0x7f050036;
+        public static final int tutorialFlipper=0x7f050037;
         public static final int useLogo=0x7f050004;
         public static final int wrap_content=0x7f050000;
     }

@@ -6,14 +6,13 @@ import java.util.Date;
 import java.util.List;
 
 import nexters.waterheart.dto.Write;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DBManager {
 	// All Static variables
@@ -21,7 +20,7 @@ public class DBManager {
 	private final Context context;
 	private DBOpenHelper dbHelper;
 	private SQLiteDatabase db;
-	private static final int DATABASE_VERSION = 1;
+	static int DATABASE_VERSION = 1;
 
 	// Database Name
 	private static final String DATABASE_NAME = "heartManager";
@@ -37,8 +36,7 @@ public class DBManager {
 
 	private static class DBOpenHelper extends SQLiteOpenHelper {
 
-		public DBOpenHelper(Context context, String name,
-				CursorFactory factory, int version) {
+		public DBOpenHelper(Context context) {
 			super(context, DATABASE_NAME, null, DATABASE_VERSION);
 			// TODO Auto-generated constructor stub
 		}
@@ -64,10 +62,10 @@ public class DBManager {
 		}
 	}
 
-	public DBManager(Context context) {
+	public DBManager(Context context, int version) {
 		this.context = context;
-		dbHelper = new DBOpenHelper(context, DATABASE_NAME, null,
-				DATABASE_VERSION);
+		DATABASE_VERSION = version;
+		dbHelper = new DBOpenHelper(context);
 	}
 
 	public void open() throws SQLiteException {
@@ -144,7 +142,7 @@ public class DBManager {
 	// num = db.getWritesCount();
 	// db.deleteWrite(no);
 	public void deleteWrite(int no) {
-		DBManager manager = new DBManager(null);
+		DBManager manager = new DBManager(null, DATABASE_VERSION);
 		db.delete(DATABASE_TABLE_NMAE, KEY_NO + " = ?",
 				new String[] { String.valueOf(no) });
 	}
@@ -154,15 +152,14 @@ public class DBManager {
 		Cursor cursor = db.rawQuery(countQuery, null);
 		return cursor.getCount();
 	}
-	
-	
-	
-	
-	
-	
 
-	
-	
+	public void updatedb(){
+		int version = db.getVersion();
+		String log = "version" + version;
+		Log.d("version: ", log);
+		version += 1;
+	    DBManager dbincrement = new DBManager(context, version);
+	}
 	// no use?..
 	// // update
 	// public int updateWrite(Write write) {

@@ -59,8 +59,8 @@ public class MainFragment extends SherlockFragment{
 		@Override
 		public boolean onTouch(View v, MotionEvent event) {
 			if(event.getAction()==MotionEvent.ACTION_DOWN){
-				if(tutorialFlipper.getCurrentView()==tutorialFlipper.getChildAt(1)){
-					tutorial.finishTutorial();
+				if(tutorialFlipper.getCurrentView()==tutorialFlipper.getChildAt(1)){ //튜토리얼 페이지가 2개밖에 없기때문에
+					tutorial.finishTutorial();										//지금은 getChildAt(1) 로
 					return true;
 				}
 				tutorial.showNext();

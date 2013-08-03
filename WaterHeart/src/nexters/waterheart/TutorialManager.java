@@ -3,7 +3,10 @@ package nexters.waterheart;
 import android.app.Activity;
 import android.app.Service;
 import android.graphics.PixelFormat;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.WindowManager;
+import android.view.View.OnTouchListener;
 import android.widget.ViewFlipper;
 
 public class TutorialManager {
@@ -24,6 +27,7 @@ public class TutorialManager {
 		}
 		return tutorial;
 	}
+	
 	
 	/*
 	 * 액티비티의 화면이 아니라 윈도우 사이즈 전체를 width, height로 지정하여 튜토리얼이 모든 화면을

@@ -17,7 +17,6 @@ public class MainFragment extends SherlockFragment{
 	Button btn02;
 	ViewFlipper tutorialFlipper;
 	TutorialManager tutorial;
-	AnimationManager animationManager;
 	private static final int TUTORIAL_NUMBER = 0;
 	
 	@Override
@@ -28,7 +27,6 @@ public class MainFragment extends SherlockFragment{
 		btn01.setOnClickListener(mOnClickListener);
 		btn02 = (Button)view.findViewById(R.id.toCustom); btn02.setOnClickListener(mOnClickListener);
 		tutorial = new TutorialManager();
-		animationManager = new AnimationManager(getActivity());
 		tutorialFlipper = tutorial.getTutorial(TUTORIAL_NUMBER, getActivity());
 		tutorialFlipper.setOnTouchListener(mOnTouchListener);
 		return view;

@@ -6,8 +6,11 @@ import android.content.SharedPreferences;
 public class CupManager {
 	SharedPreferences pref;
 	Activity mActivity;
-	private int cup_one, cup_two, cup_three, cup_four;
-	
+	int cup_one, cup_two, cup_three, cup_four; //private 변수로 할라고했는데.. 다른곳에서 참조하는데 번거로울듯하여
+	/*
+	 * 컵의 정보들은 sharedpreferences 에 저장하는걸로~
+	 * 4개밖에없으니 속도에는 무리가 없을거같다는 생각..
+	 */
 	
 	public CupManager(Activity activity){
 		mActivity=activity;
@@ -31,7 +34,7 @@ public class CupManager {
 		cup_four = pref.getInt("cup_four", 400);
 	}
 	
-	public void setCupState(int which, int amount){
+	public void setCupState(int which, int amount){ //which 변수는 0부터 컵의 순서
 		SharedPreferences.Editor edit = pref.edit();
 		switch(which){
 		case 0:

@@ -17,6 +17,7 @@ public class MainFragment extends SherlockFragment{
 	Button btn02;
 	ViewFlipper tutorialFlipper;
 	TutorialManager tutorial;
+	CupManager cupManager;
 	private static final int TUTORIAL_NUMBER = 0;
 	private static final int CUP_ONE=0, CUP_TWO=1, CUP_THREE=2, CUP_FOUR=3;
 	
@@ -27,6 +28,7 @@ public class MainFragment extends SherlockFragment{
 		btn01 = (Button)view.findViewById(R.id.button);
 		btn01.setOnClickListener(mOnClickListener);
 		btn02 = (Button)view.findViewById(R.id.toCustom); btn02.setOnClickListener(mOnClickListener);
+		cupManager = new CupManager(getActivity());
 		tutorial = new TutorialManager();
 		tutorialFlipper = tutorial.getTutorial(TUTORIAL_NUMBER, getActivity());
 		tutorialFlipper.setOnTouchListener(mOnTouchListener);

@@ -18,6 +18,7 @@ public class MainFragment extends SherlockFragment{
 	ViewFlipper tutorialFlipper;
 	TutorialManager tutorial;
 	private static final int TUTORIAL_NUMBER = 0;
+	private static final int CUP_ONE=0, CUP_TWO=1, CUP_THREE=2, CUP_FOUR=3;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

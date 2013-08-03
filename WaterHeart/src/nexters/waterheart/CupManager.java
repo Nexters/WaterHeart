@@ -47,5 +47,6 @@ public class CupManager {
 			edit.putInt("cup_four", amount);
 			break;
 		}
+		edit.commit();
 	}
 }

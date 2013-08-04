@@ -31,8 +31,8 @@ public class DBManager {
 	// Contacts Table Columns names
 	private static final String KEY_NO = "no";
 	private static final String KEY_DATE = "date";
-	private static final String KEY_REWARD_TEXT = "rewardText";
-	private static final String KEY_REWARD_IMAGE = "rewardImage";
+	private static final String KEY_WATER = "water";
+	private static final String KEY_COMPLETE = "complete";
 
 	private static class DBOpenHelper extends SQLiteOpenHelper {
 
@@ -46,8 +46,8 @@ public class DBManager {
 			// TODO Auto-generated method stub
 			String CREATE_TABLE = "CREATE TABLE " + DATABASE_TABLE_NMAE + "("
 					+ KEY_NO + " INTEGER PRIMARY KEY," + KEY_DATE
-					+ " TEXT NOT NULL," + KEY_REWARD_TEXT + " TEXT,"
-					+ KEY_REWARD_IMAGE + " TEXT" + ")";
+					+ " TEXT NOT NULL," + KEY_WATER + " TEXT,"
+					+ KEY_COMPLETE + " TEXT" + ")";
 			db.execSQL(CREATE_TABLE);
 		}
 
@@ -88,8 +88,8 @@ public class DBManager {
 		Date date = new Date();
 
 		values.put(KEY_DATE, dateFormat.format(date));
-		values.put(KEY_REWARD_TEXT, write.getRewardText());
-		values.put(KEY_REWARD_IMAGE, write.getRewardImage());
+		values.put(KEY_WATER, write.getRewardText());
+		values.put(KEY_COMPLETE, write.getRewardImage());
 
 		// Inserting Row
 		db.insert(DATABASE_TABLE_NMAE, null, values);
@@ -98,7 +98,7 @@ public class DBManager {
 	// select a write by no
 	public Write getWrite(int no) {
 		Cursor cursor = db.query(DATABASE_TABLE_NMAE, new String[] { KEY_NO,
-				KEY_DATE, KEY_REWARD_TEXT, KEY_REWARD_IMAGE }, KEY_NO + "=?",
+				KEY_DATE, KEY_WATER, KEY_COMPLETE }, KEY_NO + "=?",
 				new String[] { String.valueOf(no) }, null, null, null, null);
 		if (cursor != null)
 			cursor.moveToFirst();
@@ -150,6 +150,7 @@ public class DBManager {
 	public int getWritesCount() {
 		String countQuery = "SELECT * FROM " + DATABASE_TABLE_NMAE;
 		Cursor cursor = db.rawQuery(countQuery, null);
+
 		return cursor.getCount();
 	}
 

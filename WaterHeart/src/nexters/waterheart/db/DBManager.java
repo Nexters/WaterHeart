@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import nexters.waterheart.dto.Write;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -26,7 +27,8 @@ public class DBManager {
 	private static final String DATABASE_NAME = "heartManager";
 
 	// Contacts table name
-	static final String DATABASE_TABLE_NMAE = "waterHeartDB";
+	static final String DATABASE_TABLE_MAIN_NAME = "waterHeartDB";
+	static final String DATABASE_TABLE_SUB_NAME = "completeDB";
 
 	// Contacts Table Columns names
 	private static final String KEY_NO = "no";
@@ -44,19 +46,23 @@ public class DBManager {
 		@Override
 		public void onCreate(SQLiteDatabase db) {
 			// TODO Auto-generated method stub
-			String CREATE_TABLE = "CREATE TABLE " + DATABASE_TABLE_NMAE + "("
-					+ KEY_NO + " INTEGER PRIMARY KEY," + KEY_DATE
-					+ " TEXT NOT NULL," + KEY_WATER + " TEXT,"
-					+ KEY_COMPLETE + " TEXT" + ")";
-			db.execSQL(CREATE_TABLE);
+			String CREATE_TABLE_MAIN = "CREATE TABLE "
+					+ DATABASE_TABLE_MAIN_NAME + "(" + KEY_NO
+					+ " INTEGER PRIMARY KEY," + KEY_DATE + " TEXT NOT NULL,"
+					+ KEY_WATER + " TEXT" + ")";
+			String CREATE_TABLE_SUB = "CREATE TABLE " + DATABASE_TABLE_SUB_NAME
+					+ "(" + KEY_DATE + " TEXT PRIMARY KEY," + KEY_COMPLETE
+					+ " TEXT" + ")";
+			db.execSQL(CREATE_TABLE_MAIN);
+			db.execSQL(CREATE_TABLE_SUB);
 		}
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 			// TODO Auto-generated method stub
 			// Drop older table if existed
-			db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_NMAE);
-
+			db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_MAIN_NAME);
+			db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_SUB_NAME);
 			// Create tables again
 			onCreate(db);
 		}
@@ -88,17 +94,16 @@ public class DBManager {
 		Date date = new Date();
 
 		values.put(KEY_DATE, dateFormat.format(date));
-		values.put(KEY_WATER, write.getRewardText());
-		values.put(KEY_COMPLETE, write.getRewardImage());
+		values.put(KEY_WATER, write.getWater());
 
 		// Inserting Row
-		db.insert(DATABASE_TABLE_NMAE, null, values);
+		db.insert(DATABASE_TABLE_MAIN_NAME, null, values);
 	}
 
 	// select a write by no
 	public Write getWrite(int no) {
-		Cursor cursor = db.query(DATABASE_TABLE_NMAE, new String[] { KEY_NO,
-				KEY_DATE, KEY_WATER, KEY_COMPLETE }, KEY_NO + "=?",
+		Cursor cursor = db.query(DATABASE_TABLE_MAIN_NAME, new String[] {
+				KEY_NO, KEY_DATE, KEY_WATER}, KEY_NO + "=?",
 				new String[] { String.valueOf(no) }, null, null, null, null);
 		if (cursor != null)
 			cursor.moveToFirst();
@@ -106,8 +111,7 @@ public class DBManager {
 		Write write = new Write();
 		write.setNo(Integer.parseInt(cursor.getString(0)));
 		write.setDate(cursor.getString(1));
-		write.setRewardText(cursor.getString(2));
-		write.setRewardImage(cursor.getString(3));
+		write.setWater(cursor.getString(2));
 		return write;
 
 	}
@@ -116,7 +120,7 @@ public class DBManager {
 	public List<Write> getAllWrites() {
 		List<Write> writeList = new ArrayList<Write>();
 		// Select All Query
-		String selectQuery = "SELECT * FROM " + DATABASE_TABLE_NMAE;
+		String selectQuery = "SELECT * FROM " + DATABASE_TABLE_MAIN_NAME;
 		Cursor cursor = db.rawQuery(selectQuery, null);
 
 		// looping through all rows and adding to list
@@ -125,8 +129,7 @@ public class DBManager {
 				Write write = new Write();
 				write.setNo(Integer.parseInt(cursor.getString(0)));
 				write.setDate(cursor.getString(1));
-				write.setRewardText(cursor.getString(2));
-				write.setRewardImage(cursor.getString(3));
+				write.setWater(cursor.getString(2));
 
 				writeList.add(write);
 			} while (cursor.moveToNext());
@@ -143,26 +146,23 @@ public class DBManager {
 	// db.deleteWrite(no);
 	public void deleteWrite(int no) {
 		DBManager manager = new DBManager(null, DATABASE_VERSION);
-		db.delete(DATABASE_TABLE_NMAE, KEY_NO + " = ?",
+		db.delete(DATABASE_TABLE_MAIN_NAME, KEY_NO + " = ?",
 				new String[] { String.valueOf(no) });
 	}
 
 	public int getWritesCount() {
-		String countQuery = "SELECT * FROM " + DATABASE_TABLE_NMAE;
+		String countQuery = "SELECT * FROM " + DATABASE_TABLE_MAIN_NAME;
 		Cursor cursor = db.rawQuery(countQuery, null);
-
 		return cursor.getCount();
 	}
 
-	public void updatedb(){
+	public void updatedb() {
 		int version = db.getVersion();
 		String log = "version" + version;
 		Log.d("version: ", log);
 		version += 1;
-	    DBManager dbincrement = new DBManager(context, version);
+		DBManager dbincrement = new DBManager(context, version);
 	}
-
-
 	// no use?..
 	// // update
 	// public int updateWrite(Write write) {
@@ -177,6 +177,6 @@ public class DBManager {
 	// // updating row
 	// return db.update(DATABASE_TABLE, values, KEY_NO + " = ?",
 	// new String[] { String.valueOf(write.getNo()) });
-	// 
+	//
 
 }

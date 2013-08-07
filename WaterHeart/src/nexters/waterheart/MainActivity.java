@@ -35,8 +35,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter{
 		Fragment fragment = new Fragment();
 		switch(position){
 		case 0: fragment = new MainFragment(); break;
-		case 1: fragment = new StampFragment(); break;
-		case 2: fragment = new HistoryFragment(); break;
+		case 1: fragment = new HistoryFragment(); break;
 		}
 		return fragment;
 	}
@@ -44,7 +43,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter{
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 3;
+		return 2;
 	}
 
 	@Override

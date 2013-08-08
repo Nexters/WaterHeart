@@ -21,6 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <ImageView
+                android:id="@+id/history_heart_6"
             	android:layout_width="wrap_content"
             	android:layout_height="wrap_content"
             	android:src="@drawable/resultspage_heart"
@@ -47,6 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <ImageView
+                android:id="@+id/history_heart_5"
             	android:layout_width="wrap_content"
             	android:layout_height="wrap_content"
             	android:src="@drawable/resultspage_heart"
@@ -78,6 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <ImageView
+                android:id="@+id/history_heart_4"
             	android:layout_width="wrap_content"
             	android:layout_height="wrap_content"
             	android:src="@drawable/resultspage_heart"
@@ -102,6 +105,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <ImageView
+                android:id="@+id/history_heart_3"
             	android:layout_width="wrap_content"
             	android:layout_height="wrap_content"
             	android:src="@drawable/resultspage_heart"
@@ -133,6 +137,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <ImageView
+                android:id="@+id/history_heart_2"
             	android:layout_width="wrap_content"
             	android:layout_height="wrap_content"
             	android:src="@drawable/resultspage_heart"
@@ -157,6 +162,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <ImageView
+                android:id="@+id/history_heart_1"
             	android:layout_width="wrap_content"
             	android:layout_height="wrap_content"
             	android:src="@drawable/resultspage_heart"

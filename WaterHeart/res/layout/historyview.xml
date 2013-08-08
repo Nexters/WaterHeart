@@ -2,8 +2,9 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:stretchColumns="*"
-    android:shrinkColumns="*">
+    android:shrinkColumns="*"
+    android:stretchColumns="*" >
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,14 +24,24 @@
             	android:layout_width="wrap_content"
             	android:layout_height="wrap_content"
             	android:src="@drawable/resultspage_heart"
-            	android:layout_centerInParent="true"/>
+            	android:layout_centerInParent="true"
+            	/>
             <TextView
-                android:text="100%"
+                android:id="@+id/resultspage_text_6"
+                android:text="100"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
                 android:layout_centerInParent="true"
                 />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/main_heart_percent"
+                android:layout_toRightOf="@id/resultspage_text_6"
+                android:layout_centerVertical="true"
+                />
+                
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -41,11 +52,19 @@
             	android:src="@drawable/resultspage_heart"
             	android:layout_centerInParent="true"/>
             <TextView
-                android:text="50%"
+                android:id="@+id/resultspage_text_5"
+                android:text="50"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
                 android:layout_centerInParent="true"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/main_heart_percent"
+                android:layout_toRightOf="@id/resultspage_text_5"
+                android:layout_centerVertical="true"
                 />
         </RelativeLayout>
     </TableRow>
@@ -64,11 +83,19 @@
             	android:src="@drawable/resultspage_heart"
             	android:layout_centerInParent="true"/>
             <TextView
-                android:text="33%"
+                android:id="@+id/resultspage_text_4"
+                android:text="33"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
                 android:layout_centerInParent="true"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/main_heart_percent"
+                android:layout_toRightOf="@id/resultspage_text_4"
+                android:layout_centerVertical="true"
                 />
         </RelativeLayout>
         <RelativeLayout
@@ -80,11 +107,19 @@
             	android:src="@drawable/resultspage_heart"
             	android:layout_centerInParent="true"/>
             <TextView
-                android:text="100%"
+                android:id="@+id/resultspage_text_3"
+                android:text="100"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
                 android:layout_centerInParent="true"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/main_heart_percent"
+                android:layout_toRightOf="@id/resultspage_text_3"
+                android:layout_centerVertical="true"
                 />
         </RelativeLayout>
     </TableRow>
@@ -103,11 +138,19 @@
             	android:src="@drawable/resultspage_heart"
             	android:layout_centerInParent="true"/>
             <TextView
-                android:text="100%"
+                android:id="@+id/resultspage_text_2"
+                android:text="100"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
                 android:layout_centerInParent="true"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/main_heart_percent"
+                android:layout_toRightOf="@id/resultspage_text_2"
+                android:layout_centerVertical="true"
                 />
         </RelativeLayout>
         <RelativeLayout
@@ -119,11 +162,19 @@
             	android:src="@drawable/resultspage_heart"
             	android:layout_centerInParent="true"/>
             <TextView
-                android:text="100%"
+                android:id="@+id/resultspage_text_1"
+                android:text="100"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
                 android:layout_centerInParent="true"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/main_heart_percent"
+                android:layout_toRightOf="@id/resultspage_text_1"
+                android:layout_centerVertical="true"
                 />
         </RelativeLayout>
     </TableRow>

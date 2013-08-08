@@ -11,10 +11,11 @@ import android.widget.Button;
 import android.widget.ViewFlipper;
 
 import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 
 public class MainFragment extends SherlockFragment{
-	Button btn01;
-	Button btn02;
 	ViewFlipper tutorialFlipper;
 	TutorialManager tutorial;
 	CupManager cupManager;
@@ -24,33 +25,44 @@ public class MainFragment extends SherlockFragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		/*
+		 * setHasOptionsMenu(true)가 지정되어야만
+		 * fragment내에서 액션바 메뉴를 설정할 수 있다
+		 */
+		setHasOptionsMenu(true);
 		View view = inflater.inflate(R.layout.mainview, container,false);
-		btn01 = (Button)view.findViewById(R.id.button);
-		btn01.setOnClickListener(mOnClickListener);
-		btn02 = (Button)view.findViewById(R.id.toCustom); btn02.setOnClickListener(mOnClickListener);
 		cupManager = new CupManager(getActivity());
 		tutorial = new TutorialManager();
 		return view;
 	}
+	
+	
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		// TODO Auto-generated method stub
+		inflater.inflate(R.menu.main, menu);
+		super.onCreateOptionsMenu(menu, inflater);
+	}
 
-	public View.OnClickListener mOnClickListener = new View.OnClickListener() {
-		
-		@Override
-		public void onClick(View v) {
-			switch(v.getId()){
-			case R.id.button:
-				tutorialFlipper = tutorial.getTutorial(TUTORIAL_NUMBER, getActivity());
-				tutorialFlipper.setOnTouchListener(mOnTouchListener);
-				tutorial.showTutorial();
-				break;
-			case R.id.toCustom:
-				Intent intent = new Intent(getActivity(), CustomActivity.class);
-				startActivity(intent);
-				getActivity().overridePendingTransition(R.anim.show_custom, 0);
-			}
-			
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		switch(item.getItemId()){
+		case R.id.action_pencil:
+			Intent intent = new Intent(getActivity(), CustomActivity.class);
+			startActivity(intent);
+			getActivity().overridePendingTransition(R.anim.show_custom, 0);
+			return true;
+		case R.id.action_question:
+			tutorialFlipper = tutorial.getTutorial(TUTORIAL_NUMBER, getActivity());
+			tutorialFlipper.setOnTouchListener(mOnTouchListener);
+			tutorial.showTutorial();
+			return true;
 		}
-	};
+		return super.onOptionsItemSelected(item);
+	}
+
 	/*
 	 * 윈도우상의 튜토리얼이 받는 touchlistener
 	 */

@@ -7,8 +7,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
 
 public class MainActivity extends SherlockFragmentActivity {
 	SectionsPagerAdapter mSectionsPagerAdapter;
@@ -23,16 +21,7 @@ public class MainActivity extends SherlockFragmentActivity {
         mViewPager=(ViewPager)findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
     }
-    
-    
-@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// TODO Auto-generated method stub
-		MenuInflater inflater = getSupportMenuInflater();
-		inflater.inflate(R.menu.main, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
-
+   
 
 public class SectionsPagerAdapter extends FragmentPagerAdapter{
 

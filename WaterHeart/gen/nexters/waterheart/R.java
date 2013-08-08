@@ -969,23 +969,28 @@ containing a value of this type.
         public static final int abs__textButton=0x7f050013;
         public static final int abs__title=0x7f05001b;
         public static final int abs__up=0x7f05000b;
-        public static final int action_pencil=0x7f050038;
-        public static final int action_question=0x7f050039;
-        public static final int button=0x7f050035;
+        public static final int action_pencil=0x7f05003d;
+        public static final int action_question=0x7f05003e;
+        public static final int action_question_history=0x7f05003c;
         public static final int disableHome=0x7f050009;
         public static final int edit_query=0x7f050026;
         public static final int homeAsUp=0x7f050006;
-        public static final int layout=0x7f050034;
+        public static final int layout=0x7f05003a;
         public static final int listMode=0x7f050002;
         public static final int normal=0x7f050001;
         public static final int pager=0x7f050032;
         public static final int pager_title_strip=0x7f050033;
+        public static final int resultspage_text_1=0x7f050039;
+        public static final int resultspage_text_2=0x7f050038;
+        public static final int resultspage_text_3=0x7f050037;
+        public static final int resultspage_text_4=0x7f050036;
+        public static final int resultspage_text_5=0x7f050035;
+        public static final int resultspage_text_6=0x7f050034;
         public static final int showCustom=0x7f050008;
         public static final int showHome=0x7f050005;
         public static final int showTitle=0x7f050007;
         public static final int tabMode=0x7f050003;
-        public static final int toCustom=0x7f050036;
-        public static final int tutorialFlipper=0x7f050037;
+        public static final int tutorialFlipper=0x7f05003b;
         public static final int useLogo=0x7f050004;
         public static final int wrap_content=0x7f050000;
     }
@@ -1025,7 +1030,8 @@ containing a value of this type.
         public static final int tutorial=0x7f03001d;
     }
     public static final class menu {
-        public static final int main=0x7f0c0000;
+        public static final int history=0x7f0c0000;
+        public static final int main=0x7f0c0001;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 

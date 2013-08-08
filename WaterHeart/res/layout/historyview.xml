@@ -1,60 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <ImageView
-        android:id="@+id/resultspage_heart6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="37dp"
-        android:layout_marginTop="71dp"
-        android:src="@drawable/resultspage_heart" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
-    <ImageView
-        android:id="@+id/resultspage_heart4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/resultspage_heart6"
-        android:layout_below="@+id/resultspage_heart6"
-        android:layout_marginTop="49dp"
-        android:src="@drawable/resultspage_heart" />
+        <ImageView
+            android:id="@+id/resultspage_heart6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="37dp"
+            android:layout_marginTop="71dp"
+            android:src="@drawable/resultspage_heart" />
 
-    <ImageView
-        android:id="@+id/resultspage_heart2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/resultspage_heart6"
-        android:layout_below="@+id/resultspage_heart4"
-        android:layout_marginTop="49dp"
-        android:src="@drawable/resultspage_heart" />
+        <ImageView
+            android:id="@+id/resultspage_heart4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/resultspage_heart6"
+            android:layout_below="@+id/resultspage_heart6"
+            android:layout_marginTop="49dp"
+            android:src="@drawable/resultspage_heart" />
 
-    <ImageView
-        android:id="@+id/resultspage_heart5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/resultspage_heart6"
-        android:layout_marginLeft="37dp"
-        android:layout_toRightOf="@+id/resultspage_heart6"
-        android:src="@drawable/resultspage_heart" />
+        <ImageView
+            android:id="@+id/resultspage_heart2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/resultspage_heart6"
+            android:layout_below="@+id/resultspage_heart4"
+            android:layout_marginTop="49dp"
+            android:src="@drawable/resultspage_heart" />
 
-    <ImageView
-        android:id="@+id/resultspage_heart3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/resultspage_heart4"
-        android:layout_marginLeft="37dp"
-        android:layout_toRightOf="@+id/resultspage_heart4"
-        android:src="@drawable/resultspage_heart" />
+        <ImageView
+            android:id="@+id/resultspage_heart5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/resultspage_heart6"
+            android:layout_marginLeft="37dp"
+            android:layout_toRightOf="@+id/resultspage_heart6"
+            android:src="@drawable/resultspage_heart" />
 
-    <ImageView
-        android:id="@+id/resultspage_heart1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/resultspage_heart2"
-        android:layout_marginLeft="37dp"
-        android:layout_toRightOf="@+id/resultspage_heart2"
-        android:src="@drawable/resultspage_heart" />
+        <ImageView
+            android:id="@+id/resultspage_heart3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/resultspage_heart4"
+            android:layout_marginLeft="37dp"
+            android:layout_toRightOf="@+id/resultspage_heart4"
+            android:src="@drawable/resultspage_heart" />
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/resultspage_heart1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/resultspage_heart2"
+            android:layout_marginLeft="37dp"
+            android:layout_toRightOf="@+id/resultspage_heart2"
+            android:src="@drawable/resultspage_heart" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/resultspage_text_ml6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="57dp"
+            android:layout_marginTop="151dp"
+            android:text="육"
+            android:textSize="36sp" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/resultspage_text_ml3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/resultspage_text_ml4"
+            android:layout_marginLeft="77dp"
+            android:layout_toRightOf="@+id/resultspage_text_ml4"
+            android:text="삼"
+            android:textSize="36sp" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/resultspage_text_ml1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/resultspage_text_ml2"
+            android:layout_marginLeft="77dp"
+            android:layout_toRightOf="@+id/resultspage_text_ml2"
+            android:text="일"
+            android:textSize="36dp" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/resultspage_text_ml4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/resultspage_text_ml6"
+            android:layout_below="@+id/resultspage_text_ml6"
+            android:layout_marginTop="109dp"
+            android:text="사"
+            android:textSize="36dp" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/resultspage_text_ml2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/resultspage_text_ml4"
+            android:layout_below="@+id/resultspage_text_ml4"
+            android:layout_marginTop="109dp"
+            android:text="이"
+            android:textSize="36dp" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/resultspage_text_ml5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/resultspage_text_ml6"
+            android:layout_marginLeft="77dp"
+            android:layout_toRightOf="@+id/resultspage_text_ml6"
+            android:text="오"
+            android:textSize="36dp" >
+        </TextView>
+    </RelativeLayout>
+
+</FrameLayout>

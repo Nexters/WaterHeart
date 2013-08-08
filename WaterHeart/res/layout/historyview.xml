@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -84,7 +85,7 @@
             android:layout_marginTop="103dp"
             android:text="4"
             android:textSize="37sp" />
-        
+
         <TextView
             android:id="@+id/resultspage_text_ml2"
             android:layout_width="wrap_content"
@@ -99,18 +100,19 @@
             android:id="@+id/resultspage_text_ml5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="151dp"
             android:layout_marginLeft="215dp"
+            android:layout_marginTop="151dp"
             android:text="5"
             android:textSize="37sp" >
         </TextView>
+
         <TextView
             android:id="@+id/resultspage_text_ml3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/resultspage_text_ml5"
-            android:layout_marginTop="103dp"
             android:layout_below="@+id/resultspage_text_ml5"
+            android:layout_marginTop="103dp"
             android:text="3"
             android:textSize="37sp" >
         </TextView>
@@ -120,12 +122,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/resultspage_text_ml3"
-            android:layout_marginTop="103dp"
             android:layout_below="@+id/resultspage_text_ml3"
+            android:layout_marginTop="103dp"
             android:text="1"
             android:textSize="37sp" >
         </TextView>
-
     </RelativeLayout>
 
-</FrameLayout>
+</LinearLayout>

@@ -1,9 +1,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
+   <item android:id="@+id/action_pencil"
+       android:title="pencil"
+       android:icon="@drawable/actionbar_pencil"
+       android:showAsAction="always"
+       />
+   <item android:id="@+id/action_question"
+       android:title="question"
+       android:icon="@drawable/actionbar_question"
+       android:showAsAction="always"/>
 
 </menu>

@@ -30,8 +30,6 @@ public class MainFragment extends SherlockFragment{
 		btn02 = (Button)view.findViewById(R.id.toCustom); btn02.setOnClickListener(mOnClickListener);
 		cupManager = new CupManager(getActivity());
 		tutorial = new TutorialManager();
-		tutorialFlipper = tutorial.getTutorial(TUTORIAL_NUMBER, getActivity());
-		tutorialFlipper.setOnTouchListener(mOnTouchListener);
 		return view;
 	}
 
@@ -41,6 +39,8 @@ public class MainFragment extends SherlockFragment{
 		public void onClick(View v) {
 			switch(v.getId()){
 			case R.id.button:
+				tutorialFlipper = tutorial.getTutorial(TUTORIAL_NUMBER, getActivity());
+				tutorialFlipper.setOnTouchListener(mOnTouchListener);
 				tutorial.showTutorial();
 				break;
 			case R.id.toCustom:

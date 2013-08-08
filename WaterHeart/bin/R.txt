@@ -296,7 +296,8 @@ int id abs__submit_area 0x7f05002f
 int id abs__textButton 0x7f050013
 int id abs__title 0x7f05001b
 int id abs__up 0x7f05000b
-int id action_settings 0x7f050044
+int id action_pencil 0x7f050044
+int id action_question 0x7f050045
 int id button 0x7f050041
 int id disableHome 0x7f050009
 int id edit_query 0x7f050026
@@ -312,11 +313,11 @@ int id resultspage_heart3 0x7f050038
 int id resultspage_heart4 0x7f050035
 int id resultspage_heart5 0x7f050037
 int id resultspage_heart6 0x7f050034
-int id resultspage_text_ml1 0x7f05003c
-int id resultspage_text_ml2 0x7f05003d
-int id resultspage_text_ml3 0x7f05003b
-int id resultspage_text_ml4 0x7f05003e
-int id resultspage_text_ml5 0x7f05003f
+int id resultspage_text_ml1 0x7f05003f
+int id resultspage_text_ml2 0x7f05003c
+int id resultspage_text_ml3 0x7f05003e
+int id resultspage_text_ml4 0x7f05003b
+int id resultspage_text_ml5 0x7f05003d
 int id resultspage_text_ml6 0x7f05003a
 int id showCustom 0x7f050008
 int id showHome 0x7f050005

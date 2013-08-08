@@ -11,7 +11,7 @@ import android.widget.ViewFlipper;
 
 public class TutorialManager {
 	ViewFlipper tutorial;
-	WindowManager wm;
+	WindowManager wm=null;
 	Activity mActivity;
 	public ViewFlipper getTutorial(int which, Activity activity){ //0:MainFragment 1:StampFragment 2:HistoryFragment
 		mActivity=activity;

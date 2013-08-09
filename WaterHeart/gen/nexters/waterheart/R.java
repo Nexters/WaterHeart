@@ -972,9 +972,9 @@ containing a value of this type.
         public static final int abs__textButton=0x7f050013;
         public static final int abs__title=0x7f05001b;
         public static final int abs__up=0x7f05000b;
-        public static final int action_pencil=0x7f050043;
-        public static final int action_question=0x7f050044;
-        public static final int action_question_history=0x7f050042;
+        public static final int action_pencil=0x7f050042;
+        public static final int action_question=0x7f050043;
+        public static final int action_question_history=0x7f050041;
         public static final int disableHome=0x7f050009;
         public static final int edit_query=0x7f050026;
         public static final int history_heart_1=0x7f05003e;
@@ -984,7 +984,6 @@ containing a value of this type.
         public static final int history_heart_5=0x7f050036;
         public static final int history_heart_6=0x7f050034;
         public static final int homeAsUp=0x7f050006;
-        public static final int layout=0x7f050040;
         public static final int listMode=0x7f050002;
         public static final int normal=0x7f050001;
         public static final int pager=0x7f050032;
@@ -999,7 +998,7 @@ containing a value of this type.
         public static final int showHome=0x7f050005;
         public static final int showTitle=0x7f050007;
         public static final int tabMode=0x7f050003;
-        public static final int tutorialFlipper=0x7f050041;
+        public static final int tutorialFlipper=0x7f050040;
         public static final int useLogo=0x7f050004;
         public static final int wrap_content=0x7f050000;
     }

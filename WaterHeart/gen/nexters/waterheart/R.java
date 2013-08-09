@@ -915,20 +915,22 @@ containing a value of this type.
         public static final int abs__textfield_searchview_right_holo_dark=0x7f02006d;
         public static final int abs__textfield_searchview_right_holo_light=0x7f02006e;
         public static final int abs__toast_frame=0x7f02006f;
-        public static final int actionbar_logo=0x7f020070;
-        public static final int actionbar_pencil=0x7f020071;
-        public static final int actionbar_question=0x7f020072;
-        public static final int background=0x7f020073;
-        public static final int cup_bottle=0x7f020074;
-        public static final int cup_coffee=0x7f020075;
-        public static final int cup_cup=0x7f020076;
-        public static final int cup_drop=0x7f020077;
-        public static final int ic_launcher=0x7f020078;
-        public static final int main_heart_ml=0x7f020079;
-        public static final int main_heart_percent=0x7f02007a;
-        public static final int resultspage_heart=0x7f02007b;
-        public static final int resultspage_heart_100=0x7f02007c;
-        public static final int test=0x7f02007d;
+        public static final int actionbar=0x7f020070;
+        public static final int actionbar_logo=0x7f020071;
+        public static final int actionbar_pencil=0x7f020072;
+        public static final int actionbar_question=0x7f020073;
+        public static final int background=0x7f020074;
+        public static final int cup_bottle=0x7f020075;
+        public static final int cup_coffee=0x7f020076;
+        public static final int cup_cup=0x7f020077;
+        public static final int cup_drop=0x7f020078;
+        public static final int ic_launcher=0x7f020079;
+        public static final int main_heart_ml=0x7f02007a;
+        public static final int main_heart_percent=0x7f02007b;
+        public static final int resultspage_heart=0x7f02007c;
+        public static final int resultspage_heart_100=0x7f02007d;
+        public static final int tab_bar=0x7f02007e;
+        public static final int test=0x7f02007f;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f050020;
@@ -1153,6 +1155,7 @@ containing a value of this type.
         public static final int Theme_Sherlock_Light_DarkActionBar=0x7f0b0056;
         public static final int Theme_Sherlock_Light_NoActionBar=0x7f0b0058;
         public static final int Theme_Sherlock_NoActionBar=0x7f0b0057;
+        public static final int Theme_Styled=0x7f0b005b;
         public static final int Widget=0x7f0b0000;
         public static final int Widget_Sherlock_ActionBar=0x7f0b0002;
         public static final int Widget_Sherlock_ActionBar_Solid=0x7f0b0003;
@@ -1200,6 +1203,7 @@ containing a value of this type.
         public static final int Widget_Sherlock_SearchAutoCompleteTextView=0x7f0b0034;
         public static final int Widget_Sherlock_Spinner_DropDown_ActionBar=0x7f0b0024;
         public static final int Widget_Sherlock_TextView_SpinnerItem=0x7f0b0032;
+        public static final int Widget_Styled_ActionBar=0x7f0b005c;
     }
     public static final class styleable {
         /**  Attributes used to style the Action Bar. 

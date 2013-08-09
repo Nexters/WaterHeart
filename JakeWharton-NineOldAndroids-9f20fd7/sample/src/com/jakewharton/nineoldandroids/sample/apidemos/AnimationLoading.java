@@ -149,7 +149,7 @@ public class AnimationLoading extends Activity {
         @Override
         protected void onDraw(Canvas canvas) {
             for (ShapeHolder ball : balls) {
-                canvas.translate(ball.getX(), ball.getY());
+            	canvas.translate(ball.getX(), ball.getY());
                 ball.getShape().draw(canvas);
                 canvas.translate(-ball.getX(), -ball.getY());
             }

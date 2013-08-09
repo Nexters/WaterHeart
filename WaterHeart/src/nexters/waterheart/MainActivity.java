@@ -50,8 +50,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter{
 	@Override
 	public CharSequence getPageTitle(int position) {
 		// TODO Auto-generated method stub
-		
-		return ""+position;
+		if(position==0)return "WaterHeart";
+		else return "History";
 	}
 	
 	

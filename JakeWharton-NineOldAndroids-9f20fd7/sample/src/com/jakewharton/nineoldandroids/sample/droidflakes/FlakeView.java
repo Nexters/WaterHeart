@@ -61,7 +61,7 @@ public class FlakeView extends View {
         textPaint.setColor(Color.WHITE);
         textPaint.setTextSize(24);
 
-        // This listener is where the action is for the flak animations. Every frame of the
+        // This listener is where the action is for the flake animations. Every frame of the
         // animation, we calculate the elapsed time and update every flake's position and rotation
         // according to its speed.
         animator.addUpdateListener(new AnimatorUpdateListener() {

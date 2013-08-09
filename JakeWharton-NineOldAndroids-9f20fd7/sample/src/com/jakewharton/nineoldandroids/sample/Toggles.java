@@ -14,7 +14,7 @@ public class Toggles extends Activity {
         setContentView(R.layout.toggles);
 
         final View target = findViewById(R.id.target);
-        final int duration = 2 * 1000;
+        final int duration = 2*1000;
 
         findViewById(R.id.tx).setOnClickListener(new OnClickListener() {
             @Override

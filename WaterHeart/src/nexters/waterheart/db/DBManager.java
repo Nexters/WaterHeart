@@ -2,18 +2,19 @@ package nexters.waterheart.db;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
 import nexters.waterheart.dto.Write;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class DBManager {
 	// All Static variables
@@ -21,7 +22,7 @@ public class DBManager {
 	private final Context context;
 	private DBOpenHelper dbHelper;
 	private SQLiteDatabase db;
-	static int DATABASE_VERSION = 1;
+	public static int DATABASE_VERSION = 1;
 
 	// Database Name
 	private static final String DATABASE_NAME = "heartManager";
@@ -35,6 +36,9 @@ public class DBManager {
 	private static final String KEY_DATE = "date";
 	private static final String KEY_WATER = "water";
 	private static final String KEY_COMPLETE = "complete";
+
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	Date date = null;
 
 	private static class DBOpenHelper extends SQLiteOpenHelper {
 
@@ -90,8 +94,7 @@ public class DBManager {
 	// insert new write
 	public void addWrite(Write write) {
 		ContentValues values = new ContentValues();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date();
+		date = new Date();
 
 		values.put(KEY_DATE, dateFormat.format(date));
 		values.put(KEY_WATER, write.getWater());
@@ -103,7 +106,7 @@ public class DBManager {
 	// select a write by no
 	public Write getWrite(int no) {
 		Cursor cursor = db.query(DATABASE_TABLE_MAIN_NAME, new String[] {
-				KEY_NO, KEY_DATE, KEY_WATER}, KEY_NO + "=?",
+				KEY_NO, KEY_DATE, KEY_WATER }, KEY_NO + "=?",
 				new String[] { String.valueOf(no) }, null, null, null, null);
 		if (cursor != null)
 			cursor.moveToFirst();
@@ -116,13 +119,24 @@ public class DBManager {
 
 	}
 
+	public void oldDatadelete(String s) {
+
+		Calendar calendar = new GregorianCalendar(Locale.KOREA);
+		calendar.add(Calendar.DATE, -7);
+		date = calendar.getTime();
+
+		db.delete(DATABASE_TABLE_MAIN_NAME, KEY_DATE + " = ?",
+				new String[] { s });
+	}
+
 	// select all Write
 	public List<Write> getAllWrites() {
 		List<Write> writeList = new ArrayList<Write>();
+		
 		// Select All Query
 		String selectQuery = "SELECT * FROM " + DATABASE_TABLE_MAIN_NAME;
 		Cursor cursor = db.rawQuery(selectQuery, null);
-
+		
 		// looping through all rows and adding to list
 		if (cursor.moveToFirst()) {
 			do {
@@ -139,11 +153,6 @@ public class DBManager {
 		return writeList;
 	}
 
-	// delete at MainActivity
-	// int no;
-	// db.open();
-	// num = db.getWritesCount();
-	// db.deleteWrite(no);
 	public void deleteWrite(int no) {
 		DBManager manager = new DBManager(null, DATABASE_VERSION);
 		db.delete(DATABASE_TABLE_MAIN_NAME, KEY_NO + " = ?",
@@ -156,13 +165,13 @@ public class DBManager {
 		return cursor.getCount();
 	}
 
-	public void updatedb() {
-		int version = db.getVersion();
-		String log = "version" + version;
-		Log.d("version: ", log);
-		version += 1;
-		DBManager dbincrement = new DBManager(context, version);
-	}
+	// public void updatedb() {
+	// int version = db.getVersion();
+	// String log = "version" + version;
+	// Log.d("version: ", log);
+	// version += 1;
+	// DBManager dbincrement = new DBManager(context, version);
+	// }
 	// no use?..
 	// // update
 	// public int updateWrite(Write write) {

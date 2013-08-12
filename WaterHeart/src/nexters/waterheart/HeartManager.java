@@ -31,9 +31,9 @@ public class HeartManager {
 		Write write = new Write();
 
 		no = db.getWritesCount();
-//		write = db.getWrite(no);
-//		String log = "no : " + no + " date : " + write.getDate();
-//		Log.d("no: ", log);
+		// write = db.getWrite(no);
+		// String log = "no : " + no + " date : " + write.getDate();
+		// Log.d("no: ", log);
 		write = db.getWrite(no);
 		water += Integer.parseInt(write.getWater());
 
@@ -50,30 +50,40 @@ public class HeartManager {
 	public void init() {
 		Write write = new Write();
 		Date date = new Date();
-		
+
 		write.setDate(dateFormat.format(date));
 		write.setWater("0");
 		db.addWrite(write);
 	}
-	
+
 	public int mainOnBackClicked() {
 		Date date = new Date();
 		Write write = new Write();
 		int no;
-		int water;
-
-		no = db.getWritesCount();
-		db.deleteWrite(no);
+		int water = 0;
 
 		no = db.getWritesCount();
 		write = db.getWrite(no);
 
-		calendar.add(Calendar.DATE, -1);
-		date = calendar.getTime();
-		if (write.getDate().equals(String.valueOf(dateFormat.format(date)))) 
-			return 0;
-		else
+//		calendar.add(Calendar.DATE, -1);
+//		date = calendar.getTime();
+//		if (write.getDate().equals(String.valueOf(dateFormat.format(date))))
+//			return 0;
+//		else {
+//			db.deleteWrite(no--);
+//			write = db.getWrite(no);
+//			water = Integer.parseInt(write.getWater());
+//		}
+		if (write.getWater().equals("0")) {
 			water = Integer.parseInt(write.getWater());
+		}
+		else {
+			db.deleteWrite(no);
+			no = db.getWritesCount();
+			write = db.getWrite(no);
+			water = Integer.parseInt(write.getWater());
+			
+		}
 		return water;
 	}
 

@@ -42,60 +42,75 @@
  	        <ImageView 
  	            android:src="@drawable/top_left_01"
  	            android:layout_width="wrap_content"
- 	            android:layout_height="wrap_content"/>
+ 	            android:layout_height="wrap_content"
+ 	            android:id="@+id/main_heart01"/>
  	        <ImageView 
+ 	            android:id="@+id/main_heart02"
  	            android:src="@drawable/top_left_02"
  	            android:layout_width="wrap_content"
  	            android:layout_height="wrap_content"/>
  	        <ImageView 
+ 	            android:id="@+id/main_heart03"
  	            android:src="@drawable/top_left_03"
  	            android:layout_width="wrap_content"
  	            android:layout_height="wrap_content"/>
- 	        <ImageView 
+ 	        <ImageView
+ 	            android:id="@+id/main_heart04" 
  	            android:src="@drawable/top_left_04"
  	            android:layout_width="wrap_content"
  	            android:layout_height="wrap_content"/>
  	        <ImageView 
+ 	            android:id="@+id/main_heart05"
  	            android:src="@drawable/top_right_01"
  	            android:layout_width="wrap_content"
  	            android:layout_height="wrap_content"/>
  	        <ImageView 
+ 	            android:id="@+id/main_heart06"
  	            android:src="@drawable/top_right_02"
  	            android:layout_width="wrap_content"
  	            android:layout_height="wrap_content"/>
  	        <ImageView 
+ 	            android:id="@+id/main_heart07"
  	            android:src="@drawable/top_right_03"
  	            android:layout_width="wrap_content"
  	            android:layout_height="wrap_content"/>
  	        <ImageView 
+ 	            android:id="@+id/main_heart08"
  	            android:src="@drawable/top_right_04"
  	            android:layout_width="wrap_content"
  	            android:layout_height="wrap_content"/>
  	        <ImageView 
+ 	            android:id="@+id/main_heart09"
  	            android:src="@drawable/bottom_left_01"
  	            android:layout_width="wrap_content"
  	            android:layout_height="wrap_content"/>
  	        <ImageView 
+ 	            android:id="@+id/main_heart10"
  	            android:src="@drawable/bottom_left_02"
  	            android:layout_width="wrap_content"
  	            android:layout_height="wrap_content"/>
  	        <ImageView 
+ 	            android:id="@+id/main_heart11"
  	            android:src="@drawable/bottom_left_03"
  	            android:layout_width="wrap_content"
  	            android:layout_height="wrap_content"/>
  	        <ImageView 
+ 	            android:id="@+id/main_heart12"
  	            android:src="@drawable/bottom_right_01"
  	            android:layout_width="wrap_content"
  	            android:layout_height="wrap_content"/>
  	        <ImageView 
+ 	            android:id="@+id/main_heart13"
  	            android:src="@drawable/bottom_right_02"
  	            android:layout_width="wrap_content"
  	            android:layout_height="wrap_content"/>
  	        <ImageView 
+ 	            android:id="@+id/main_heart14"
  	            android:src="@drawable/bottom_right_03"
  	            android:layout_width="wrap_content"
  	            android:layout_height="wrap_content"/>
  	        <ImageView 
+ 	            android:id="@+id/main_heart15"
  	            android:src="@drawable/core"
  	            android:layout_width="wrap_content"
  	            android:layout_height="wrap_content"/>
@@ -140,26 +155,7 @@
  	           	    android:layout_below="@id/main_heart_ml"
  	           	    android:layout_centerHorizontal="true"/>
  	        </RelativeLayout>
- 			<RelativeLayout
- 	            android:layout_width="wrap_content"
- 	            android:layout_height="wrap_content"
- 	            android:layout_gravity="center"
- 	            android:layout_marginBottom="10dp"
- 	            android:visibility="gone"
- 	            >
- 	           	<TextView
- 	            android:layout_width="wrap_content"
- 	            android:layout_height="wrap_content"
- 	            android:text="1000"
- 	            android:textSize="45sp"
- 	            android:id="@+id/main_heart_percent"/>
- 	           	<ImageView 
- 	           	    android:layout_width="wrap_content"
- 	           	    android:layout_height="wrap_content"
- 	           	    android:src="@drawable/main_heart_ml"
- 	           	    android:layout_toRightOf="@id/main_heart_percent"
- 	           	    android:layout_centerVertical="true"/>
- 	        </RelativeLayout>
+ 			
  	    </FrameLayout>
  	</TableRow>
  	<TableRow

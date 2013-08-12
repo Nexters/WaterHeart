@@ -24,8 +24,20 @@ public class ClickManager implements View.OnClickListener{
 		if(onclick_num==1){
 			historySwap(v.getId());
 		}
+		switch(v.getId()){
+		case R.id.main_heart_layout:
+			if(mActivity.findViewById(R.id.main_change_01).getVisibility()==View.VISIBLE){
+				mActivity.findViewById(R.id.main_change_01).setVisibility(View.GONE);
+				mActivity.findViewById(R.id.main_change_02).setVisibility(View.VISIBLE);
+			}else{
+				mActivity.findViewById(R.id.main_change_01).setVisibility(View.VISIBLE);
+				mActivity.findViewById(R.id.main_change_02).setVisibility(View.GONE);
+			}
+		}
+		
 		
 	}
+	
 	
 	/*
 	 * 아오 ㅋㅋㅋ 내가봐도 지저분한데 몰겠다 걍 되기만하면되지

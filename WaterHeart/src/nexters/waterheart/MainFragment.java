@@ -7,7 +7,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.actionbarsherlock.app.SherlockFragment;
@@ -19,6 +18,7 @@ public class MainFragment extends SherlockFragment{
 	ViewFlipper tutorialFlipper;
 	TutorialManager tutorial;
 	CupManager cupManager;
+	View main_heart;
 	private static final int TUTORIAL_NUMBER = 0;
 	private static final int CUP_ONE=0, CUP_TWO=1, CUP_THREE=2, CUP_FOUR=3;
 	private static final int ONCLICK_NUM=0;
@@ -38,6 +38,23 @@ public class MainFragment extends SherlockFragment{
 	}
 	
 	
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		init();
+		super.onResume();
+	}
+	
+	public void init(){
+		if(main_heart==null){
+			main_heart=getActivity().findViewById(R.id.main_heart_layout);
+			//그 외 imageview들을 다 여기서 객체화
+			
+			main_heart.setOnClickListener(new ClickManager(ONCLICK_NUM,getActivity()));
+			
+		}
+	}
+
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		// TODO Auto-generated method stub

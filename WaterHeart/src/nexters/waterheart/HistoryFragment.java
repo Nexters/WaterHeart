@@ -38,9 +38,9 @@ public class HistoryFragment extends SherlockFragment {
 		 */
 		return view;
 	}
-	public void onStart(){
+	public void onResume(){
 		init();
-		super.onStart();
+		super.onResume();
 	}
 	
 	public void init(){

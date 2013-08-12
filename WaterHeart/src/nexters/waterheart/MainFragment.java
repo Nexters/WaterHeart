@@ -78,6 +78,8 @@ public class MainFragment extends SherlockFragment{
 		public void handleMessage(Message msg){
 			if(msg.what==0){
 				Toast.makeText(getSherlockActivity(), ""+msg.arg1, 1000).show();
+			}else if(msg.what==1){
+				Toast.makeText(getSherlockActivity(), "Cup Bottle Clicked", 1000).show();
 			}
 		}
 	};

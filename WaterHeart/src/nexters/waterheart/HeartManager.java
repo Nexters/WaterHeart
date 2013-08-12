@@ -10,7 +10,6 @@ import java.util.Locale;
 import nexters.waterheart.db.DBManager;
 import nexters.waterheart.dto.Write;
 import android.app.Activity;
-import android.util.Log;
 
 public class HeartManager {
 
@@ -30,20 +29,21 @@ public class HeartManager {
 		int no;
 		int water = cup;
 		Write write = new Write();
-		String log = null;
-		
+
 		no = db.getWritesCount();
-		Log.d("no: ", String.valueOf(no));
 //		write = db.getWrite(no);
-//		water += Integer.parseInt(write.getWater());
-//
-//		write.setWater(String.valueOf(water));
-//		db.addWrite(write);
-//
-//		no = db.getWritesCount();
-//		write = db.getWrite(no);
-//		water = Integer.parseInt(write.getWater());
-//
+//		String log = "no : " + no + " date : " + write.getDate();
+//		Log.d("no: ", log);
+		write = db.getWrite(no);
+		water += Integer.parseInt(write.getWater());
+
+		write.setWater(String.valueOf(water));
+		db.addWrite(write);
+
+		no = db.getWritesCount();
+		write = db.getWrite(no);
+		water = Integer.parseInt(write.getWater());
+
 		return water; // 현재까지 마신 물의 양 반환이니까 메인에서 양 출력할 때 사용하면 됨
 	}
 
@@ -53,6 +53,7 @@ public class HeartManager {
 		
 		write.setDate(dateFormat.format(date));
 		write.setWater("0");
+		db.addWrite(write);
 	}
 	
 	public int mainOnBackClicked() {

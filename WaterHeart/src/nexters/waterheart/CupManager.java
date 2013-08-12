@@ -28,10 +28,10 @@ public class CupManager {
 	}
 	
 	public void getAllCupStates(){
-		cup_one = pref.getInt("cup_one", 180);
-		cup_two = pref.getInt("cup_two", 230);
-		cup_three = pref.getInt("cup_three", 280);
-		cup_four = pref.getInt("cup_four", 400);
+		cup_one = pref.getInt("cup_one", 100);
+		cup_two = pref.getInt("cup_two", 500);
+		cup_three = pref.getInt("cup_three", 200);
+		cup_four = pref.getInt("cup_four", 240);
 	}
 	
 	public void setCupState(int which, int amount){ //which 변수는 0부터 컵의 순서

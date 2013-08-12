@@ -2,11 +2,15 @@ package nexters.waterheart;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.actionbarsherlock.app.SherlockFragment;
@@ -19,6 +23,8 @@ public class MainFragment extends SherlockFragment{
 	TutorialManager tutorial;
 	CupManager cupManager;
 	View main_heart;
+	ImageView[] cups;
+	ClickManager clickManager;
 	private static final int TUTORIAL_NUMBER = 0;
 	private static final int CUP_ONE=0, CUP_TWO=1, CUP_THREE=2, CUP_FOUR=3;
 	private static final int ONCLICK_NUM=0;
@@ -32,6 +38,7 @@ public class MainFragment extends SherlockFragment{
 		 */
 		setHasOptionsMenu(true);
 		View view = inflater.inflate(R.layout.mainview, container,false);
+		clickManager = new ClickManager(ONCLICK_NUM, getActivity(), fillWaterHandler);
 		cupManager = new CupManager(getActivity());
 		tutorial = new TutorialManager();
 		return view;
@@ -49,12 +56,32 @@ public class MainFragment extends SherlockFragment{
 		if(main_heart==null){
 			main_heart=getActivity().findViewById(R.id.main_heart_layout);
 			//그 외 imageview들을 다 여기서 객체화
+			cups = new ImageView[]{
+				(ImageView)getActivity().findViewById(R.id.main_cup_drop),
+				(ImageView)getActivity().findViewById(R.id.main_cup_bottle),
+				(ImageView)getActivity().findViewById(R.id.main_cup_cup),
+				(ImageView)getActivity().findViewById(R.id.main_cup_coffee)};
 			
-			main_heart.setOnClickListener(new ClickManager(ONCLICK_NUM,getActivity()));
+			main_heart.setOnClickListener(clickManager);
+			for(int i=0;i<4;i++){
+				cups[i].setOnClickListener(clickManager);
+			}
 			
 		}
 	}
-
+/*
+ * ClickManager에서 db를통해 물의 총량을 받아오면 
+ * 그 물의 양을 이 핸들러로 넘겨주고
+ * 여기서 하트에 물을 채운다.
+ */
+	Handler fillWaterHandler = new Handler(){
+		public void handleMessage(Message msg){
+			if(msg.what==0){
+				Toast.makeText(getSherlockActivity(), ""+msg.arg1, 1000).show();
+			}
+		}
+	};
+	
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		// TODO Auto-generated method stub

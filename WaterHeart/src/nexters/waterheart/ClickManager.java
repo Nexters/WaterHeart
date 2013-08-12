@@ -1,6 +1,8 @@
 package nexters.waterheart;
 
 import android.app.Activity;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 /*
  * 당황하지마
@@ -9,21 +11,27 @@ import android.view.View;
 public class ClickManager implements View.OnClickListener{
 	int onclick_num;
 	Activity mActivity;
+	CupManager cupManager;
+	HeartManager heartManager;
+	Handler mHandler;
 	
-	public ClickManager(int onclick_num, Activity activity){
+	public ClickManager(int onclick_num, Activity activity, Handler handler){
 		/*
 		 * onclick_num값으로 클릭을 일으킨 페이지마다 구분할거임~?
 		 */
 		this.onclick_num=onclick_num;
 		mActivity=activity;
+		cupManager = new CupManager(activity);
+		heartManager = new HeartManager(activity);
 	}
 	
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
+		//onclick_num==1 은 히스토리페이지에서 클릭이벤트를 받을 때
 		if(onclick_num==1){
 			historySwap(v.getId());
 		}
+		//이 밑은 메인페이지에서 클릭이벤트를 받을 때
 		switch(v.getId()){
 		case R.id.main_heart_layout:
 			if(mActivity.findViewById(R.id.main_change_01).getVisibility()==View.VISIBLE){
@@ -33,6 +41,10 @@ public class ClickManager implements View.OnClickListener{
 				mActivity.findViewById(R.id.main_change_01).setVisibility(View.VISIBLE);
 				mActivity.findViewById(R.id.main_change_02).setVisibility(View.GONE);
 			}
+		case R.id.main_cup_drop:
+			int water = heartManager.mainOnCupClicked(cupManager.cup_one);
+			Message msg = Message.obtain(mHandler, 0, water, 0);
+			mHandler.sendMessage(msg);
 		}
 		
 		

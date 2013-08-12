@@ -22,7 +22,7 @@ public class HistoryFragment extends SherlockFragment {
 	ImageView heart04; int percent04;
 	ImageView heart05; int percent05;
 	ImageView heart06; int percent06;
-	
+	ClickManager clickManager;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -32,6 +32,7 @@ public class HistoryFragment extends SherlockFragment {
 		 */
 		setHasOptionsMenu(true);
 		View view = inflater.inflate(R.layout.historyview, container,false);
+		clickManager=new ClickManager(ONCLICK_NUM,getActivity(),null);
 		/*
 		 * 나중에 할 것:
 		 * 위 percent* 변수들에 DB의 값을 불러와서 대입한다.
@@ -52,12 +53,12 @@ public class HistoryFragment extends SherlockFragment {
 		heart05 = (ImageView)getActivity().findViewById(R.id.history_heart_5);
 		heart06 = (ImageView)getActivity().findViewById(R.id.history_heart_6);
 		
-		heart01.setOnClickListener(new ClickManager(ONCLICK_NUM,getActivity()));
-		heart02.setOnClickListener(new ClickManager(ONCLICK_NUM,getActivity()));
-		heart03.setOnClickListener(new ClickManager(ONCLICK_NUM,getActivity()));
-		heart04.setOnClickListener(new ClickManager(ONCLICK_NUM,getActivity()));
-		heart05.setOnClickListener(new ClickManager(ONCLICK_NUM,getActivity()));
-		heart06.setOnClickListener(new ClickManager(ONCLICK_NUM,getActivity()));
+		heart01.setOnClickListener(clickManager);
+		heart02.setOnClickListener(clickManager);
+		heart03.setOnClickListener(clickManager);
+		heart04.setOnClickListener(clickManager);
+		heart05.setOnClickListener(clickManager);
+		heart06.setOnClickListener(clickManager);
 		
 		setImage(heart01, percent01);
 		setImage(heart02, percent02);

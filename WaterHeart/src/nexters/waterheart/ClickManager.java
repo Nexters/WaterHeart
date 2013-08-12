@@ -29,6 +29,8 @@ public class ClickManager implements View.OnClickListener{
 	
 	@Override
 	public void onClick(View v) {
+		int water;
+		Message msg;
 		//onclick_num==1 은 히스토리페이지에서 클릭이벤트를 받을 때
 		if(onclick_num==1){
 			historySwap(v.getId());
@@ -45,15 +47,29 @@ public class ClickManager implements View.OnClickListener{
 			}
 			break;
 		case R.id.main_cup_drop:
-			
-			int water = heartManager.mainOnCupClicked(cupManager.cup_one);
-			Message msg = Message.obtain(mHandler, 0, water, 0);
+			water = heartManager.mainOnCupClicked(cupManager.cup_one);
+			msg = Message.obtain(mHandler, 0, water, 0);
 			mHandler.sendMessage(msg);
 			break;
 		case R.id.main_cup_bottle:
-			int water2 = heartManager.mainOnBackClicked();
-			Message msg2 = Message.obtain(mHandler,0,water2,0);
-			mHandler.sendMessage(msg2);
+			water = heartManager.mainOnCupClicked(cupManager.cup_two);
+			msg = Message.obtain(mHandler,0,water,0);
+			mHandler.sendMessage(msg);
+			break;
+		case R.id.main_cup_cup:
+			water = heartManager.mainOnCupClicked(cupManager.cup_three);
+			msg = Message.obtain(mHandler,0,water,0);
+			mHandler.sendMessage(msg);
+			break;
+		case R.id.main_cup_coffee:
+			water = heartManager.mainOnCupClicked(cupManager.cup_four);
+			msg = Message.obtain(mHandler,0,water,0);
+			mHandler.sendMessage(msg);
+			break;
+		case R.id.main_undo:
+			water = heartManager.mainOnBackClicked();
+			msg = Message.obtain(mHandler,0,water,0);
+			mHandler.sendMessage(msg);
 			break;
 		}
 		

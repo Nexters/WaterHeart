@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+import android.widget.Toast;
 /*
  * 당황하지마
  * 클릭리스너를 따로 분리하려는것뿐이야
@@ -23,6 +24,7 @@ public class ClickManager implements View.OnClickListener{
 		mActivity=activity;
 		cupManager = new CupManager(activity);
 		heartManager = new HeartManager(activity);
+		mHandler = handler;
 	}
 	
 	@Override
@@ -41,10 +43,15 @@ public class ClickManager implements View.OnClickListener{
 				mActivity.findViewById(R.id.main_change_01).setVisibility(View.VISIBLE);
 				mActivity.findViewById(R.id.main_change_02).setVisibility(View.GONE);
 			}
+			break;
 		case R.id.main_cup_drop:
 			int water = heartManager.mainOnCupClicked(cupManager.cup_one);
 			Message msg = Message.obtain(mHandler, 0, water, 0);
 			mHandler.sendMessage(msg);
+			break;
+		case R.id.main_cup_bottle:
+			mHandler.sendEmptyMessage(1);
+			break;
 		}
 		
 		

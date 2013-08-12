@@ -13,12 +13,10 @@ import android.app.Activity;
 
 public class HeartManager {
 
-	Write write = new Write();
 	Activity activity;
 	DBManager db = null;
 
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	Date date = null;
 	Calendar calendar = new GregorianCalendar(Locale.KOREA);
 
 	public HeartManager(Activity activity) {
@@ -30,7 +28,8 @@ public class HeartManager {
 	public int mainOnCupClicked(int cup) { // cup의 용량을 넘겨줘
 		int no;
 		int water = cup;
-
+		Write write = new Write();
+		
 		no = db.getWritesCount();
 		write = db.getWrite(no);
 		water += Integer.parseInt(write.getWater());
@@ -45,7 +44,17 @@ public class HeartManager {
 		return water; // 현재까지 마신 물의 양 반환이니까 메인에서 양 출력할 때 사용하면 됨
 	}
 
+	public void init() {
+		Write write = new Write();
+		Date date = new Date();
+		
+		write.setDate(dateFormat.format(date));
+		write.setWater("0");
+	}
+	
 	public int mainOnBackClicked() {
+		Date date = new Date();
+		Write write = new Write();
 		int no;
 		int water;
 
@@ -65,6 +74,7 @@ public class HeartManager {
 	}
 
 	public List<Write> onHistoryPage() {
+		Date date = new Date();
 		List<Write> writes = db.getAllWrites();
 		String s;
 

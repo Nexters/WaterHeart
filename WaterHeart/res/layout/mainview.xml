@@ -104,6 +104,7 @@
  	            android:layout_height="wrap_content"
  	            android:layout_gravity="center"
  	            android:layout_marginBottom="10dp"
+ 	            android:id="@+id/main_change_01"
  	            >
  	           	<TextView
  	            android:layout_width="wrap_content"
@@ -117,6 +118,27 @@
  	           	    android:src="@drawable/main_heart_percent"
  	           	    android:layout_toRightOf="@id/main_heart_percent"
  	           	    android:layout_centerVertical="true"/>
+ 	        </RelativeLayout>
+ 	        <RelativeLayout
+ 	            android:layout_width="wrap_content"
+ 	            android:layout_height="wrap_content"
+ 	            android:layout_gravity="center"
+ 	            android:layout_marginBottom="10dp"
+ 	            android:id="@+id/main_change_02"
+ 	            android:visibility="gone"
+ 	            >
+ 	           	<TextView
+ 	            android:layout_width="wrap_content"
+ 	            android:layout_height="wrap_content"
+ 	            android:text="1350"
+ 	            android:textSize="45sp"
+ 	            android:id="@+id/main_heart_ml"/>
+ 	           	<ImageView 
+ 	           	    android:layout_width="wrap_content"
+ 	           	    android:layout_height="wrap_content"
+ 	           	    android:src="@drawable/main_heart_ml"
+ 	           	    android:layout_below="@id/main_heart_ml"
+ 	           	    android:layout_centerHorizontal="true"/>
  	        </RelativeLayout>
  			<RelativeLayout
  	            android:layout_width="wrap_content"
@@ -155,21 +177,25 @@
  	        android:orientation="horizontal"
  	        android:gravity="center">
  	        <ImageView
+ 	            android:id="@+id/main_cup_drop"
  	            android:src="@drawable/cup_drop"
  	            android:layout_width="wrap_content"
  	            android:layout_height="wrap_content"
  	            android:clickable="true"/>
  	        <ImageView
+ 	            android:id="@+id/main_cup_bottle"
  	            android:src="@drawable/cup_bottle"
  	            android:layout_width="wrap_content"
  	            android:layout_height="wrap_content"
  	            android:clickable="true"/>
  	        <ImageView
+ 	            android:id="@+id/main_cup_cup"
  	            android:src="@drawable/cup_cup"
  	            android:layout_width="wrap_content"
  	            android:layout_height="wrap_content"
  	            android:clickable="true"/>
  	        <ImageView
+ 	            android:id="@+id/main_cup_coffee"
  	            android:src="@drawable/cup_coffee"
  	            android:layout_width="wrap_content"
  	            android:layout_height="wrap_content"

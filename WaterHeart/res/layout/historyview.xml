@@ -29,6 +29,9 @@
             	android:layout_centerInParent="true"
             	android:clickable="true"
             	/>
+             <!--  하트 안의 텍스트뷰는 01, 02 로 나뉜다
+            01에는 퍼센트 값, 02에는 ml값
+            하트가 눌러졌을때는 이 텍스트뷰를 담고 있는 리니어레이아웃들이 교체된다 -->
             <LinearLayout 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -49,9 +52,6 @@
                 	android:layout_gravity="center_vertical"
                 />
             </LinearLayout>
-            <!--  하트 안의 텍스트뷰는 01, 02 로 나뉜다
-            01에는 퍼센트 값, 02에는 ml값
-            하트가 눌러졌을때는 이 텍스트뷰를 담고 있는 리니어레이아웃들이 교체된다 -->
             <LinearLayout 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -73,8 +73,7 @@
                 	android:layout_gravity="center_horizontal"
                 />
             </LinearLayout>
-           
-                
+                           
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -90,10 +89,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:id="@+id/resultspage_change_5_01">
                 <TextView
                 	android:id="@+id/resultspage_text_5_01"
-                	android:text="50"
+                	android:text="100"
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:textSize="30sp"
@@ -103,6 +103,27 @@
                 	android:layout_height="wrap_content"
                 	android:src="@drawable/main_heart_percent"
                 	android:layout_gravity="center_vertical"
+                />
+            </LinearLayout>
+            <LinearLayout 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:id="@+id/resultspage_change_5_02">
+                <TextView
+                	android:id="@+id/resultspage_text_5_02"
+                	android:text="1000"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:textSize="30sp"
+                />
+            	<ImageView
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:src="@drawable/main_heart_ml"
+                	android:layout_gravity="center_horizontal"
                 />
             </LinearLayout>
         </RelativeLayout>
@@ -127,10 +148,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:id="@+id/resultspage_change_4_01">
                 <TextView
                 	android:id="@+id/resultspage_text_4_01"
-                	android:text="70"
+                	android:text="100"
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:textSize="30sp"
@@ -140,6 +162,27 @@
                 	android:layout_height="wrap_content"
                 	android:src="@drawable/main_heart_percent"
                 	android:layout_gravity="center_vertical"
+                />
+            </LinearLayout>
+            <LinearLayout 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:id="@+id/resultspage_change_4_02">
+                <TextView
+                	android:id="@+id/resultspage_text_4_02"
+                	android:text="1000"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:textSize="30sp"
+                />
+            	<ImageView
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:src="@drawable/main_heart_ml"
+                	android:layout_gravity="center_horizontal"
                 />
             </LinearLayout>
         </RelativeLayout>
@@ -153,14 +196,15 @@
             	android:src="@drawable/resultspage_heart"
             	android:layout_centerInParent="true"
             	android:clickable="true"/>
-            <LinearLayout 
+           <LinearLayout 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:id="@+id/resultspage_change_3_01">
                 <TextView
                 	android:id="@+id/resultspage_text_3_01"
-                	android:text="32"
+                	android:text="100"
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:textSize="30sp"
@@ -170,6 +214,27 @@
                 	android:layout_height="wrap_content"
                 	android:src="@drawable/main_heart_percent"
                 	android:layout_gravity="center_vertical"
+                />
+            </LinearLayout>
+            <LinearLayout 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:id="@+id/resultspage_change_3_02">
+                <TextView
+                	android:id="@+id/resultspage_text_3_02"
+                	android:text="1000"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:textSize="30sp"
+                />
+            	<ImageView
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:src="@drawable/main_heart_ml"
+                	android:layout_gravity="center_horizontal"
                 />
             </LinearLayout>
         </RelativeLayout>
@@ -194,10 +259,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:id="@+id/resultspage_change_2_01">
                 <TextView
                 	android:id="@+id/resultspage_text_2_01"
-                	android:text="89"
+                	android:text="100"
                 	android:layout_width="wrap_content"
                 	android:layout_height="wrap_content"
                 	android:textSize="30sp"
@@ -207,6 +273,27 @@
                 	android:layout_height="wrap_content"
                 	android:src="@drawable/main_heart_percent"
                 	android:layout_gravity="center_vertical"
+                />
+            </LinearLayout>
+            <LinearLayout 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:id="@+id/resultspage_change_2_02">
+                <TextView
+                	android:id="@+id/resultspage_text_2_02"
+                	android:text="1000"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:textSize="30sp"
+                />
+            	<ImageView
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:src="@drawable/main_heart_ml"
+                	android:layout_gravity="center_horizontal"
                 />
             </LinearLayout>
         </RelativeLayout>
@@ -220,11 +307,12 @@
             	android:src="@drawable/resultspage_heart"
             	android:layout_centerInParent="true"
             	android:clickable="true"/>
-            <LinearLayout 
+           <LinearLayout 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:id="@+id/resultspage_change_1_01">
                 <TextView
                 	android:id="@+id/resultspage_text_1_01"
                 	android:text="100"
@@ -237,6 +325,27 @@
                 	android:layout_height="wrap_content"
                 	android:src="@drawable/main_heart_percent"
                 	android:layout_gravity="center_vertical"
+                />
+            </LinearLayout>
+            <LinearLayout 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:id="@+id/resultspage_change_1_02">
+                <TextView
+                	android:id="@+id/resultspage_text_1_02"
+                	android:text="1000"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:textSize="30sp"
+                />
+            	<ImageView
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:src="@drawable/main_heart_ml"
+                	android:layout_gravity="center_horizontal"
                 />
             </LinearLayout>
         </RelativeLayout>

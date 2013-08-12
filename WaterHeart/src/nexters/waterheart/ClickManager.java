@@ -23,6 +23,7 @@ public class ClickManager implements View.OnClickListener{
 		mActivity=activity;
 		cupManager = new CupManager(activity);
 		heartManager = new HeartManager(activity);
+		heartManager.init();
 		mHandler = handler;
 	}
 	
@@ -44,12 +45,15 @@ public class ClickManager implements View.OnClickListener{
 			}
 			break;
 		case R.id.main_cup_drop:
+			
 			int water = heartManager.mainOnCupClicked(cupManager.cup_one);
 			Message msg = Message.obtain(mHandler, 0, water, 0);
 			mHandler.sendMessage(msg);
 			break;
 		case R.id.main_cup_bottle:
-			mHandler.sendEmptyMessage(1);
+			int water2 = heartManager.mainOnBackClicked();
+			Message msg2 = Message.obtain(mHandler,0,water2,0);
+			mHandler.sendMessage(msg2);
 			break;
 		}
 		

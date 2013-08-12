@@ -15,13 +15,13 @@ import com.nineoldandroids.view.ViewHelper;
 
 public class HistoryFragment extends SherlockFragment {
 	private static final int TUTORIAL_NUMBER = 2;
-	private static final int ONCLICK_NUMBER = 1;
-	ImageView heart01; int percent01=30;
-	ImageView heart02; int percent02=44;
-	ImageView heart03; int percent03=78;
-	ImageView heart04; int percent04=80;
-	ImageView heart05; int percent05=100;
-	ImageView heart06; int percent06=55;
+	private static final int ONCLICK_NUM = 1;
+	ImageView heart01; int percent01;
+	ImageView heart02; int percent02;
+	ImageView heart03; int percent03;
+	ImageView heart04; int percent04;
+	ImageView heart05; int percent05;
+	ImageView heart06; int percent06;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,6 +52,12 @@ public class HistoryFragment extends SherlockFragment {
 		heart05 = (ImageView)getActivity().findViewById(R.id.history_heart_5);
 		heart06 = (ImageView)getActivity().findViewById(R.id.history_heart_6);
 		
+		heart01.setOnClickListener(new ClickManager(ONCLICK_NUM,getActivity()));
+		heart02.setOnClickListener(new ClickManager(ONCLICK_NUM,getActivity()));
+		heart03.setOnClickListener(new ClickManager(ONCLICK_NUM,getActivity()));
+		heart04.setOnClickListener(new ClickManager(ONCLICK_NUM,getActivity()));
+		heart05.setOnClickListener(new ClickManager(ONCLICK_NUM,getActivity()));
+		heart06.setOnClickListener(new ClickManager(ONCLICK_NUM,getActivity()));
 		
 		setImage(heart01, percent01);
 		setImage(heart02, percent02);

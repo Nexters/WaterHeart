@@ -21,6 +21,7 @@ public class MainFragment extends SherlockFragment{
 	CupManager cupManager;
 	private static final int TUTORIAL_NUMBER = 0;
 	private static final int CUP_ONE=0, CUP_TWO=1, CUP_THREE=2, CUP_FOUR=3;
+	private static final int ONCLICK_NUM=0;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

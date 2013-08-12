@@ -920,17 +920,33 @@ containing a value of this type.
         public static final int actionbar_pencil=0x7f020072;
         public static final int actionbar_question=0x7f020073;
         public static final int background=0x7f020074;
-        public static final int cup_bottle=0x7f020075;
-        public static final int cup_coffee=0x7f020076;
-        public static final int cup_cup=0x7f020077;
-        public static final int cup_drop=0x7f020078;
-        public static final int ic_launcher=0x7f020079;
-        public static final int main_heart_ml=0x7f02007a;
-        public static final int main_heart_percent=0x7f02007b;
-        public static final int resultspage_heart=0x7f02007c;
-        public static final int resultspage_heart_100=0x7f02007d;
-        public static final int tab_bar=0x7f02007e;
-        public static final int test=0x7f02007f;
+        public static final int bottom_left_01=0x7f020075;
+        public static final int bottom_left_02=0x7f020076;
+        public static final int bottom_left_03=0x7f020077;
+        public static final int bottom_right_01=0x7f020078;
+        public static final int bottom_right_02=0x7f020079;
+        public static final int bottom_right_03=0x7f02007a;
+        public static final int core=0x7f02007b;
+        public static final int cup_bottle=0x7f02007c;
+        public static final int cup_coffee=0x7f02007d;
+        public static final int cup_cup=0x7f02007e;
+        public static final int cup_drop=0x7f02007f;
+        public static final int ic_launcher=0x7f020080;
+        public static final int main_heart_ml=0x7f020081;
+        public static final int main_heart_percent=0x7f020082;
+        public static final int main_undo=0x7f020083;
+        public static final int resultspage_heart=0x7f020084;
+        public static final int resultspage_heart_100=0x7f020085;
+        public static final int tab_bar=0x7f020086;
+        public static final int test=0x7f020087;
+        public static final int top_left_01=0x7f020088;
+        public static final int top_left_02=0x7f020089;
+        public static final int top_left_03=0x7f02008a;
+        public static final int top_left_04=0x7f02008b;
+        public static final int top_right_01=0x7f02008c;
+        public static final int top_right_02=0x7f02008d;
+        public static final int top_right_03=0x7f02008e;
+        public static final int top_right_04=0x7f02008f;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f050020;
@@ -972,9 +988,9 @@ containing a value of this type.
         public static final int abs__textButton=0x7f050013;
         public static final int abs__title=0x7f05001b;
         public static final int abs__up=0x7f05000b;
-        public static final int action_pencil=0x7f050042;
-        public static final int action_question=0x7f050043;
-        public static final int action_question_history=0x7f050041;
+        public static final int action_pencil=0x7f050045;
+        public static final int action_question=0x7f050046;
+        public static final int action_question_history=0x7f050044;
         public static final int disableHome=0x7f050009;
         public static final int edit_query=0x7f050026;
         public static final int history_heart_1=0x7f05003e;
@@ -985,6 +1001,9 @@ containing a value of this type.
         public static final int history_heart_6=0x7f050034;
         public static final int homeAsUp=0x7f050006;
         public static final int listMode=0x7f050002;
+        public static final int main_heart_layout=0x7f050041;
+        public static final int main_heart_percent=0x7f050042;
+        public static final int main_undo=0x7f050040;
         public static final int normal=0x7f050001;
         public static final int pager=0x7f050032;
         public static final int pager_title_strip=0x7f050033;
@@ -998,7 +1017,7 @@ containing a value of this type.
         public static final int showHome=0x7f050005;
         public static final int showTitle=0x7f050007;
         public static final int tabMode=0x7f050003;
-        public static final int tutorialFlipper=0x7f050040;
+        public static final int tutorialFlipper=0x7f050043;
         public static final int useLogo=0x7f050004;
         public static final int wrap_content=0x7f050000;
     }

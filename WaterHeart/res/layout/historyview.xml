@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:shrinkColumns="*"
-    android:stretchColumns="*" >
+    android:stretchColumns="*"
+    android:background="@drawable/background" >
 
     <TableRow
         android:layout_width="match_parent"

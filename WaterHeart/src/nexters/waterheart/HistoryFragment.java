@@ -15,12 +15,13 @@ import com.nineoldandroids.view.ViewHelper;
 
 public class HistoryFragment extends SherlockFragment {
 	private static final int TUTORIAL_NUMBER = 2;
-	ImageView heart01; int percent01;
+	private static final int ONCLICK_NUMBER = 1;
+	ImageView heart01; int percent01=30;
 	ImageView heart02; int percent02=44;
-	ImageView heart03; int percent03;
-	ImageView heart04; int percent04;
-	ImageView heart05; int percent05;
-	ImageView heart06; int percent06;
+	ImageView heart03; int percent03=78;
+	ImageView heart04; int percent04=80;
+	ImageView heart05; int percent05=100;
+	ImageView heart06; int percent06=55;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

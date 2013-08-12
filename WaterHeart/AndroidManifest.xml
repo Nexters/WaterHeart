@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Styled">
         <activity
             android:name="nexters.waterheart.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
         </activity>
         <activity android:name="IntroActivity">
             <intent-filter>

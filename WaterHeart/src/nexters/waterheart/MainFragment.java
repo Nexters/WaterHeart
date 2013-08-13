@@ -24,6 +24,7 @@ public class MainFragment extends SherlockFragment{
 	CupManager cupManager;
 	View main_heart;
 	ImageView[] cups;
+	ImageView undo;
 	ClickManager clickManager;
 	private static final int TUTORIAL_NUMBER = 0;
 	private static final int CUP_ONE=0, CUP_TWO=1, CUP_THREE=2, CUP_FOUR=3;
@@ -55,6 +56,7 @@ public class MainFragment extends SherlockFragment{
 	public void init(){
 		if(main_heart==null){
 			main_heart=getActivity().findViewById(R.id.main_heart_layout);
+			undo = (ImageView)getActivity().findViewById(R.id.main_undo);
 			//그 외 imageview들을 다 여기서 객체화
 			cups = new ImageView[]{
 				(ImageView)getActivity().findViewById(R.id.main_cup_drop),
@@ -63,6 +65,7 @@ public class MainFragment extends SherlockFragment{
 				(ImageView)getActivity().findViewById(R.id.main_cup_coffee)};
 			
 			main_heart.setOnClickListener(clickManager);
+			undo.setOnClickListener(clickManager);
 			for(int i=0;i<4;i++){
 				cups[i].setOnClickListener(clickManager);
 			}

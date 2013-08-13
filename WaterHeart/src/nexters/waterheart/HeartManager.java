@@ -57,7 +57,6 @@ public class HeartManager {
 	}
 
 	public int mainOnBackClicked() {
-		Date date = new Date();
 		Write write = new Write();
 		int no;
 		int water = 0;
@@ -65,15 +64,6 @@ public class HeartManager {
 		no = db.getWritesCount();
 		write = db.getWrite(no);
 
-//		calendar.add(Calendar.DATE, -1);
-//		date = calendar.getTime();
-//		if (write.getDate().equals(String.valueOf(dateFormat.format(date))))
-//			return 0;
-//		else {
-//			db.deleteWrite(no--);
-//			write = db.getWrite(no);
-//			water = Integer.parseInt(write.getWater());
-//		}
 		if (write.getWater().equals("0")) {
 			water = Integer.parseInt(write.getWater());
 		}

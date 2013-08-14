@@ -48,22 +48,22 @@ public class ClickManager implements View.OnClickListener{
 			break;
 		case R.id.main_cup_drop:
 			water = heartManager.mainOnCupClicked(cupManager.cup_one);
-			msg = Message.obtain(mHandler, 0, water, 0);
+			msg = Message.obtain(mHandler, 1, water, 0);
 			mHandler.sendMessage(msg);
 			break;
 		case R.id.main_cup_bottle:
 			water = heartManager.mainOnCupClicked(cupManager.cup_two);
-			msg = Message.obtain(mHandler,0,water,0);
+			msg = Message.obtain(mHandler,2,water,0);
 			mHandler.sendMessage(msg);
 			break;
 		case R.id.main_cup_cup:
 			water = heartManager.mainOnCupClicked(cupManager.cup_three);
-			msg = Message.obtain(mHandler,0,water,0);
+			msg = Message.obtain(mHandler,3,water,0);
 			mHandler.sendMessage(msg);
 			break;
 		case R.id.main_cup_coffee:
 			water = heartManager.mainOnCupClicked(cupManager.cup_four);
-			msg = Message.obtain(mHandler,0,water,0);
+			msg = Message.obtain(mHandler,4,water,0);
 			mHandler.sendMessage(msg);
 			break;
 		case R.id.main_undo:

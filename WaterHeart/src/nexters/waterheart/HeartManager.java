@@ -25,7 +25,7 @@ public class HeartManager {
 		db.open();
 	}
 
-	public int mainOnCupClicked(int cup) { // cup의 용량을 넘겨줘
+	public int mainOnCupClicked(int cup) { // 한솔아 cup의 용량을 넘겨줘
 		int no;
 		int water = cup;
 		Write write = new Write();
@@ -77,7 +77,7 @@ public class HeartManager {
 		return water;
 	}
 
-	public List<Write> onHistoryPage() {
+	public List<Write> onHistoryPage() { //아직 되는지 안되는지 머른당
 		Date date = new Date();
 		List<Write> writes = db.getAllWrites();
 		String s;

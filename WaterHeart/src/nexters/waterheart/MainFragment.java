@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -21,6 +23,8 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.nineoldandroids.view.ViewHelper;
+
+
 
 public class MainFragment extends SherlockFragment {
 
@@ -91,6 +95,7 @@ public class MainFragment extends SherlockFragment {
 			undo.setOnClickListener(clickManager);
 			for (int i = 0; i < 4; i++) {
 				cups[i].setOnClickListener(clickManager);
+				cups[i].setOnLongClickListener(longClick);
 			}
 
 			// 한소라 여기가 내가 추가한 부분!!!!
@@ -178,6 +183,22 @@ public class MainFragment extends SherlockFragment {
 		}
 	};
 
+	OnLongClickListener longClick = new OnLongClickListener(){
+
+		@Override
+		public boolean onLongClick(View v) {
+			// TODO Auto-generated method stub
+			switch(v.getId()){
+			case R.id.main_cup_drop:
+				
+				getActivity().getSupportFragmentManager().beginTransaction().add(android.R.id.content, new CupCustomizingFragment())
+				.addToBackStack(null).commit();
+				return true;
+			}
+			return false;
+		}
+		
+	};
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		// TODO Auto-generated method stub

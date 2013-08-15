@@ -9,7 +9,7 @@ public class CustomActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    setContentView(R.layout.customview);
+	    setContentView(R.layout.cupcustomizing);
 	    // TODO Auto-generated method stub
 	}
 

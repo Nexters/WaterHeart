@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@drawable/background"
-    android:shrinkColumns="*"
-    android:stretchColumns="*"
     android:weightSum="11" >
 
-    <TableRow
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="1"
@@ -25,15 +24,15 @@
             android:layout_weight="1"
             android:clickable="true"
             android:src="@drawable/main_undo" />
-    </TableRow>
+    </LinearLayout>
 
-    <TableRow
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="1" >
-    </TableRow>
+    </LinearLayout>
 
-    <TableRow
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="5"
@@ -181,25 +180,20 @@
                     android:src="@drawable/main_heart_ml" />
             </RelativeLayout>
         </FrameLayout>
-    </TableRow>
+    </LinearLayout>
 
-    <TableRow
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="1" >
-    </TableRow>
+    </LinearLayout>
 
-    <TableRow
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="2"
+        android:orientation="horizontal"
         android:gravity="center" >
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="horizontal" >
 
             <ImageView
                 android:id="@+id/main_cup_drop"
@@ -228,13 +222,12 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:src="@drawable/cup_coffee" />
-        </LinearLayout>
-    </TableRow>
+    </LinearLayout>
 
-    <TableRow
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="1" >
-    </TableRow>
+    </LinearLayout>
 
-</TableLayout>
+</LinearLayout>

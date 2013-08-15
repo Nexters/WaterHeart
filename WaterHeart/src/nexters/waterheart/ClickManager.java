@@ -14,6 +14,8 @@ public class ClickManager implements View.OnClickListener{
 	CupManager cupManager;
 	HeartManager heartManager;
 	Handler mHandler;
+	private static final int CUP_ONE = 1, CUP_TWO = 2, CUP_THREE = 3,
+			CUP_FOUR = 4;
 	
 	public ClickManager(int onclick_num, Activity activity, Handler handler){
 		/*
@@ -48,22 +50,22 @@ public class ClickManager implements View.OnClickListener{
 			break;
 		case R.id.main_cup_drop: // what부분 바꿔버림.... 안되는거면 너가 좀 고쳐줘 ㅠ.ㅠ
 			water = heartManager.mainOnCupClicked(cupManager.cup_one);
-			msg = Message.obtain(mHandler, 1, water, 0);
+			msg = Message.obtain(mHandler, CUP_ONE, water, 0);
 			mHandler.sendMessage(msg);
 			break;
 		case R.id.main_cup_bottle:
 			water = heartManager.mainOnCupClicked(cupManager.cup_two);
-			msg = Message.obtain(mHandler,2,water,0);
+			msg = Message.obtain(mHandler,CUP_TWO,water,0);
 			mHandler.sendMessage(msg);
 			break;
 		case R.id.main_cup_cup:
 			water = heartManager.mainOnCupClicked(cupManager.cup_three);
-			msg = Message.obtain(mHandler,3,water,0);
+			msg = Message.obtain(mHandler,CUP_THREE,water,0);
 			mHandler.sendMessage(msg);
 			break;
 		case R.id.main_cup_coffee:
 			water = heartManager.mainOnCupClicked(cupManager.cup_four);
-			msg = Message.obtain(mHandler,4,water,0);
+			msg = Message.obtain(mHandler,CUP_FOUR,water,0);
 			mHandler.sendMessage(msg);
 			break;
 		case R.id.main_undo:

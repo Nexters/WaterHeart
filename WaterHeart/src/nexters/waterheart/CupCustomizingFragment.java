@@ -3,24 +3,32 @@ package nexters.waterheart;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.nineoldandroids.view.ViewHelper;
 
 @SuppressLint("ValidFragment")
-public class CupCustomizingFragment extends SherlockFragment{
+public class CupCustomizingFragment extends SherlockFragment implements View.OnClickListener{
+													//이쒸.. 너무 복잡해져서 이건 그냥 클릭리스너 스스로등록함
 	private static final int FROM_CUPCUSTOM = 10;
 	Handler mHandler;
+	ImageView[] cups_on_main;
+	ImageView[] cups_on_customizing;
+	int whichCup; //메인에서 롱클릭한 컵이 무엇인지를 판단하기위한 변수
+	float unselected=0.1f, selected=0.9f; //선택된 컵의 알파값을 조절하기 위한 변수
 	
-	public CupCustomizingFragment(Handler handler){
+	public CupCustomizingFragment(Handler handler,int which){
 		mHandler=handler;
+		whichCup=which;
 	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,10 +36,67 @@ public class CupCustomizingFragment extends SherlockFragment{
 		// TODO Auto-generated method stub
 		setHasOptionsMenu(true);
 		View view = inflater.inflate(R.layout.cupcustomizing, container,false);
-		
+		cups_on_main=new ImageView[]{
+				(ImageView)getActivity().findViewById(R.id.main_cup_drop)
+				,(ImageView)getActivity().findViewById(R.id.main_cup_bottle)
+				,(ImageView)getActivity().findViewById(R.id.main_cup_cup)
+				,(ImageView)getActivity().findViewById(R.id.main_cup_coffee)
+		};
+		cups_on_customizing=new ImageView[]{
+				(ImageView)view.findViewById(R.id.cup_drop_customizing)
+				,(ImageView)view.findViewById(R.id.cup_bottle_customizing)
+				,(ImageView)view.findViewById(R.id.cup_cup_customizing)
+				,(ImageView)view.findViewById(R.id.cup_coffee_customizing)
+		};
 		return view;
 	}
-
+	
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		cups_on_main[whichCup].setImageResource(R.drawable.cup_selected);
+		ViewHelper.setAlpha(cups_on_customizing[whichCup], selected);
+		for(int i=0;i<4;i++){
+			cups_on_main[i].setOnClickListener(this);
+			cups_on_customizing[i].setOnClickListener(this);
+			cups_on_main[i].setOnLongClickListener(null);
+			cups_on_customizing[i].setOnLongClickListener(null);
+		}
+		super.onResume();
+	}
+	
+	public void onClick(View v){
+		Toast.makeText(getActivity(), "CupCustomClicked", 1000).show();
+		switch(v.getId()){
+		case R.id.cup_drop_customizing:
+		case R.id.cup_bottle_customizing:
+		case R.id.cup_cup_customizing:
+		case R.id.cup_coffee_customizing:
+			ViewHelper.setAlpha(v, selected);
+			for(ImageView img : cups_on_customizing){
+				if(img!=v)ViewHelper.setAlpha(img, unselected);
+			}
+			break;
+		case R.id.main_cup_drop:
+		case R.id.main_cup_bottle:
+		case R.id.main_cup_cup:
+		case R.id.main_cup_coffee:
+			cups_on_main[0].setImageResource(R.drawable.cup_drop);
+			cups_on_main[1].setImageResource(R.drawable.cup_bottle);
+			cups_on_main[2].setImageResource(R.drawable.cup_cup);
+			cups_on_main[3].setImageResource(R.drawable.cup_coffee);
+			ImageView img = (ImageView)v;
+			img.setImageResource(R.drawable.cup_selected);
+			/*
+			 * getActivity().getSupportFragmentManager().beginTransaction()
+			 
+			.add(android.R.id.content, new CupCustomizingFragment(fillWaterHandler,CUP_ONE))
+			.addToBackStack(null).commit();
+			*/
+			break;
+		}
+		
+	}
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		// TODO Auto-generated method stub

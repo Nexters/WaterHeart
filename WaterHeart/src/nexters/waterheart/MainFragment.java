@@ -42,8 +42,8 @@ public class MainFragment extends SherlockFragment {
 	 * 이러면 좀 더 보기편하기도하고 혹시나 겹치면 안되니까!
 	 */
 	private static final int TUTORIAL_NUMBER = 0;
-	private static final int CUP_ONE = 1, CUP_TWO = 2, CUP_THREE = 3,
-			CUP_FOUR = 4;
+	private static final int CUP_ONE = 0, CUP_TWO = 1, CUP_THREE = 2,
+			CUP_FOUR = 3;
 	private static final int ONCLICK_NUM = 0;
 	private static final int FROM_CUPCUSTOM = 10;
 
@@ -84,6 +84,7 @@ public class MainFragment extends SherlockFragment {
 	public void onResume() {
 		// TODO Auto-generated method stub
 		init();
+		
 		super.onResume();
 	}
 
@@ -145,16 +146,16 @@ public class MainFragment extends SherlockFragment {
 	 */
 	Handler fillWaterHandler = new Handler() {
 		public void handleMessage(Message msg) {
-			// if (msg.what == 0) { //내가 막 바꿔버렸어
-									//용서해줄게
-			Toast.makeText(getSherlockActivity(), "" + msg.arg1, 1000).show();
-			// }
-			if(msg.what==FROM_CUPCUSTOM){ //이건 내가 만든거~~ 컵커스터마이징창에서 돌아올때의 핸들러야!
+			
+			if(msg.what==FROM_CUPCUSTOM){ //이건 내가 만든거. 컵커스터마이징창에서 돌아올때의 핸들러야!
 				getActivity().findViewById(R.id.pager_title_strip).setVisibility(View.VISIBLE);
 				getActivity().findViewById(R.id.main_undo).setVisibility(View.VISIBLE);
-				for(int i=0;i<4;i++)cups[i].setVisibility(View.VISIBLE);
-			}
-			
+				for (int i = 0; i < 4; i++) {
+					cups[i].setOnClickListener(clickManager);
+					cups[i].setOnLongClickListener(longClick);
+				}
+			}else{
+			Toast.makeText(getSherlockActivity(), "" + msg.arg1, 1000).show();
 			// 한소라 여기가 추가한 부분. 하트 물채워지는 부분임. 아직 미완성...뭐가 문젠지 봐바 ㅠ.ㅠ
 			int water = 0; // 사용된 컵의 물 양, 이것 때문에 어쩔수 없이 ClickManager에서 msg.what
 							// 바꿔버렸는데 바꿔서 밑에 처럼 쓰면 안되는거? what을 딴데 쓸 용도가 있다면
@@ -197,6 +198,8 @@ public class MainFragment extends SherlockFragment {
 					water = 0;
 				}
 			}
+			
+			}
 		}
 	};
 
@@ -205,14 +208,28 @@ public class MainFragment extends SherlockFragment {
 		@Override
 		public boolean onLongClick(View v) {
 			// TODO Auto-generated method stub
+			getActivity().findViewById(R.id.pager_title_strip).setVisibility(View.GONE);
+			getActivity().findViewById(R.id.main_undo).setVisibility(View.GONE);
+			
 			switch(v.getId()){
 			case R.id.main_cup_drop:
-				getActivity().findViewById(R.id.pager_title_strip).setVisibility(View.GONE);
-				getActivity().findViewById(R.id.main_undo).setVisibility(View.GONE);
-				for(int i=0;i<4;i++)cups[i].setVisibility(View.GONE);
-				
 				getActivity().getSupportFragmentManager().beginTransaction()
-				.add(android.R.id.content, new CupCustomizingFragment(fillWaterHandler))
+				.add(android.R.id.content, new CupCustomizingFragment(fillWaterHandler,CUP_ONE))
+				.addToBackStack(null).commit();
+				return true;
+			case R.id.main_cup_bottle:
+				getActivity().getSupportFragmentManager().beginTransaction()
+				.add(android.R.id.content, new CupCustomizingFragment(fillWaterHandler,CUP_TWO))
+				.addToBackStack(null).commit();
+				return true;
+			case R.id.main_cup_cup:
+				getActivity().getSupportFragmentManager().beginTransaction()
+				.add(android.R.id.content, new CupCustomizingFragment(fillWaterHandler,CUP_THREE))
+				.addToBackStack(null).commit();
+				return true;
+			case R.id.main_cup_coffee:
+				getActivity().getSupportFragmentManager().beginTransaction()
+				.add(android.R.id.content, new CupCustomizingFragment(fillWaterHandler,CUP_FOUR))
 				.addToBackStack(null).commit();
 				return true;
 			}

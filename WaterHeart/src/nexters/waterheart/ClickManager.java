@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+import android.widget.Toast;
 /*
  * 당황하지마
  * 클릭리스너를 따로 분리하려는것뿐이야
@@ -14,8 +15,9 @@ public class ClickManager implements View.OnClickListener{
 	CupManager cupManager;
 	HeartManager heartManager;
 	Handler mHandler;
-	private static final int CUP_ONE = 1, CUP_TWO = 2, CUP_THREE = 3,
-			CUP_FOUR = 4;
+	private static final int MAIN_CLICK=0, HISTORY_CLICK=1;
+	private static final int CUP_ONE = 0, CUP_TWO = 1, CUP_THREE = 2,
+			CUP_FOUR = 3;
 	
 	public ClickManager(int onclick_num, Activity activity, Handler handler){
 		/*
@@ -34,9 +36,9 @@ public class ClickManager implements View.OnClickListener{
 		int water;
 		Message msg;
 		//onclick_num==1 은 히스토리페이지에서 클릭이벤트를 받을 때
-		if(onclick_num==1){
+		if(onclick_num==HISTORY_CLICK){
 			historySwap(v.getId());
-		}
+		}else if(onclick_num==MAIN_CLICK){
 		//이 밑은 메인페이지에서 클릭이벤트를 받을 때
 		switch(v.getId()){
 		case R.id.main_heart_layout:
@@ -73,6 +75,7 @@ public class ClickManager implements View.OnClickListener{
 			msg = Message.obtain(mHandler,0,water,0);
 			mHandler.sendMessage(msg);
 			break;
+		}
 		}
 		
 		

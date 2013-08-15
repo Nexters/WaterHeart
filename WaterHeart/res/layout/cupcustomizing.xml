@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:clickable="true">
+    android:layout_height="match_parent">
 	<LinearLayout 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -26,7 +25,8 @@
         <ImageView
             android:src="@drawable/cupcustomizing_box"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:clickable="true"/>
     </RelativeLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -34,22 +34,7 @@
         android:layout_weight="2"
         android:orientation="horizontal"
         android:layout_gravity="center">
-        <ImageView
-            android:src="@drawable/cup_selected"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <ImageView
-            android:src="@drawable/cup_bottle_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <ImageView
-            android:src="@drawable/cup_cup_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <ImageView
-            android:src="@drawable/cup_coffee_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        
     </LinearLayout>
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="0px"
@@ -84,7 +69,8 @@
 	        <EditText
 	            android:background="@drawable/cupcustomizing_value_box"
 	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"/>
+	            android:layout_height="wrap_content"
+	            android:inputType="number"/>
 	        <ImageView 
 	            android:src="@drawable/cupcustomizing_ml"
 	            android:layout_width="wrap_content"
@@ -94,7 +80,9 @@
 	            android:layout_centerHorizontal="true"
 	            android:layout_width="200dp"
 	            android:layout_height="wrap_content"
-	            />
+	            android:max="1000"
+	            android:id="@+id/cupcustomizing_seekbar" /> <!--  일단 컵 하나당 용량 최대치는 1000으로정해둠! -->
+	           
 	    </RelativeLayout>
 	    <LinearLayout
 	        android:layout_width="match_parent"
@@ -119,19 +107,31 @@
 	        <ImageView 
 	            android:src="@drawable/cup_drop_customizing"
 	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"/>
+	            android:layout_height="wrap_content"
+	            android:id="@+id/cup_drop_customizing"
+	            android:alpha="0.1"
+	            android:clickable="true"/>
 	        <ImageView
 	            android:src="@drawable/cup_bottle_customizing"
 	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"/>
+	            android:layout_height="wrap_content"
+	            android:id="@+id/cup_bottle_customizing"
+	            android:alpha="0.1"
+	            android:clickable="true"/>
 	        <ImageView
 	            android:src="@drawable/cup_cup_customizing"
 	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"/>
+	            android:layout_height="wrap_content"
+	            android:id="@+id/cup_cup_customizing"
+	            android:alpha="0.1"
+	            android:clickable="true"/>
 	        <ImageView
 	            android:src="@drawable/cup_coffee_customizing"
 	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"/>
+	            android:layout_height="wrap_content"
+	            android:id="@+id/cup_coffee_customizing"
+	            android:alpha="0.1"
+	            android:clickable="true"/>
 	    </LinearLayout>
 	</LinearLayout>
 </FrameLayout>

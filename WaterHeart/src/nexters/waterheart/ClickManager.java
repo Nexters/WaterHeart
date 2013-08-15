@@ -46,7 +46,7 @@ public class ClickManager implements View.OnClickListener{
 				mActivity.findViewById(R.id.main_change_02).setVisibility(View.GONE);
 			}
 			break;
-		case R.id.main_cup_drop:
+		case R.id.main_cup_drop: // what부분 바꿔버림.... 안되는거면 너가 좀 고쳐줘 ㅠ.ㅠ
 			water = heartManager.mainOnCupClicked(cupManager.cup_one);
 			msg = Message.obtain(mHandler, 1, water, 0);
 			mHandler.sendMessage(msg);

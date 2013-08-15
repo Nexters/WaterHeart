@@ -36,11 +36,11 @@ public class MainFragment extends SherlockFragment {
 			CUP_FOUR = 3;
 	private static final int ONCLICK_NUM = 0;
 
-	// 한소리!!! 용량 꽉찰 때쯤 에러나는데 나 약속있어서 마무리 못할까봐 일단 푸시할게 ㅠ.ㅠ  약속 전까지 계속 하긴할꺼
-	// 하여튼 내가 여기저기 추가했어.
+	// 한소리!!! 내가 여기저기 추가했어.
 	// 전역으로 변수 몇개 선언했고, 일단 잘되나 확인하려고 init()에서 하트관련 이미지뷰들 추가하고 초기 투명도 설정했어.
 	// 하트 가운데 숫자표시되는 투명도 하트는 안건드림.
-	// 그리고 fill어쩌고 핸들러에서 하트 로직짬. 근데 undo일 땐 아직 못짬. undo가 구별이 되야하는데 그렇게 안짜놔서 못함.
+	// 그리고 fill어쩌고 핸들러에서 하트 로직짬. 
+	//근데 undo일 땐 아직 못짬.
 	// 이 밑이 내가 추가한 변수들. 좀 지저분하고 임의로 한것들도 있어. 너가 좀 정리 도와줘............
 	int totalWater = 2000;
 	ImageView[] heartImg = new ImageView[15];
@@ -131,13 +131,14 @@ public class MainFragment extends SherlockFragment {
 	 */
 	Handler fillWaterHandler = new Handler() {
 		public void handleMessage(Message msg) {
-			//if (msg.what == 0) { //내가 막 바꿔버렸어
-				Toast.makeText(getSherlockActivity(), "" + msg.arg1, 1000)
-						.show();
-			//}
-		
-			// 한소라 여기가 추가한 부분. 하트 물채워지는 부분임. 아직 미완성...뭐가 문젠지 봐바 ㅠ.ㅠ 
-			int water = 0; // 사용된 컵의 물 양, 이것 때문에 어쩔수 없이 ClickManager에서 msg.what 바꿔버렸는데
+			// if (msg.what == 0) { //내가 막 바꿔버렸어
+			Toast.makeText(getSherlockActivity(), "" + msg.arg1, 1000).show();
+			// }
+
+			// 한소라 여기가 추가한 부분. 하트 물채워지는 부분임. 아직 미완성...뭐가 문젠지 봐바 ㅠ.ㅠ
+			int water = 0; // 사용된 컵의 물 양, 이것 때문에 어쩔수 없이 ClickManager에서 msg.what
+							// 바꿔버렸는데 바꿔서 밑에 처럼 쓰면 안되는거? what을 딴데 쓸 용도가 있다면
+							// what안쓰고
 							// 컵용량 받을 수 있게 좀 해줘봐바..그럴만한 메소드가 없는듯
 			if (msg.what == 1)
 				water = cupManager.cup_one;
@@ -147,25 +148,33 @@ public class MainFragment extends SherlockFragment {
 				water = cupManager.cup_three;
 			else if (msg.what == 4)
 				water = cupManager.cup_four;
-			
+
 			float opacityPercentage = 0;
 
 			while (water != 0) {
-				if (tmp <= water) { // tmp는 하트조각의 남은 용량, 하트조각의 용량보다 입력된 물의 양이 같거나 크면
-					ViewHelper.setAlpha(heartImg[numList.get(0)], 1.0f); //하트조각 다 채워지고
-					water -= tmp; //물의 양이 변화
-					numList.remove(0); 
-					if (numList.size() != 0) // 안되는 원인...하트 다 채워지기 직전에 강종당함.
+				if (numList.isEmpty())
+					break;
+
+				else if (tmp <= water) { // tmp는 하트조각의 남은 용량, 하트조각의 용량보다 입력된 물의
+											// 양이
+					// 같거나 크면
+					ViewHelper.setAlpha(heartImg[numList.get(0)], 1.0f); // 하트조각
+																			// 다
+																			// 채워지고
+					water -= tmp; // 물의 양이 변화
+					numList.remove(0);
+					if (!(numList.isEmpty()))
 						tmp = value[numList.get(0)]; // 새로운 하트 조각의 용량 받기
-					} 
-				
-				else { //하트조각의 용량이 입력된 물의 양보다 작으면
+				}
+
+				else { // 하트조각의 용량이 입력된 물의 양보다 작으면
 					opacityPercentage = (float) water / tmp;
-					tmp -= water;//하트조각의 남은 용량이 변화하고
-					ViewHelper.setAlpha(heartImg[numList.get(0)], opacityPercentage);
+					tmp -= water;// 하트조각의 남은 용량이 변화하고
+					ViewHelper.setAlpha(heartImg[numList.get(0)],
+							opacityPercentage);
 					water = 0;
 				}
-			}//이상한 부분좀 찾아줘.. ㅠ.ㅠ
+			}
 		}
 	};
 

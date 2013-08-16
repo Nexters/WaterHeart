@@ -73,7 +73,7 @@ public class ClickManager implements View.OnClickListener{
 			break;
 		case R.id.main_undo:
 			water = heartManager.mainOnBackClicked();
-			msg = Message.obtain(mHandler,0,water,0);
+			msg = Message.obtain(mHandler,5,water,0);
 			mHandler.sendMessage(msg);
 			break;
 		}

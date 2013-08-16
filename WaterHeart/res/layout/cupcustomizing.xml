@@ -24,6 +24,7 @@
         android:layout_weight="11"
         android:layout_gravity="center">
         <ImageView
+            android:layout_centerInParent="true"
             android:src="@drawable/cupcustomizing_box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

@@ -30,6 +30,7 @@ public class CupCustomizingFragment extends SherlockFragment implements View.OnC
 	EditText amountEdit;
 	SeekBar seekBar;
 	CupManager cupManager;
+	ClickManager clickManager;
 	int whichCup; //메인에서 롱클릭한 컵이 무엇인지를 판단하기위한 변수
 	float unselected=0.1f, selected=0.9f; //선택된 컵의 알파값을 조절하기 위한 변수
 	private static final int CUP_ONE = 0, CUP_TWO = 1, CUP_THREE = 2,
@@ -124,6 +125,7 @@ public class CupCustomizingFragment extends SherlockFragment implements View.OnC
 	}
 	
 	public void init(){
+		cupManager.getAllCupStates();
 		cups_on_main[0].setImageResource(cupManager.cup_one_image);
 		cups_on_main[1].setImageResource(cupManager.cup_two_image);
 		cups_on_main[2].setImageResource(cupManager.cup_three_image);
@@ -208,6 +210,7 @@ public class CupCustomizingFragment extends SherlockFragment implements View.OnC
 		// TODO Auto-generated method stub
 		getSherlockActivity().getSupportActionBar().setTitle("WaterHeart");
 		mHandler.sendEmptyMessage(FROM_CUPCUSTOM);
+		init();
 		getActivity().getSupportFragmentManager().beginTransaction()
 		.remove(CupCustomizingFragment.this).commit();
 		super.onPause();

@@ -66,6 +66,6 @@ public class CupManager {
 			break;
 		}
 		edit.commit();
-		getAllCupStates();
+		//getAllCupStates();
 	}
 }

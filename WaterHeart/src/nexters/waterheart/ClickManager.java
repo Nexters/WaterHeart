@@ -25,7 +25,7 @@ public class ClickManager implements View.OnClickListener{
 		 */
 		this.onclick_num=onclick_num;
 		mActivity=activity;
-		cupManager = new CupManager(activity);
+		cupManager = new CupManager(mActivity);
 		heartManager = new HeartManager(activity);
 		heartManager.init();
 		mHandler = handler;
@@ -40,6 +40,7 @@ public class ClickManager implements View.OnClickListener{
 			historySwap(v.getId());
 		}else if(onclick_num==MAIN_CLICK){
 		//이 밑은 메인페이지에서 클릭이벤트를 받을 때
+			cupManager.getAllCupStates();
 		switch(v.getId()){
 		case R.id.main_heart_layout:
 			if(mActivity.findViewById(R.id.main_change_01).getVisibility()==View.VISIBLE){
@@ -80,7 +81,6 @@ public class ClickManager implements View.OnClickListener{
 		
 		
 	}
-	
 	
 	/*
 	 * 아오 ㅋㅋㅋ 내가봐도 지저분한데 몰겠다 걍 되기만하면되지

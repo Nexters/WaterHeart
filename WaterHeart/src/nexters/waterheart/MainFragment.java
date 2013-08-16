@@ -100,7 +100,10 @@ public class MainFragment extends SherlockFragment {
 					(ImageView) getActivity().findViewById(R.id.main_cup_cup),
 					(ImageView) getActivity()
 							.findViewById(R.id.main_cup_coffee) };
-
+			cups[0].setImageResource(cupManager.cup_one_image);
+			cups[1].setImageResource(cupManager.cup_two_image);
+			cups[2].setImageResource(cupManager.cup_three_image);
+			cups[3].setImageResource(cupManager.cup_four_image);
 			main_heart.setOnClickListener(clickManager);
 			undo.setOnClickListener(clickManager);
 			for (int i = 0; i < 4; i++) {

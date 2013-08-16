@@ -59,7 +59,7 @@ public class MainFragment extends SherlockFragment {
 	private int valueC = totalWater * 3 / 10;
 	ArrayList<Integer> numList = new ArrayList<Integer>();
 	Random random = new Random();
-	int scope = 14, tmp, i = 0;
+	int scope = 14, tmp, index = 0;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -184,25 +184,25 @@ public class MainFragment extends SherlockFragment {
 				if (msg.what == 5) {
 					for (int i = 0; i < scope; i++)
 						ViewHelper.setAlpha(heartImg[i], 0.05f);
-					i = 0;
+					index = 0;
 				}
 
 				while (water != 0) {
-					if (numList.isEmpty())
+					if (index == 14)
 						break;
 					else if (tmp <= water) { // tmp는 하트조각의 남은 용량
-						ViewHelper.setAlpha(heartImg[numList.get(i)], 1.0f); // 채워지고
+						ViewHelper.setAlpha(heartImg[numList.get(index)], 1.0f); // 채워지고
 						water -= tmp; // 물의 양이 변화
-						i++;
+						index++;
 						// numList.remove(0);
-						if (!(numList.isEmpty()))
-							tmp = value[numList.get(i)]; // 새로운 하트 조각의 용량 받기
+						if (!(index == 14))
+							tmp = value[numList.get(index)]; // 새로운 하트 조각의 용량 받기
 					}
 
 					else { // 하트조각의 용량이 입력된 물의 양보다 작으면
 						opacityPercentage = (float) water / tmp;
 						tmp -= water;// 하트조각의 남은 용량이 변화하고
-						ViewHelper.setAlpha(heartImg[numList.get(i)],
+						ViewHelper.setAlpha(heartImg[numList.get(index)],
 								opacityPercentage);
 						water = 0;
 					}

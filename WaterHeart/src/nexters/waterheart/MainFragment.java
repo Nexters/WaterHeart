@@ -158,6 +158,7 @@ public class MainFragment extends SherlockFragment {
 					cups[i].setOnLongClickListener(longClick);
 				}
 			}else{
+				cupManager.getAllCupStates();
 			Toast.makeText(getSherlockActivity(), "" + msg.arg1, 1000).show();
 			// 한소라 여기가 추가한 부분. 하트 물채워지는 부분임. 아직 미완성...뭐가 문젠지 봐바 ㅠ.ㅠ
 			int water = 0; // 사용된 컵의 물 양, 이것 때문에 어쩔수 없이 ClickManager에서 msg.what

@@ -81,7 +81,7 @@ public class ClickManager implements View.OnClickListener{
 	
 	public void historySwap(int resId){
 		switch(resId){
-		case R.id.history_heart_6:
+		case R.id.history_heart_06:
 			if(mActivity.findViewById(R.id.resultspage_change_6_01).getVisibility()==View.VISIBLE){
 				mActivity.findViewById(R.id.resultspage_change_6_02).setVisibility(View.VISIBLE);
 				mActivity.findViewById(R.id.resultspage_change_6_01).setVisibility(View.GONE);
@@ -90,7 +90,7 @@ public class ClickManager implements View.OnClickListener{
 				mActivity.findViewById(R.id.resultspage_change_6_01).setVisibility(View.VISIBLE);
 			}
 			break;
-		case R.id.history_heart_5:
+		case R.id.history_heart_05:
 			if(mActivity.findViewById(R.id.resultspage_change_5_01).getVisibility()==View.VISIBLE){
 				mActivity.findViewById(R.id.resultspage_change_5_02).setVisibility(View.VISIBLE);
 				mActivity.findViewById(R.id.resultspage_change_5_01).setVisibility(View.GONE);
@@ -99,7 +99,7 @@ public class ClickManager implements View.OnClickListener{
 				mActivity.findViewById(R.id.resultspage_change_5_01).setVisibility(View.VISIBLE);
 			}
 			break;
-		case R.id.history_heart_4:
+		case R.id.history_heart_04:
 			if(mActivity.findViewById(R.id.resultspage_change_4_01).getVisibility()==View.VISIBLE){
 				mActivity.findViewById(R.id.resultspage_change_4_02).setVisibility(View.VISIBLE);
 				mActivity.findViewById(R.id.resultspage_change_4_01).setVisibility(View.GONE);
@@ -108,7 +108,7 @@ public class ClickManager implements View.OnClickListener{
 				mActivity.findViewById(R.id.resultspage_change_4_01).setVisibility(View.VISIBLE);
 			}
 			break;
-		case R.id.history_heart_3:
+		case R.id.history_heart_03:
 			if(mActivity.findViewById(R.id.resultspage_change_3_01).getVisibility()==View.VISIBLE){
 				mActivity.findViewById(R.id.resultspage_change_3_02).setVisibility(View.VISIBLE);
 				mActivity.findViewById(R.id.resultspage_change_3_01).setVisibility(View.GONE);
@@ -117,7 +117,7 @@ public class ClickManager implements View.OnClickListener{
 				mActivity.findViewById(R.id.resultspage_change_3_01).setVisibility(View.VISIBLE);
 			}
 			break;
-		case R.id.history_heart_2:
+		case R.id.history_heart_02:
 			if(mActivity.findViewById(R.id.resultspage_change_2_01).getVisibility()==View.VISIBLE){
 				mActivity.findViewById(R.id.resultspage_change_2_02).setVisibility(View.VISIBLE);
 				mActivity.findViewById(R.id.resultspage_change_2_01).setVisibility(View.GONE);
@@ -126,7 +126,7 @@ public class ClickManager implements View.OnClickListener{
 				mActivity.findViewById(R.id.resultspage_change_2_01).setVisibility(View.VISIBLE);
 			}
 			break;
-		case R.id.history_heart_1:
+		case R.id.history_heart_01:
 			if(mActivity.findViewById(R.id.resultspage_change_1_01).getVisibility()==View.VISIBLE){
 				mActivity.findViewById(R.id.resultspage_change_1_02).setVisibility(View.VISIBLE);
 				mActivity.findViewById(R.id.resultspage_change_1_01).setVisibility(View.GONE);

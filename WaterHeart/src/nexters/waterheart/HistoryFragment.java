@@ -43,13 +43,16 @@ public class HistoryFragment extends SherlockFragment {
 		if (heart[0] == null) {
 			for (int i = 0; i < 6; i++) {
 				heart[i] = (ImageView) getActivity().findViewById(
-						R.id.history_heart_1 + i);		
+						R.id.history_heart_01 + i);		
 				//heart[i].setOnClickListener(clickManager);
 
 				//setImage(heart[i], percent[i]);
 
+		
 			}
 		}
+		//heart[0] = (ImageView)getActivity().findViewById(R.id.history_heart_1);
+		//heart[1] = (ImageView)getActivity().findViewById(R.id.history_heart_2);
 	}
 
 	public void setImage(ImageView img, float percent) {

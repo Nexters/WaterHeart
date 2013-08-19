@@ -20,12 +20,12 @@
         android:layout_weight="1"
         android:gravity="center" >
 
-        <RelativeLayoutz
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <ImageView
-                android:id="@+id/history_heart_6"
+                android:id="@+id/history_heart_06"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content" >
 
             <ImageView
-                android:id="@+id/history_heart_5"
+                android:id="@+id/history_heart_05"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -149,7 +149,7 @@
             android:layout_height="wrap_content" >
 
             <ImageView
-                android:id="@+id/history_heart_4"
+                android:id="@+id/history_heart_04"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -205,7 +205,7 @@
             android:layout_height="wrap_content" >
 
             <ImageView
-                android:id="@+id/history_heart_3"
+                android:id="@+id/history_heart_03"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -268,7 +268,7 @@
             android:layout_height="wrap_content" >
 
             <ImageView
-                android:id="@+id/history_heart_2"
+                android:id="@+id/history_heart_02"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -324,7 +324,7 @@
             android:layout_height="wrap_content" >
 
             <ImageView
-                android:id="@+id/history_heart_1"
+                android:id="@+id/history_heart_01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"

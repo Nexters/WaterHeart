@@ -258,7 +258,7 @@ public class MainFragment extends SherlockFragment {
 		// TODO Auto-generated method stub
 		switch (item.getItemId()) {
 		case R.id.action_pencil:
-			Intent intent = new Intent(getActivity(), CustomActivity.class);
+			Intent intent = new Intent(getActivity(), CustomFragment.class);
 			startActivity(intent);
 			getActivity().overridePendingTransition(R.anim.show_custom, 0);
 			return true;

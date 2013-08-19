@@ -43,14 +43,6 @@ public class MainFragment extends SherlockFragment {
 	private static final int ONCLICK_NUM = 0;
 	private static final int FROM_CUPCUSTOM = 10;
 
-	// 한소리!!! 내가 여기저기 추가했어.
-	// 전역으로 변수 몇개 선언했고, 일단 잘되나 확인하려고 init()에서 하트관련 이미지뷰들 추가하고 초기 투명도 설정했어.
-	// 하트 가운데 숫자표시되는 투명도 하트는 안건드림.
-	// 그리고 fill어쩌고 핸들러에서 하트 로직짬.
-	// 근데 undo일 땐 아직 못짬.
-	// 이 밑이 내가 추가한 변수들. 좀 지저분하고 임의로 한것들도 있어. 너가 좀 정리 도와줘............
-
-	// 너무어렵... 이건 이제 누나몫이니까 화이팅
 	int totalWater = 2000;
 	ImageView[] heartImg = new ImageView[15];
 	int[] value = new int[15];
@@ -107,7 +99,6 @@ public class MainFragment extends SherlockFragment {
 				cups[i].setOnLongClickListener(longClick);
 			}
 
-			// 한소라 여기가 내가 추가한 부분!!!!
 			// 이 밑으로는 다 init()에서 희조가 추가한 부분
 			// 하트 이미지뷰설정 및 하트 조각별 용량 설정, 그리고 초기 투명도 10퍼로 설정
 			for (int i = 0; i < scope; i++) {
@@ -146,8 +137,7 @@ public class MainFragment extends SherlockFragment {
 	Handler fillWaterHandler = new Handler() {
 		public void handleMessage(Message msg) {
 
-			if (msg.what == FROM_CUPCUSTOM) { // 이건 내가 만든거. 컵커스터마이징창에서 돌아올때의
-												// 핸들러야!
+			if (msg.what == FROM_CUPCUSTOM) { 
 				getActivity().findViewById(R.id.pager_title_strip)
 						.setVisibility(View.VISIBLE);
 				getActivity().findViewById(R.id.main_undo).setVisibility(
@@ -160,14 +150,7 @@ public class MainFragment extends SherlockFragment {
 				cupManager.getAllCupStates();
 				Toast.makeText(getSherlockActivity(), "" + msg.arg1, 1000)
 						.show();
-				// 한소라 여기가 추가한 부분. 하트 물채워지는 부분임. 아직 미완성...뭐가 문젠지 봐바 ㅠ.ㅠ
-				int water = 0; // 사용된 컵의 물 양, 이것 때문에 어쩔수 없이 ClickManager에서
-								// msg.what
-								// 바꿔버렸는데 바꿔서 밑에 처럼 쓰면 안되는거? what을 딴데 쓸 용도가 있다면
-								// what안쓰고
-								// 컵용량 받을 수 있게 좀 해줘봐바..그럴만한 메소드가 없는듯
-
-				// 아냐! 잘했네! 喜조누나가 한거처럼 what바꾸면서하면돼~
+				int water = 0; 
 				if (msg.what == CUP_ONE)
 					water = cupManager.cup_one;
 				else if (msg.what == CUP_TWO)
@@ -191,7 +174,7 @@ public class MainFragment extends SherlockFragment {
 					if (index == 14)
 						break;
 					else if (tmp <= water) { // tmp는 하트조각의 남은 용량
-						ViewHelper.setAlpha(heartImg[numList.get(index)], 1.0f); // 채워지고
+						ViewHelper.setAlpha(heartImg[numList.get(index)], 0.8f); // 채워지고
 						water -= tmp; // 물의 양이 변화
 						index++;
 						// numList.remove(0);

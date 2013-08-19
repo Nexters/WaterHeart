@@ -19,13 +19,13 @@ public class CupManager {
 	private static final int CUP_ONE = 0, CUP_TWO = 1, CUP_THREE = 2,
 			CUP_FOUR = 3;
 	
-	public CupManager(Activity activity){
-		mActivity=activity;
+	public CupManager(Activity activity) {
+		mActivity = activity;
 		pref = mActivity.getSharedPreferences("CupSettings",0);
 		getAllCupStates();
 	}
 	
-	public void saveAllCupStates(){
+	public void saveAllCupStates() {
 		SharedPreferences.Editor edit = pref.edit();
 		edit.putInt("cup_one", cup_one);
 		edit.putInt("cup_two", cup_two);
@@ -34,7 +34,7 @@ public class CupManager {
 		edit.commit();
 	}
 	
-	public void getAllCupStates(){
+	public void getAllCupStates() {
 		cup_one = pref.getInt("cup_one", 100);
 		cup_two = pref.getInt("cup_two", 500);
 		cup_three = pref.getInt("cup_three", 200);
@@ -45,9 +45,9 @@ public class CupManager {
 		cup_four_image = pref.getInt("cup_four_image", R.drawable.cup_coffee);
 	}
 	
-	public void setCupState(int which, int amount, int resId){ //which 변수는 0부터 컵의 순서
+	public void setCupState(int which, int amount, int resId) { //which 변수는 0부터 컵의 순서
 		SharedPreferences.Editor edit = pref.edit();
-		switch(which){
+		switch (which) {
 		case CUP_ONE:
 			edit.putInt("cup_one", amount);
 			edit.putInt("cup_one_image", resId);

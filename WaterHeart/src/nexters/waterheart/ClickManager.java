@@ -5,10 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.Toast;
-/*
- * 당황하지마
- * 클릭리스너를 따로 분리하려는것뿐이야
- */
+
 public class ClickManager implements View.OnClickListener{
 	int onclick_num;
 	Activity mActivity;
@@ -51,7 +48,7 @@ public class ClickManager implements View.OnClickListener{
 				mActivity.findViewById(R.id.main_change_02).setVisibility(View.GONE);
 			}
 			break;
-		case R.id.main_cup_drop: // what부분 바꿔버림.... 안되는거면 너가 좀 고쳐줘 ㅠ.ㅠ //응 아니 완벽해
+		case R.id.main_cup_drop:
 			water = heartManager.mainOnCupClicked(cupManager.cup_one);
 			msg = Message.obtain(mHandler, CUP_ONE, water, 0);
 			mHandler.sendMessage(msg);
@@ -82,9 +79,6 @@ public class ClickManager implements View.OnClickListener{
 		
 	}
 	
-	/*
-	 * 아오 ㅋㅋㅋ 내가봐도 지저분한데 몰겠다 걍 되기만하면되지
-	 */
 	public void historySwap(int resId){
 		switch(resId){
 		case R.id.history_heart_6:

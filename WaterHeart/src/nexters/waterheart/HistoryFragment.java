@@ -12,80 +12,73 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.nineoldandroids.view.ViewHelper;
 
-
 public class HistoryFragment extends SherlockFragment {
 	private static final int TUTORIAL_NUMBER = 2;
 	private static final int ONCLICK_NUM = 1;
-	ImageView heart01; int percent01;
-	ImageView heart02; int percent02;
-	ImageView heart03; int percent03;
-	ImageView heart04; int percent04;
-	ImageView heart05; int percent05;
-	ImageView heart06; int percent06;
+	ImageView[] heart = new ImageView[6];
+	float[] percent = new float[6];
 	ClickManager clickManager;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		/*
-		 * setHasOptionsMenu(true)가 지정되어야만
-		 * fragment내에서 액션바 메뉴를 설정할 수 있다
+		 * setHasOptionsMenu(true)가 지정되어야만 fragment내에서 액션바 메뉴를 설정할 수 있다
 		 */
 		setHasOptionsMenu(true);
-		View view = inflater.inflate(R.layout.historyview, container,false);
-		clickManager=new ClickManager(ONCLICK_NUM,getActivity(),null);
+		View view = inflater.inflate(R.layout.historyview, container, false);
+		clickManager = new ClickManager(ONCLICK_NUM, getActivity(), null);
 		/*
-		 * 나중에 할 것:
-		 * 위 percent* 변수들에 DB의 값을 불러와서 대입한다.
+		 * 나중에 할 것: 위 percent* 변수들에 DB의 값을 불러와서 대입한다.
 		 */
 		return view;
 	}
-	public void onResume(){
+
+	public void onResume() {
 		init();
 		super.onResume();
 	}
-	
-	public void init(){
-		if(heart01==null){
-		heart01 = (ImageView)getActivity().findViewById(R.id.history_heart_1);
-		heart02 = (ImageView)getActivity().findViewById(R.id.history_heart_2);
-		heart03 = (ImageView)getActivity().findViewById(R.id.history_heart_3);
-		heart04 = (ImageView)getActivity().findViewById(R.id.history_heart_4);
-		heart05 = (ImageView)getActivity().findViewById(R.id.history_heart_5);
-		heart06 = (ImageView)getActivity().findViewById(R.id.history_heart_6);
-		
-		heart01.setOnClickListener(clickManager);
-		heart02.setOnClickListener(clickManager);
-		heart03.setOnClickListener(clickManager);
-		heart04.setOnClickListener(clickManager);
-		heart05.setOnClickListener(clickManager);
-		heart06.setOnClickListener(clickManager);
-		
-		setImage(heart01, percent01);
-		setImage(heart02, percent02);
-		setImage(heart03, percent03);
-		setImage(heart04, percent04);
-		setImage(heart05, percent05);
-		setImage(heart06, percent06);
+
+	public void init() {
+		if (heart[0] == null) {
+			for (int i = 0; i < 6; i++) {
+				heart[i] = (ImageView) getActivity().findViewById(
+						R.id.history_heart_1 + i);		
+				//heart[i].setOnClickListener(clickManager);
+
+				//setImage(heart[i], percent[i]);
+
+			}
 		}
 	}
-	
-	public void setImage(ImageView img, int percentage){
+
+	public void setImage(ImageView img, float percent) {
 		/*
-		 * 처음에는 모든 이미지들이 invisible 상태일것이다
-		 * 아마도..DB에서 날짜정보같은걸 가져와서.. 조건을 만족하면 VISIBLE로 바꾸고..할듯
+		 * 처음에는 모든 이미지들이 invisible 상태일것이다 아마도..DB에서 날짜정보같은걸 가져와서.. 조건을 만족하면
+		 * VISIBLE로 바꾸고..할듯
 		 */
-		if(percentage<=10)ViewHelper.setAlpha(img, 0.1f);
-		else if(percentage<=20)ViewHelper.setAlpha(img, 0.2f);
-		else if(percentage<=30)ViewHelper.setAlpha(img, 0.3f);
-		else if(percentage<=40)ViewHelper.setAlpha(img, 0.4f);
-		else if(percentage<=50)ViewHelper.setAlpha(img, 0.5f);
-		else if(percentage<=60)ViewHelper.setAlpha(img, 0.6f);
-		else if(percentage<=70)ViewHelper.setAlpha(img, 0.7f);
-		else if(percentage<=80)ViewHelper.setAlpha(img, 0.8f);
-		else if(percentage<=90)ViewHelper.setAlpha(img, 0.9f);
-		else if(percentage<=100)ViewHelper.setAlpha(img, 1.0f);
+		if (percent <= 10)
+			ViewHelper.setAlpha(img, 0.1f);
+		else if (percent <= 20)
+			ViewHelper.setAlpha(img, 0.2f);
+		else if (percent <= 30)
+			ViewHelper.setAlpha(img, 0.3f);
+		else if (percent <= 40)
+			ViewHelper.setAlpha(img, 0.4f);
+		else if (percent <= 50)
+			ViewHelper.setAlpha(img, 0.5f);
+		else if (percent <= 60)
+			ViewHelper.setAlpha(img, 0.6f);
+		else if (percent <= 70)
+			ViewHelper.setAlpha(img, 0.7f);
+		else if (percent <= 80)
+			ViewHelper.setAlpha(img, 0.8f);
+		else if (percent <= 90)
+			ViewHelper.setAlpha(img, 0.9f);
+		else if (percent <= 100)
+			ViewHelper.setAlpha(img, 1.0f);
 	}
-	
+
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		// TODO Auto-generated method stub
@@ -95,18 +88,19 @@ public class HistoryFragment extends SherlockFragment {
 		outState.putString("Don't crash", "Please");
 		super.onSaveInstanceState(outState);
 	}
+
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		// TODO Auto-generated method stub
 		inflater.inflate(R.menu.history, menu);
 		super.onCreateOptionsMenu(menu, inflater);
 	}
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
-		
+
 		return super.onOptionsItemSelected(item);
 	}
-	
-	
+
 }

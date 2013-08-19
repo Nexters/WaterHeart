@@ -1,360 +1,385 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:shrinkColumns="*"
     android:stretchColumns="*"
-    android:background="@drawable/background" >
+    android:id="@+id/historyview">
 
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5"
-        >
+        android:layout_weight="0.5" >
     </TableRow>
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="center"
-        >
-        <RelativeLayout
+        android:gravity="center" >
+
+        <RelativeLayoutz
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content" >
+
             <ImageView
                 android:id="@+id/history_heart_6"
-            	android:layout_width="wrap_content"
-            	android:layout_height="wrap_content"
-            	android:src="@drawable/resultspage_heart"
-            	android:layout_centerInParent="true"
-            	android:clickable="true"
-            	/>
-             <!--  하트 안의 텍스트뷰는 01, 02 로 나뉜다
-            01에는 퍼센트 값, 02에는 ml값
-            하트가 눌러졌을때는 이 텍스트뷰를 담고 있는 리니어레이아웃들이 교체된다 -->
-            <LinearLayout 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:orientation="horizontal"
-                android:id="@+id/resultspage_change_6_01">
+                android:clickable="true"
+                android:src="@drawable/resultspage_heart" />
+            <!--
+            하트 안의 텍스트뷰는 01, 02 로 나뉜다
+            01에는 퍼센트 값, 02에는 ml값
+            하트가 눌러졌을때는 이 텍스트뷰를 담고 있는 리니어레이아웃들이 교체된다
+            -->
+
+            <LinearLayout
+                android:id="@+id/resultspage_change_6_01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal" >
+
                 <TextView
-                	android:id="@+id/resultspage_text_6_01"
-                	android:text="100"
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:textSize="30sp"
-                />
-            	<ImageView
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:src="@drawable/main_heart_percent"
-                	android:layout_gravity="center_vertical"
-                />
+                    android:id="@+id/resultspage_text_6_01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100"
+                    android:textSize="30sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/main_heart_percent" />
             </LinearLayout>
-            <LinearLayout 
+
+            <LinearLayout
+                android:id="@+id/resultspage_change_6_02"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:orientation="vertical"
-                android:visibility="gone"
-                android:id="@+id/resultspage_change_6_02">
+                android:visibility="gone" >
+
                 <TextView
-                	android:id="@+id/resultspage_text_6_02"
-                	android:text="1000"
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:textSize="30sp"
-                />
-            	<ImageView
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:src="@drawable/main_heart_ml"
-                	android:layout_gravity="center_horizontal"
-                />
+                    android:id="@+id/resultspage_text_6_02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1000"
+                    android:textSize="30sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/main_heart_ml" />
             </LinearLayout>
-                           
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content" >
+
             <ImageView
                 android:id="@+id/history_heart_5"
-            	android:layout_width="wrap_content"
-            	android:layout_height="wrap_content"
-            	android:src="@drawable/resultspage_heart"
-            	android:layout_centerInParent="true"
-            	android:clickable="true"/>
-            <LinearLayout 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:orientation="horizontal"
-                android:id="@+id/resultspage_change_5_01">
+                android:clickable="true"
+                android:src="@drawable/resultspage_heart" />
+
+            <LinearLayout
+                android:id="@+id/resultspage_change_5_01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal" >
+
                 <TextView
-                	android:id="@+id/resultspage_text_5_01"
-                	android:text="100"
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:textSize="30sp"
-                />
-            	<ImageView
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:src="@drawable/main_heart_percent"
-                	android:layout_gravity="center_vertical"
-                />
+                    android:id="@+id/resultspage_text_5_01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100"
+                    android:textSize="30sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/main_heart_percent" />
             </LinearLayout>
-            <LinearLayout 
+
+            <LinearLayout
+                android:id="@+id/resultspage_change_5_02"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:orientation="vertical"
-                android:visibility="gone"
-                android:id="@+id/resultspage_change_5_02">
+                android:visibility="gone" >
+
                 <TextView
-                	android:id="@+id/resultspage_text_5_02"
-                	android:text="1000"
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:textSize="30sp"
-                />
-            	<ImageView
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:src="@drawable/main_heart_ml"
-                	android:layout_gravity="center_horizontal"
-                />
+                    android:id="@+id/resultspage_text_5_02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1000"
+                    android:textSize="30sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/main_heart_ml" />
             </LinearLayout>
         </RelativeLayout>
     </TableRow>
-     <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        >
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/history_heart_4"
-            	android:layout_width="wrap_content"
-            	android:layout_height="wrap_content"
-            	android:src="@drawable/resultspage_heart"
-            	android:layout_centerInParent="true"
-            	android:clickable="true"/>
-           <LinearLayout 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:orientation="horizontal"
-                android:id="@+id/resultspage_change_4_01">
-                <TextView
-                	android:id="@+id/resultspage_text_4_01"
-                	android:text="100"
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:textSize="30sp"
-                />
-            	<ImageView
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:src="@drawable/main_heart_percent"
-                	android:layout_gravity="center_vertical"
-                />
-            </LinearLayout>
-            <LinearLayout 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:orientation="vertical"
-                android:visibility="gone"
-                android:id="@+id/resultspage_change_4_02">
-                <TextView
-                	android:id="@+id/resultspage_text_4_02"
-                	android:text="1000"
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:textSize="30sp"
-                />
-            	<ImageView
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:src="@drawable/main_heart_ml"
-                	android:layout_gravity="center_horizontal"
-                />
-            </LinearLayout>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/history_heart_3"
-            	android:layout_width="wrap_content"
-            	android:layout_height="wrap_content"
-            	android:src="@drawable/resultspage_heart"
-            	android:layout_centerInParent="true"
-            	android:clickable="true"/>
-           <LinearLayout 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:orientation="horizontal"
-                android:id="@+id/resultspage_change_3_01">
-                <TextView
-                	android:id="@+id/resultspage_text_3_01"
-                	android:text="100"
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:textSize="30sp"
-                />
-            	<ImageView
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:src="@drawable/main_heart_percent"
-                	android:layout_gravity="center_vertical"
-                />
-            </LinearLayout>
-            <LinearLayout 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:orientation="vertical"
-                android:visibility="gone"
-                android:id="@+id/resultspage_change_3_02">
-                <TextView
-                	android:id="@+id/resultspage_text_3_02"
-                	android:text="1000"
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:textSize="30sp"
-                />
-            	<ImageView
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:src="@drawable/main_heart_ml"
-                	android:layout_gravity="center_horizontal"
-                />
-            </LinearLayout>
-        </RelativeLayout>
-    </TableRow>
-     <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-		android:gravity="center"
-        >
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/history_heart_2"
-            	android:layout_width="wrap_content"
-            	android:layout_height="wrap_content"
-            	android:src="@drawable/resultspage_heart"
-            	android:layout_centerInParent="true"
-            	android:clickable="true"/>
-            <LinearLayout 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:orientation="horizontal"
-                android:id="@+id/resultspage_change_2_01">
-                <TextView
-                	android:id="@+id/resultspage_text_2_01"
-                	android:text="100"
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:textSize="30sp"
-                />
-            	<ImageView
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:src="@drawable/main_heart_percent"
-                	android:layout_gravity="center_vertical"
-                />
-            </LinearLayout>
-            <LinearLayout 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:orientation="vertical"
-                android:visibility="gone"
-                android:id="@+id/resultspage_change_2_02">
-                <TextView
-                	android:id="@+id/resultspage_text_2_02"
-                	android:text="1000"
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:textSize="30sp"
-                />
-            	<ImageView
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:src="@drawable/main_heart_ml"
-                	android:layout_gravity="center_horizontal"
-                />
-            </LinearLayout>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/history_heart_1"
-            	android:layout_width="wrap_content"
-            	android:layout_height="wrap_content"
-            	android:src="@drawable/resultspage_heart"
-            	android:layout_centerInParent="true"
-            	android:clickable="true"/>
-           <LinearLayout 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:orientation="horizontal"
-                android:id="@+id/resultspage_change_1_01">
-                <TextView
-                	android:id="@+id/resultspage_text_1_01"
-                	android:text="100"
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:textSize="30sp"
-                />
-            	<ImageView
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:src="@drawable/main_heart_percent"
-                	android:layout_gravity="center_vertical"
-                />
-            </LinearLayout>
-            <LinearLayout 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:orientation="vertical"
-                android:visibility="gone"
-                android:id="@+id/resultspage_change_1_02">
-                <TextView
-                	android:id="@+id/resultspage_text_1_02"
-                	android:text="1000"
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:textSize="30sp"
-                />
-            	<ImageView
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:src="@drawable/main_heart_ml"
-                	android:layout_gravity="center_horizontal"
-                />
-            </LinearLayout>
-        </RelativeLayout>
-    </TableRow>
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5"
-        >
+        android:layout_weight="1"
+        android:gravity="center" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/history_heart_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:clickable="true"
+                android:src="@drawable/resultspage_heart" />
+
+            <LinearLayout
+                android:id="@+id/resultspage_change_4_01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/resultspage_text_4_01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100"
+                    android:textSize="30sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/main_heart_percent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/resultspage_change_4_02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/resultspage_text_4_02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1000"
+                    android:textSize="30sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/main_heart_ml" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/history_heart_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:clickable="true"
+                android:src="@drawable/resultspage_heart" />
+
+            <LinearLayout
+                android:id="@+id/resultspage_change_3_01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/resultspage_text_3_01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100"
+                    android:textSize="30sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/main_heart_percent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/resultspage_change_3_02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/resultspage_text_3_02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1000"
+                    android:textSize="30sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/main_heart_ml" />
+            </LinearLayout>
+        </RelativeLayout>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/history_heart_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:clickable="true"
+                android:src="@drawable/resultspage_heart" />
+
+            <LinearLayout
+                android:id="@+id/resultspage_change_2_01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/resultspage_text_2_01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100"
+                    android:textSize="30sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/main_heart_percent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/resultspage_change_2_02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/resultspage_text_2_02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1000"
+                    android:textSize="30sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/main_heart_ml" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/history_heart_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:clickable="true"
+                android:src="@drawable/resultspage_heart" />
+
+            <LinearLayout
+                android:id="@+id/resultspage_change_1_01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/resultspage_text_1_01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100"
+                    android:textSize="30sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/main_heart_percent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/resultspage_change_1_02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/resultspage_text_1_02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1000"
+                    android:textSize="30sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/main_heart_ml" />
+            </LinearLayout>
+        </RelativeLayout>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5" >
     </TableRow>
 
 </TableLayout>

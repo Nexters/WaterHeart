@@ -10,6 +10,7 @@ import java.util.Locale;
 import nexters.waterheart.db.DBManager;
 import nexters.waterheart.dto.Write;
 import android.app.Activity;
+import android.util.Log;
 
 public class HeartManager {
 
@@ -25,19 +26,28 @@ public class HeartManager {
 		db.open();
 	}
 
+	public void init() {
+		Write write = new Write();
+		Date date = new Date();
+
+		write.setDate(dateFormat.format(date));
+		write.setWater("0");
+		write.setComplete("false");
+		db.addWrite(write);
+	}
+
 	public int mainOnCupClicked(int cup) { // 한솔아 cup의 용량을 넘겨줘
 		int no;
 		int water = cup;
 		Write write = new Write();
 
 		no = db.getWritesCount();
-		// write = db.getWrite(no);
-		// String log = "no : " + no + " date : " + write.getDate();
-		// Log.d("no: ", log);
 		write = db.getWrite(no);
 		water += Integer.parseInt(write.getWater());
 
 		write.setWater(String.valueOf(water));
+		if (MainFragment.totalWater <= Integer.valueOf(write.getWater()))
+			write.setComplete("true");
 		db.addWrite(write);
 
 		no = db.getWritesCount();
@@ -45,15 +55,6 @@ public class HeartManager {
 		water = Integer.parseInt(write.getWater());
 
 		return water; // 현재까지 마신 물의 양 반환이니까 메인에서 양 출력할 때 사용하면 됨
-	}
-
-	public void init() {
-		Write write = new Write();
-		Date date = new Date();
-
-		write.setDate(dateFormat.format(date));
-		write.setWater("0");
-		db.addWrite(write);
 	}
 
 	public int mainOnBackClicked() {
@@ -65,21 +66,20 @@ public class HeartManager {
 		write = db.getWrite(no);
 
 		if (write.getWater().equals("0")) {
-			water = Integer.parseInt(write.getWater());
-		}
-		else {
+			return water;
+		} else {
 			db.deleteWrite(no);
 			no = db.getWritesCount();
 			write = db.getWrite(no);
 			water = Integer.parseInt(write.getWater());
-			
+
 		}
 		return water;
 	}
 
-	public List<Write> onHistoryPage() { //아직 되는지 안되는지 머른당
+	public List<Write> onHistoryPage() { // 아직 되는지 안되는지 머른당
 		Date date = new Date();
-		List<Write> writes = db.getAllWrites();
+		List<Write> writes = db.getCompleteWrites();
 		String s;
 
 		calendar.add(Calendar.DATE, -7);
@@ -92,6 +92,8 @@ public class HeartManager {
 			}
 		}
 		// 7일전 데이터베이스 삭제 필요
+		
+		
 		return writes;
 	}
 }

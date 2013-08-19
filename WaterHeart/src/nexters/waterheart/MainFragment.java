@@ -43,12 +43,12 @@ public class MainFragment extends SherlockFragment {
 	private static final int ONCLICK_NUM = 0;
 	private static final int FROM_CUPCUSTOM = 10;
 
-	int totalWater = 2000;
+	static final int totalWater = 2000;
 	ImageView[] heartImg = new ImageView[15];
 	int[] value = new int[15];
-	private int valueA = totalWater / 10;
-	private int valueB = totalWater / 5;
-	private int valueC = totalWater * 3 / 10;
+	private int valueA = totalWater / 2 / 12;
+	private int valueB = totalWater / 10 * 6 / 12;
+	private int valueC = totalWater / 2 * 5 / 12;
 	ArrayList<Integer> numList = new ArrayList<Integer>();
 	Random random = new Random();
 	int scope = 14, tmp, index = 0;
@@ -258,7 +258,7 @@ public class MainFragment extends SherlockFragment {
 		// TODO Auto-generated method stub
 		switch (item.getItemId()) {
 		case R.id.action_pencil:
-			Intent intent = new Intent(getActivity(), CustomFragment.class);
+			Intent intent = new Intent(getActivity(), CustomActivity.class);
 			startActivity(intent);
 			getActivity().overridePendingTransition(R.anim.show_custom, 0);
 			return true;

@@ -1,10 +1,19 @@
 package nexters.waterheart;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Locale;
+
+import nexters.waterheart.dto.Write;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
@@ -16,7 +25,9 @@ public class HistoryFragment extends SherlockFragment {
 	private static final int TUTORIAL_NUMBER = 2;
 	private static final int ONCLICK_NUM = 1;
 	ImageView[] heart = new ImageView[6];
-	float[] percent = new float[6];
+	TextView[] text01 = new TextView[6];
+	TextView[] text02 = new TextView[6];
+	ImageView[] ml = new ImageView[6];
 	ClickManager clickManager;
 
 	@Override
@@ -40,46 +51,73 @@ public class HistoryFragment extends SherlockFragment {
 	}
 
 	public void init() {
+		// int id1 = R.id.resultspage_text_1_02;
+		// int id2 = R.id.resultspage_text_2_02;
+		// int id3 = R.id.resultspage_text_3_02;
+		// int id4 = R.id.resultspage_text_4_02;
+		// int id5 = R.id.resultspage_text_5_02;
+		// int id6 = R.id.resultspage_text_6_02;
+		// String log = String.valueOf(id1) + " " + String.valueOf(id2) + " "
+		// + String.valueOf(id3) + " " + String.valueOf(id4) + " "
+		// + String.valueOf(id5) + " " + String.valueOf(id6);
+		// Log.d("log", log);
+		// 2131034196 2131034191 2131034186 2131034181 2131034176 2131034171
+
+		HeartManager db = new HeartManager(getActivity());
+		List<Write> writes = db.onHistoryPage();
+
 		if (heart[0] == null) {
 			for (int i = 0; i < 6; i++) {
 				heart[i] = (ImageView) getActivity().findViewById(
-						R.id.history_heart_01 + i);		
-				//heart[i].setOnClickListener(clickManager);
+						R.id.history_heart_01 - i * 5);
+				text01[i] = (TextView) getActivity().findViewById(
+						R.id.resultspage_text_1_01 - i * 5);
+				text02[i] = (TextView) getActivity().findViewById(
+						R.id.resultspage_text_1_02 - i * 5);
 
-				//setImage(heart[i], percent[i]);
+				heart[i].setVisibility(android.view.View.INVISIBLE);
+				text01[i].setVisibility(android.view.View.INVISIBLE);
+				text02[i].setVisibility(android.view.View.INVISIBLE);
 
-		
+				heart[i].setOnClickListener(clickManager);
 			}
 		}
-		//heart[0] = (ImageView)getActivity().findViewById(R.id.history_heart_1);
-		//heart[1] = (ImageView)getActivity().findViewById(R.id.history_heart_2);
+		// for (Write cn : writes) {
+		// String log = "No: " + cn.getNo() + " ,water: " + cn.getWater()
+		// + ", date: " + cn.getDate() + ", complete: "
+		// + cn.getComplete();
+		// Log.d("Writes: ", log);
+		// }
+		showHeart(writes);
 	}
 
-	public void setImage(ImageView img, float percent) {
-		/*
-		 * 처음에는 모든 이미지들이 invisible 상태일것이다 아마도..DB에서 날짜정보같은걸 가져와서.. 조건을 만족하면
-		 * VISIBLE로 바꾸고..할듯
-		 */
-		if (percent <= 10)
-			ViewHelper.setAlpha(img, 0.1f);
-		else if (percent <= 20)
-			ViewHelper.setAlpha(img, 0.2f);
-		else if (percent <= 30)
-			ViewHelper.setAlpha(img, 0.3f);
-		else if (percent <= 40)
-			ViewHelper.setAlpha(img, 0.4f);
-		else if (percent <= 50)
-			ViewHelper.setAlpha(img, 0.5f);
-		else if (percent <= 60)
-			ViewHelper.setAlpha(img, 0.6f);
-		else if (percent <= 70)
-			ViewHelper.setAlpha(img, 0.7f);
-		else if (percent <= 80)
-			ViewHelper.setAlpha(img, 0.8f);
-		else if (percent <= 90)
-			ViewHelper.setAlpha(img, 0.9f);
-		else if (percent <= 100)
-			ViewHelper.setAlpha(img, 1.0f);
+	public void showHeart(List<Write> writes) {
+		Date date = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar calendar = new GregorianCalendar(Locale.KOREA);
+		
+		int day = -1;
+		int index = day + 6;
+		int i = 0, total = 0;
+		float percent = 0;
+		for (Write w : writes) {
+			calendar.add(Calendar.DATE, day - i);
+			date = calendar.getTime();
+			String s = String.valueOf(dateFormat.format(date));
+			
+			if (w.getDate().equals(s)) {
+				heart[index].setVisibility(android.view.View.VISIBLE);
+				text01[index].setVisibility(android.view.View.VISIBLE);
+				text02[index].setVisibility(android.view.View.VISIBLE);
+				
+				total = Integer.parseInt(w.getWater());
+				percent = (float) total / MainFragment.totalWater;
+				text01[index].setText(String.valueOf((int) (percent * 100)));
+				text02[index].setText(String.valueOf(total));
+			}
+			ViewHelper.setAlpha(heart[index], percent);
+			i++;
+		}
 	}
 
 	@Override

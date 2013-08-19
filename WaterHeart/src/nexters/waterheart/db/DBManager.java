@@ -53,12 +53,12 @@ public class DBManager {
 			String CREATE_TABLE_MAIN = "CREATE TABLE "
 					+ DATABASE_TABLE_MAIN_NAME + "(" + KEY_NO
 					+ " INTEGER PRIMARY KEY," + KEY_DATE + " TEXT NOT NULL,"
-					+ KEY_WATER + " TEXT" + ")";
+					+ KEY_WATER + " TEXT," + KEY_COMPLETE + " TEXT" + ")";
 			String CREATE_TABLE_SUB = "CREATE TABLE " + DATABASE_TABLE_SUB_NAME
 					+ "(" + KEY_DATE + " TEXT PRIMARY KEY," + KEY_COMPLETE
 					+ " TEXT" + ")";
 			db.execSQL(CREATE_TABLE_MAIN);
-			db.execSQL(CREATE_TABLE_SUB);
+			// db.execSQL(CREATE_TABLE_SUB);
 		}
 
 		@Override
@@ -66,7 +66,7 @@ public class DBManager {
 			// TODO Auto-generated method stub
 			// Drop older table if existed
 			db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_MAIN_NAME);
-			db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_SUB_NAME);
+			// db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_SUB_NAME);
 			// Create tables again
 			onCreate(db);
 		}
@@ -98,6 +98,7 @@ public class DBManager {
 
 		values.put(KEY_DATE, dateFormat.format(date));
 		values.put(KEY_WATER, write.getWater());
+		values.put(KEY_COMPLETE, write.getComplete());
 
 		// Inserting Row
 		db.insert(DATABASE_TABLE_MAIN_NAME, null, values);
@@ -106,7 +107,7 @@ public class DBManager {
 	// select a write by no
 	public Write getWrite(int no) {
 		Cursor cursor = db.query(DATABASE_TABLE_MAIN_NAME, new String[] {
-				KEY_NO, KEY_DATE, KEY_WATER }, KEY_NO + "=?",
+				KEY_NO, KEY_DATE, KEY_WATER, KEY_COMPLETE }, KEY_NO + "=?",
 				new String[] { String.valueOf(no) }, null, null, null, null);
 		if (cursor != null)
 			cursor.moveToFirst();
@@ -115,6 +116,7 @@ public class DBManager {
 		write.setNo(Integer.parseInt(cursor.getString(0)));
 		write.setDate(cursor.getString(1));
 		write.setWater(cursor.getString(2));
+		write.setComplete(cursor.getString(3));
 		return write;
 
 	}
@@ -130,13 +132,14 @@ public class DBManager {
 	}
 
 	// select all Write
-	public List<Write> getAllWrites() {
+	public List<Write> getCompleteWrites() {
 		List<Write> writeList = new ArrayList<Write>();
-		
+
 		// Select All Query
-		String selectQuery = "SELECT * FROM " + DATABASE_TABLE_MAIN_NAME;
-		Cursor cursor = db.rawQuery(selectQuery, null);
-		
+		String selectQuery = "SELECT * FROM " + DATABASE_TABLE_MAIN_NAME
+				+ " WHERE " + KEY_COMPLETE + " = ?";
+		Cursor cursor = db.rawQuery(selectQuery, new String[] {"true"});
+
 		// looping through all rows and adding to list
 		if (cursor.moveToFirst()) {
 			do {
@@ -144,6 +147,7 @@ public class DBManager {
 				write.setNo(Integer.parseInt(cursor.getString(0)));
 				write.setDate(cursor.getString(1));
 				write.setWater(cursor.getString(2));
+				write.setComplete(cursor.getString(3));
 
 				writeList.add(write);
 			} while (cursor.moveToNext());

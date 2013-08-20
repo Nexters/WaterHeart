@@ -31,10 +31,7 @@ public class MainFragment extends SherlockFragment {
 	ImageView[] cups;
 	ImageView undo;
 	ClickManager clickManager;
-	/*
-	 * 봐봐 여기 밑에 STATIC FINAL 변수들있지? 되도록이면 이것들을 사용하도록해~ 내가 밑에 핸들러에서도 CUP_ONE,
-	 * CUP_TWO 같은걸로 다 바꿔놨어~ 이러면 좀 더 보기편하기도하고 혹시나 겹치면 안되니까!
-	 */
+	
 	private static final int TUTORIAL_NUMBER = 0;
 	private static final int CUP_ONE = 0, CUP_TWO = 1, CUP_THREE = 2,
 			CUP_FOUR = 3;

@@ -3,11 +3,9 @@ package nexters.waterheart;
 import java.util.ArrayList;
 import java.util.Random;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -42,6 +40,7 @@ public class MainFragment extends SherlockFragment {
 			CUP_FOUR = 3;
 	private static final int ONCLICK_NUM = 0;
 	private static final int FROM_CUPCUSTOM = 10;
+	private static final int FROM_CUSTOM = 11;
 
 	static final int totalWater = 2000;
 	ImageView[] heartImg = new ImageView[15];
@@ -146,7 +145,12 @@ public class MainFragment extends SherlockFragment {
 					cups[i].setOnClickListener(clickManager);
 					cups[i].setOnLongClickListener(longClick);
 				}
-			} else {
+			} else if(msg.what == FROM_CUSTOM){
+				getActivity().findViewById(R.id.pager_title_strip)
+				.setVisibility(View.VISIBLE);
+				getActivity().findViewById(R.id.main_undo).setVisibility(
+				View.VISIBLE);
+			}else {
 				cupManager.getAllCupStates();
 				Toast.makeText(getSherlockActivity(), "" + msg.arg1, 1000)
 						.show();
@@ -258,9 +262,11 @@ public class MainFragment extends SherlockFragment {
 		// TODO Auto-generated method stub
 		switch (item.getItemId()) {
 		case R.id.action_pencil:
-			Intent intent = new Intent(getActivity(), CustomActivity.class);
-			startActivity(intent);
-			getActivity().overridePendingTransition(R.anim.show_custom, 0);
+			getActivity().findViewById(R.id.pager_title_strip).setVisibility(
+					View.GONE);
+			getActivity().findViewById(R.id.main_undo).setVisibility(View.GONE);
+			getActivity().getSupportFragmentManager().beginTransaction()
+			.add(android.R.id.content, new CustomFragment01(fillWaterHandler)).addToBackStack(null).commit();
 			return true;
 		case R.id.action_question:
 			tutorialFlipper = tutorial.getTutorial(TUTORIAL_NUMBER,

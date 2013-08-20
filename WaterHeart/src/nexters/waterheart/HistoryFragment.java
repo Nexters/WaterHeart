@@ -114,9 +114,10 @@ public class HistoryFragment extends SherlockFragment {
 				percent = (float) total / MainFragment.totalWater;
 				text01[index].setText(String.valueOf((int) (percent * 100)));
 				text02[index].setText(String.valueOf(total));
+				i++;
 			}
 			ViewHelper.setAlpha(heart[index], percent);
-			i++;
+			
 		}
 	}
 

@@ -1,6 +1,7 @@
 package nexters.waterheart;
 
 import android.annotation.SuppressLint;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -215,6 +216,9 @@ public class CupCustomizingFragment extends SherlockFragment implements
 				"Done! Image changed! Amount: "
 						+ amountEdit.getText().toString() + " ml",
 				Toast.LENGTH_LONG).show();
+		getActivity().getSupportFragmentManager().beginTransaction()
+		.remove(CupCustomizingFragment.this).commit();
+		getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -226,6 +230,7 @@ public class CupCustomizingFragment extends SherlockFragment implements
 		init();
 		getActivity().getSupportFragmentManager().beginTransaction()
 				.remove(CupCustomizingFragment.this).commit();
+		getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 		super.onPause();
 	}
 

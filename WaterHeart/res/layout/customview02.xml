@@ -73,11 +73,9 @@
              android:gravity="center">
              <!-- gender -->
              <ImageView 
-                 android:background="@drawable/gender_selector"
+                 android:background="@drawable/gender_untouched"
                  android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:focusableInTouchMode="true"
-                 />
+                 android:layout_height="wrap_content"/>
          </LinearLayout>
          <RelativeLayout
              android:layout_width="match_parent"
@@ -85,18 +83,18 @@
              android:layout_weight="3"
              android:gravity="center">
              <ImageButton
-                 android:background="@drawable/man_selector"
+                 android:id="@+id/gender_man"
+                 android:background="@drawable/man_unclicked"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:layout_marginRight="70dp"
-                 android:focusableInTouchMode="true"
                  />
              <ImageButton
-                 android:background="@drawable/woman_selector"
+                 android:id="@+id/gender_woman"
+                 android:background="@drawable/woman_unclicked"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
-                 android:layout_marginLeft="70dp"
-                 android:focusableInTouchMode="true"/>
+                 android:layout_marginLeft="70dp"/>
          </RelativeLayout>
          <LinearLayout 
              android:layout_width="match_parent"
@@ -109,10 +107,9 @@
              android:gravity="center">
              <!-- Goal -->
              <ImageView 
-                 android:background="@drawable/goal_selector"
+                 android:background="@drawable/goal_untouched"
                  android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:focusableInTouchMode="true"/>
+                 android:layout_height="wrap_content"/>
          </LinearLayout>
          <LinearLayout 
              android:layout_width="match_parent"
@@ -130,10 +127,10 @@
                  android:layout_weight="1"
                  android:gravity="center">
              <ImageButton
-                 android:background="@drawable/diet_selector"
+                 android:id="@+id/goal_diet"
+                 android:background="@drawable/diet_untouched"
                  android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:focusableInTouchMode="true"/>
+                 android:layout_height="wrap_content"/>
              </LinearLayout>
              <LinearLayout
                  android:layout_width="0px"
@@ -141,10 +138,10 @@
                  android:layout_weight="2"
                  android:gravity="center">
              <ImageButton
-                 android:background="@drawable/health_selector"
+                 android:id="@+id/goal_health"
+                 android:background="@drawable/health_untouched"
                  android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:focusableInTouchMode="true"/>
+                 android:layout_height="wrap_content"/>
              </LinearLayout>
              <LinearLayout
                  android:layout_width="0px"
@@ -152,10 +149,10 @@
                  android:layout_weight="1"
                  android:gravity="center">
              <ImageButton
-                 android:background="@drawable/diabetes_selector"
+                 android:id="@+id/goal_diabetes"
+                 android:background="@drawable/diabetes_untouched"
                  android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:focusableInTouchMode="true"/>
+                 android:layout_height="wrap_content"/>
              </LinearLayout>
          </LinearLayout>
          <LinearLayout 
@@ -174,10 +171,10 @@
                  android:layout_weight="1"
                  android:gravity="center">
              <ImageButton
-                 android:background="@drawable/skincare_selector"
+                 android:id="@+id/goal_skincare"
+                 android:background="@drawable/skincare_untouched"
                  android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:focusableInTouchMode="true"/>
+                 android:layout_height="wrap_content"/>
              </LinearLayout>
               <LinearLayout
                  android:layout_width="0px"
@@ -185,10 +182,10 @@
                  android:layout_weight="2"
                  android:gravity="center">
              <ImageButton
-                 android:background="@drawable/exercise_selector"
+                 android:id="@+id/goal_exercise"
+                 android:background="@drawable/exercise_untouched"
                  android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:focusableInTouchMode="true"/>
+                 android:layout_height="wrap_content"/>
              </LinearLayout>
              <LinearLayout
                  android:layout_width="0px"
@@ -196,10 +193,10 @@
                  android:layout_weight="1"
                  android:gravity="center">
              <ImageButton
-                 android:background="@drawable/smoking_selector"
+                 android:id="@+id/goal_smoking"
+                 android:background="@drawable/smoking_untouched"
                  android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:focusableInTouchMode="true"/>
+                 android:layout_height="wrap_content"/>
              </LinearLayout>
          </LinearLayout>
      </LinearLayout>

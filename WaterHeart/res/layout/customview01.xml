@@ -83,7 +83,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:hint="이름을 입력해 주세요."
-            android:inputType="textPersonName"/>
+            android:inputType="textPersonName"
+            android:textSize="15sp"
+            android:textColor="#ffffff"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -98,7 +100,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:hint="나이를 입력해 주세요."
-            android:inputType="number"/>
+            android:inputType="number"
+            android:textSize="15sp"
+            android:textColor="#ffffff"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -117,7 +121,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:hint="키를 입력해 주세요."
-            android:inputType="number"/>
+            android:inputType="number"
+            android:textSize="15sp"
+            android:textColor="#ffffff"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -132,7 +138,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:hint="몸무게를 입력해 주세요."
-            android:inputType="number"/>
+            android:inputType="number"
+            android:textSize="15sp"
+            android:textColor="#ffffff"/>
     </LinearLayout>
 </LinearLayout>
 </FrameLayout>

@@ -172,7 +172,7 @@ public class CupCustomizingFragment extends SherlockFragment implements
 		menu.removeItem(R.id.action_pencil);
 		menu.removeItem(R.id.action_question);
 		menu.removeItem(R.id.action_question_history);
-		menu.add("Check").setIcon(R.drawable.actionbar_logo)
+		menu.add("Check").setIcon(R.drawable.icon_checking)
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		getSherlockActivity().getSupportActionBar().setTitle("Cup Setting");
 		super.onCreateOptionsMenu(menu, inflater);

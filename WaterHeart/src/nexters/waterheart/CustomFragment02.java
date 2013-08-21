@@ -1,12 +1,20 @@
 package nexters.waterheart;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import android.annotation.SuppressLint;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
@@ -15,11 +23,14 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
 @SuppressLint("ValidFragment")
-public class CustomFragment02 extends SherlockFragment{
+public class CustomFragment02 extends SherlockFragment implements OnClickListener{
 	Handler mHandler;
 	private static final int FROM_CUSTOM = 11;
 	boolean isClickedOkay;
-
+	ImageButton[] gender = new ImageButton[2];
+	ImageView[] navi = new ImageView[2];
+	ImageButton[] goal = new ImageButton[6];
+	
 	public CustomFragment02(Handler handler){
 		mHandler = handler;
 	}
@@ -29,11 +40,24 @@ public class CustomFragment02 extends SherlockFragment{
 		// TODO Auto-generated method stub
 		setHasOptionsMenu(true);
 		View view = inflater.inflate(R.layout.customview02, container,false);
+		for(int i=0; i<2; i++){
+			gender[i] = (ImageButton)view.findViewById(R.id.gender_man+i);
+			gender[i].setOnClickListener(this);
+			gender[i].setTag("unselected");
+			navi[i] = (ImageView)view.findViewById(R.id.navi05_01+i);
+			navi[i].setTag("unselected");
+		}
+		for(int i=0; i<6; i++){
+			goal[i] = (ImageButton)view.findViewById(R.id.goal_diet+i);
+			goal[i].setOnClickListener(this);
+			goal[i].setTag("unselected");
+		}
 		return view;
 	}
 	
 	public void onResume(){
-		//init();
+		isClickedOkay = false; //이거 추가함. 과연?
+		init();
 		super.onResume();
 	}
 	
@@ -45,6 +69,99 @@ public class CustomFragment02 extends SherlockFragment{
 		 * 아무 정보도 없을 경우에는 아무 조치도 취하지않음
 		 * 그리고 gender, goal 에 대한 값을 통해 마지막 2개 남은 navigation의 값을 조정한다.
 		 */
+		int which = 0;
+		FileInputStream fis = null;
+		try{
+			fis = getActivity().openFileInput("gender.txt");
+			which = fis.read();
+			gender[which].performClick();
+			
+			fis = getActivity().openFileInput("goal.txt");
+			which = fis.read();
+			goal[which].performClick();
+		}catch(FileNotFoundException e){}catch(Exception e){}
+		finally{
+			try{
+				if(fis != null) fis.close();
+			}catch(IOException e){};
+		}
+		setNaviState();
+	}
+	
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch(v.getId()){
+		case R.id.gender_man:
+			gender[0].setBackgroundResource(R.drawable.man_clicked);
+			gender[0].setTag("selected");
+			gender[1].setBackgroundResource(R.drawable.woman_unclicked);
+			gender[1].setTag("unselected");
+			
+			break;
+		case R.id.gender_woman:
+			gender[0].setBackgroundResource(R.drawable.man_unclicked);
+			gender[0].setTag("unselected");
+			gender[1].setBackgroundResource(R.drawable.woman_clicked);
+			gender[1].setTag("selected");
+			break;
+		case R.id.goal_diet:
+			setGoalDefault();
+			goal[0].setBackgroundResource(R.drawable.diet_touched);
+			goal[0].setTag("selected");
+			break;
+		case R.id.goal_health:
+			setGoalDefault();
+			goal[1].setBackgroundResource(R.drawable.health_touched);
+			goal[1].setTag("selected");
+			break;
+		case R.id.goal_diabetes:
+			setGoalDefault();
+			goal[2].setBackgroundResource(R.drawable.diabetes_touched);
+			goal[2].setTag("selected");
+			break;
+		case R.id.goal_skincare:
+			setGoalDefault();
+			goal[3].setBackgroundResource(R.drawable.skincare_touched);
+			goal[3].setTag("selected");
+			break;
+		case R.id.goal_exercise:
+			setGoalDefault();
+			goal[4].setBackgroundResource(R.drawable.exercise_touched);
+			goal[4].setTag("selected");
+			break;
+		case R.id.goal_smoking:
+			setGoalDefault();
+			goal[5].setBackgroundResource(R.drawable.smoking_touched);
+			goal[5].setTag("selected");
+			break;
+		}
+		setNaviState();
+	}
+
+	public void setNaviState(){
+		if(((String)(gender[0].getTag()) == "selected")
+				|| ((String)(gender[1].getTag()) == "selected")){
+			navi[0].setImageResource(R.drawable.navi_selected);
+			navi[0].setTag("selected");
+		}
+		for(int i=0; i<6; i++){
+			if((String)(goal[i].getTag()) == "selected"){
+				navi[1].setImageResource(R.drawable.navi_selected);
+				navi[1].setTag("selected");
+				break;
+			}
+		}
+	}
+	
+	public void setGoalDefault(){
+		goal[0].setBackgroundResource(R.drawable.diet_untouched);
+		goal[1].setBackgroundResource(R.drawable.health_untouched);
+		goal[2].setBackgroundResource(R.drawable.diabetes_untouched);
+		goal[3].setBackgroundResource(R.drawable.skincare_untouched);
+		goal[4].setBackgroundResource(R.drawable.exercise_untouched);
+		goal[5].setBackgroundResource(R.drawable.smoking_untouched);
+		for(int i=0; i<6; i++) goal[i].setTag("unselected");
 	}
 	
 	@Override
@@ -53,7 +170,7 @@ public class CustomFragment02 extends SherlockFragment{
 		menu.removeItem(R.id.action_pencil);
 		menu.removeItem(R.id.action_question);
 		menu.removeItem(R.id.action_question_history);
-		menu.add("CheckButton").setIcon(R.drawable.actionbar_logo)
+		menu.add("CheckButton").setIcon(R.drawable.icon_checking)
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		getSherlockActivity().getSupportActionBar().setTitle("Heart Setting");
 		super.onCreateOptionsMenu(menu, inflater);
@@ -62,10 +179,15 @@ public class CustomFragment02 extends SherlockFragment{
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		//Save all the data here
-		//saveAllData();  						//CustomFragment01이랑 메소드 이름이 똑같으면 좀 그런가..?
+		if((String)(navi[1].getTag()) != "selected"){
+			Toast.makeText(getActivity(), "입력을 마치세요", 1000).show();
+			return true;
+		}
+		saveAllData();  						//CustomFragment01이랑 메소드 이름이 똑같으면 좀 그런가..?
 		isClickedOkay=true;
 		getActivity().getSupportFragmentManager().beginTransaction()
 		.remove(CustomFragment02.this).commit();
+		Toast.makeText(getSherlockActivity(), "Done!", 1000).show();
 		getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 		return super.onOptionsItemSelected(item);
 	}
@@ -78,6 +200,31 @@ public class CustomFragment02 extends SherlockFragment{
 		  * 정수로 저장하면 될듯하다.
 		  * 
 		  */
+		 int which = 0;
+		 FileOutputStream fos = null;
+		 try{
+			 fos = getActivity().openFileOutput("gender.txt", 0);
+			 if((String)(gender[0].getTag()) == "selected") which = 0;
+			 else which = 1;
+			 fos.write(which);
+			 
+			 fos = getActivity().openFileOutput("goal.txt", 0);
+			 for(int i=0; i<6; i++){
+				 if((String)(goal[i].getTag()) == "selected"){
+					 which = i;
+					 break;
+				 }
+			 }
+			 fos.write(which);
+		 }catch(Exception e){}finally{
+				try {
+					if(fos != null)
+					fos.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		 }
 	 }
 
 	@Override
@@ -91,6 +238,6 @@ public class CustomFragment02 extends SherlockFragment{
 		//getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 		super.onPause();
 	}
-
+	
 	
 }

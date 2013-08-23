@@ -9,6 +9,7 @@ import java.util.Locale;
 
 import nexters.waterheart.dto.Write;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,12 +83,12 @@ public class HistoryFragment extends SherlockFragment {
 				heart[i].setOnClickListener(clickManager);
 			}
 		}
-		// for (Write cn : writes) {
-		// String log = "No: " + cn.getNo() + " ,water: " + cn.getWater()
-		// + ", date: " + cn.getDate() + ", complete: "
-		// + cn.getComplete();
-		// Log.d("Writes: ", log);
-		// }
+		for (Write cn : writes) {
+			String log = "No: " + cn.getNo() + " ,water: " + cn.getWater()
+					+ ", date: " + cn.getDate() + ", complete: "
+					+ cn.getComplete();
+			Log.d("Writes: ", log);
+		}
 		showHeart(writes);
 	}
 
@@ -95,29 +96,33 @@ public class HistoryFragment extends SherlockFragment {
 		Date date = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar calendar = new GregorianCalendar(Locale.KOREA);
-		
-		int day = -1;
-		int index = day + 6;
-		int i = 0, total = 0;
+
+		int day = 1, total = 0;
+		int index;
 		float percent = 0;
 		for (Write w : writes) {
-			calendar.add(Calendar.DATE, day - i);
+			index = day - 1;
+			calendar.add(Calendar.DATE, -day);
 			date = calendar.getTime();
 			String s = String.valueOf(dateFormat.format(date));
-			
+//			Log.d("date : ", s);
+
 			if (w.getDate().equals(s)) {
 				heart[index].setVisibility(android.view.View.VISIBLE);
 				text01[index].setVisibility(android.view.View.VISIBLE);
 				text02[index].setVisibility(android.view.View.VISIBLE);
-				
+
 				total = Integer.parseInt(w.getWater());
 				percent = (float) total / MainFragment.totalWater;
 				text01[index].setText(String.valueOf((int) (percent * 100)));
 				text02[index].setText(String.valueOf(total));
-				i++;
+
+				ViewHelper.setAlpha(heart[index], percent);
+				day++;
+
+				if (day == 7)
+					break;
 			}
-			ViewHelper.setAlpha(heart[index], percent);
-			
 		}
 	}
 

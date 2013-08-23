@@ -36,6 +36,24 @@ public class HeartManager {
 		db.addWrite(write);
 	}
 
+	public int mainHeartShow() {
+		int no = db.getWritesCount();
+		Date date = new Date();
+		calendar.add(Calendar.DATE, -1);
+		date = calendar.getTime();
+		String s = String.valueOf(dateFormat.format(date));
+		Write write = db.getWrite(no);
+
+		if (String.valueOf((write.getDate())).equals(s)) {
+			write.setComplete("true");
+			db.addWrite(write);
+
+			return 0;
+		}
+		
+		return Integer.parseInt(write.getWater());
+	}
+
 	public int mainOnCupClicked(int cup) { // 한솔아 cup의 용량을 넘겨줘
 		int no;
 		int water = cup;
@@ -45,9 +63,8 @@ public class HeartManager {
 		write = db.getWrite(no);
 		water += Integer.parseInt(write.getWater());
 
+		write.setComplete("false");
 		write.setWater(String.valueOf(water));
-		if (MainFragment.totalWater <= Integer.valueOf(write.getWater()))
-			write.setComplete("true");
 		db.addWrite(write);
 
 		no = db.getWritesCount();
@@ -77,7 +94,7 @@ public class HeartManager {
 		return water;
 	}
 
-	public List<Write> onHistoryPage() { // 아직 되는지 안되는지 머른당
+	public List<Write> onHistoryPage() { 
 		Date date = new Date();
 		List<Write> writes = db.getCompleteWrites();
 		String s;
@@ -92,8 +109,7 @@ public class HeartManager {
 			}
 		}
 		// 7일전 데이터베이스 삭제 필요
-		
-		
+
 		return writes;
 	}
 }

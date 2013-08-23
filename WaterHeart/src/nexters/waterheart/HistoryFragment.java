@@ -64,8 +64,8 @@ public class HistoryFragment extends SherlockFragment {
 		// Log.d("log", log);
 		// 2131034196 2131034191 2131034186 2131034181 2131034176 2131034171
 
-		HeartManager db = new HeartManager(getActivity());
-		List<Write> writes = db.onHistoryPage();
+		HeartManager heartManager = new HeartManager(getActivity());
+		List<Write> writes = heartManager.onHistoryPage();
 
 		if (heart[0] == null) {
 			for (int i = 0; i < 6; i++) {

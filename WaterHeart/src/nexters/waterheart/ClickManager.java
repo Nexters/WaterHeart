@@ -24,7 +24,6 @@ public class ClickManager implements View.OnClickListener {
 		mActivity = activity;
 		cupManager = new CupManager(mActivity);
 		heartManager = new HeartManager(activity);
-		heartManager.init();
 		mHandler = handler;
 	}
 

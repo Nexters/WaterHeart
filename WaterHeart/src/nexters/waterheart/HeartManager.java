@@ -10,7 +10,6 @@ import java.util.Locale;
 import nexters.waterheart.db.DBManager;
 import nexters.waterheart.dto.Write;
 import android.app.Activity;
-import android.util.Log;
 
 public class HeartManager {
 
@@ -30,10 +29,12 @@ public class HeartManager {
 		Write write = new Write();
 		Date date = new Date();
 
-		write.setDate(dateFormat.format(date));
-		write.setWater("0");
-		write.setComplete("false");
-		db.addWrite(write);
+		if (db.getWritesCount() == 0) {
+			write.setDate(dateFormat.format(date));
+			write.setWater("0");
+			write.setComplete("false");
+			db.addWrite(write);
+		}
 	}
 
 	public int mainHeartShow() {
@@ -48,9 +49,15 @@ public class HeartManager {
 			write.setComplete("true");
 			db.addWrite(write);
 
+			write.setWater("0");
+			write.setComplete("false");
+			date = new Date();
+			write.setDate(dateFormat.format(date));
+			db.addWrite(write);
+
 			return 0;
 		}
-		
+
 		return Integer.parseInt(write.getWater());
 	}
 
@@ -94,7 +101,7 @@ public class HeartManager {
 		return water;
 	}
 
-	public List<Write> onHistoryPage() { 
+	public List<Write> onHistoryPage() {
 		Date date = new Date();
 		List<Write> writes = db.getCompleteWrites();
 		String s;

@@ -13,6 +13,7 @@ import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -24,6 +25,7 @@ import com.nineoldandroids.view.ViewHelper;
 
 public class MainFragment extends SherlockFragment {
 
+	HeartManager heartManager;
 	ViewFlipper tutorialFlipper;
 	TutorialManager tutorial;
 	CupManager cupManager;
@@ -31,7 +33,10 @@ public class MainFragment extends SherlockFragment {
 	ImageView[] cups;
 	ImageView undo;
 	ClickManager clickManager;
-	
+
+	TextView heartTextPercent;
+	TextView heartTextML;
+
 	private static final int TUTORIAL_NUMBER = 0;
 	private static final int CUP_ONE = 0, CUP_TWO = 1, CUP_THREE = 2,
 			CUP_FOUR = 3;
@@ -48,6 +53,7 @@ public class MainFragment extends SherlockFragment {
 	ArrayList<Integer> numList = new ArrayList<Integer>();
 	Random random = new Random();
 	int scope = 14, tmp, index = 0;
+	int heartWater;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,6 +83,10 @@ public class MainFragment extends SherlockFragment {
 			main_heart = getActivity().findViewById(R.id.main_heart_layout);
 			undo = (ImageView) getActivity().findViewById(R.id.main_undo);
 			// 그 외 imageview들을 다 여기서 객체화
+			heartTextPercent = (TextView) getActivity().findViewById(
+					R.id.main_heart_percent);
+			heartTextML = (TextView) getActivity().findViewById(
+					R.id.main_heart_ml);
 			cups = new ImageView[] {
 					(ImageView) getActivity().findViewById(R.id.main_cup_drop),
 					(ImageView) getActivity()
@@ -125,6 +135,12 @@ public class MainFragment extends SherlockFragment {
 
 			tmp = value[numList.get(0)];
 		}
+		heartManager = new HeartManager(getActivity());
+		heartManager.init();
+		heartWater = heartManager.mainHeartShow();
+		heartTextML.setText(String.valueOf(heartWater));
+		heartTextPercent.setText(String.valueOf((int) ((float) heartWater
+				/ totalWater * 100)));
 	}
 
 	/*
@@ -133,7 +149,7 @@ public class MainFragment extends SherlockFragment {
 	Handler fillWaterHandler = new Handler() {
 		public void handleMessage(Message msg) {
 
-			if (msg.what == FROM_CUPCUSTOM) { 
+			if (msg.what == FROM_CUPCUSTOM) {
 				getActivity().findViewById(R.id.pager_title_strip)
 						.setVisibility(View.VISIBLE);
 				getActivity().findViewById(R.id.main_undo).setVisibility(
@@ -142,16 +158,16 @@ public class MainFragment extends SherlockFragment {
 					cups[i].setOnClickListener(clickManager);
 					cups[i].setOnLongClickListener(longClick);
 				}
-			} else if(msg.what == FROM_CUSTOM){
+			} else if (msg.what == FROM_CUSTOM) {
 				getActivity().findViewById(R.id.pager_title_strip)
-				.setVisibility(View.VISIBLE);
+						.setVisibility(View.VISIBLE);
 				getActivity().findViewById(R.id.main_undo).setVisibility(
-				View.VISIBLE);
-			}else {
+						View.VISIBLE);
+			} else {
 				cupManager.getAllCupStates();
 				Toast.makeText(getSherlockActivity(), "" + msg.arg1, 1000)
 						.show();
-				int water = 0; 
+				int water = 0;
 				if (msg.what == CUP_ONE)
 					water = cupManager.cup_one;
 				else if (msg.what == CUP_TWO)
@@ -169,6 +185,18 @@ public class MainFragment extends SherlockFragment {
 					for (int i = 0; i < scope; i++)
 						ViewHelper.setAlpha(heartImg[i], 0.05f);
 					index = 0;
+					heartWater = water;
+					heartTextML.setText(String.valueOf(heartWater));
+					heartTextPercent
+							.setText(String.valueOf((int) ((float) heartWater
+									/ totalWater * 100)));
+				
+				} else {
+					heartWater += water;
+					heartTextML.setText(String.valueOf(heartWater));
+					heartTextPercent
+							.setText(String.valueOf((int) ((float) heartWater
+									/ totalWater * 100)));
 				}
 
 				while (water != 0) {
@@ -204,7 +232,8 @@ public class MainFragment extends SherlockFragment {
 			// TODO Auto-generated method stub
 			getActivity().findViewById(R.id.pager_title_strip).setVisibility(
 					View.INVISIBLE);
-			getActivity().findViewById(R.id.main_undo).setVisibility(View.INVISIBLE);
+			getActivity().findViewById(R.id.main_undo).setVisibility(
+					View.INVISIBLE);
 
 			switch (v.getId()) {
 			case R.id.main_cup_drop:
@@ -261,9 +290,14 @@ public class MainFragment extends SherlockFragment {
 		case R.id.action_pencil:
 			getActivity().findViewById(R.id.pager_title_strip).setVisibility(
 					View.INVISIBLE);
-			getActivity().findViewById(R.id.main_undo).setVisibility(View.INVISIBLE);
-			getActivity().getSupportFragmentManager().beginTransaction()
-			.add(android.R.id.content, new CustomFragment01(fillWaterHandler)).addToBackStack(null).commit();
+			getActivity().findViewById(R.id.main_undo).setVisibility(
+					View.INVISIBLE);
+			getActivity()
+					.getSupportFragmentManager()
+					.beginTransaction()
+					.add(android.R.id.content,
+							new CustomFragment01(fillWaterHandler))
+					.addToBackStack(null).commit();
 			return true;
 		case R.id.action_question:
 			tutorialFlipper = tutorial.getTutorial(TUTORIAL_NUMBER,

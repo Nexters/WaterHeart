@@ -203,8 +203,8 @@ public class MainFragment extends SherlockFragment {
 		public boolean onLongClick(View v) {
 			// TODO Auto-generated method stub
 			getActivity().findViewById(R.id.pager_title_strip).setVisibility(
-					View.GONE);
-			getActivity().findViewById(R.id.main_undo).setVisibility(View.GONE);
+					View.INVISIBLE);
+			getActivity().findViewById(R.id.main_undo).setVisibility(View.INVISIBLE);
 
 			switch (v.getId()) {
 			case R.id.main_cup_drop:
@@ -260,8 +260,8 @@ public class MainFragment extends SherlockFragment {
 		switch (item.getItemId()) {
 		case R.id.action_pencil:
 			getActivity().findViewById(R.id.pager_title_strip).setVisibility(
-					View.GONE);
-			getActivity().findViewById(R.id.main_undo).setVisibility(View.GONE);
+					View.INVISIBLE);
+			getActivity().findViewById(R.id.main_undo).setVisibility(View.INVISIBLE);
 			getActivity().getSupportFragmentManager().beginTransaction()
 			.add(android.R.id.content, new CustomFragment01(fillWaterHandler)).addToBackStack(null).commit();
 			return true;

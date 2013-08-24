@@ -171,6 +171,13 @@ public class CustomFragment01 extends SherlockFragment {
 		if((String)(navi[3].getTag()) != "selected"){
 			Toast.makeText(getActivity(), "입력을 마치세요", 1000).show();
 			return true;
+		} else {
+			for(int i = 0; i<4; i++){
+				if(edit[i].getText().toString().equals("")) {
+					Toast.makeText(getActivity(), "입력을 마치세요", 1000).show();
+					return true;
+				}
+			}
 		}
 		saveAllData();
 		isClickedOkay=true;

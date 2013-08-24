@@ -116,13 +116,14 @@ public class HistoryFragment extends SherlockFragment {
 				text02[index].setText(String.valueOf(total));
 
 				ViewHelper.setAlpha(heart[index], percent);
-				calendar.add(Calendar.DATE, -1);
 				date = calendar.getTime();
 				index++;
 				
 				if (index == 6)
 					break;
 			}
+			calendar.add(Calendar.DATE, -1);
+
 		}
 	}
 

@@ -40,19 +40,15 @@ public class HeartManager {
 	public int mainHeartShow() {
 		int no = db.getWritesCount();
 		Date date = new Date();
-		calendar.add(Calendar.DATE, -1);
-		date = calendar.getTime();
 		String s = String.valueOf(dateFormat.format(date));
 		Write write = db.getWrite(no);
 
-		if (String.valueOf((write.getDate())).equals(s)) {
-			write.setDate(dateFormat.format(date));
+		if (!(String.valueOf((write.getDate())).equals(s))) {
 			write.setComplete("true");
 			db.addWrite(write);
 
 			write.setWater("0");
 			write.setComplete("false");
-			date = new Date();
 			write.setDate(dateFormat.format(date));
 			db.addWrite(write);
 

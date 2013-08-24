@@ -141,7 +141,7 @@ public class DBManager {
 		Cursor cursor = db.rawQuery(selectQuery, new String[] {"true"});
 
 		// looping through all rows and adding to list
-		if (cursor.moveToFirst()) {
+		if (cursor.moveToLast()) {
 			do {
 				Write write = new Write();
 				write.setNo(Integer.parseInt(cursor.getString(0)));
@@ -150,7 +150,7 @@ public class DBManager {
 				write.setComplete(cursor.getString(3));
 
 				writeList.add(write);
-			} while (cursor.moveToNext());
+			} while (cursor.moveToPrevious());
 		}
 
 		// return contact list

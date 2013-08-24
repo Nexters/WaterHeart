@@ -46,6 +46,7 @@ public class HeartManager {
 		Write write = db.getWrite(no);
 
 		if (String.valueOf((write.getDate())).equals(s)) {
+			write.setDate(dateFormat.format(date));
 			write.setComplete("true");
 			db.addWrite(write);
 

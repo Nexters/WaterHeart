@@ -97,16 +97,14 @@ public class HistoryFragment extends SherlockFragment {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar calendar = new GregorianCalendar(Locale.KOREA);
 
-		int day = 1, total = 0;
-		int index;
+		int total = 0;
+		int index = 0;
 		float percent = 0;
-		for (Write w : writes) {
-			index = day - 1;
-			calendar.add(Calendar.DATE, -day);
-			date = calendar.getTime();
-			String s = String.valueOf(dateFormat.format(date));
-//			Log.d("date : ", s);
+		calendar.add(Calendar.DATE, -1);
+		date = calendar.getTime();
 
+		for (Write w : writes) {
+			String s = String.valueOf(dateFormat.format(date));
 			if (w.getDate().equals(s)) {
 				heart[index].setVisibility(android.view.View.VISIBLE);
 				text01[index].setVisibility(android.view.View.VISIBLE);
@@ -118,9 +116,11 @@ public class HistoryFragment extends SherlockFragment {
 				text02[index].setText(String.valueOf(total));
 
 				ViewHelper.setAlpha(heart[index], percent);
-				day++;
-
-				if (day == 7)
+				calendar.add(Calendar.DATE, -1);
+				date = calendar.getTime();
+				index++;
+				
+				if (index == 6)
 					break;
 			}
 		}

@@ -104,24 +104,21 @@ public class HistoryFragment extends SherlockFragment {
 		date = calendar.getTime();
 
 		for (Write w : writes) {
-			String s = String.valueOf(dateFormat.format(date));
-			if (w.getDate().equals(s)) {
-				heart[index].setVisibility(android.view.View.VISIBLE);
-				text01[index].setVisibility(android.view.View.VISIBLE);
-				text02[index].setVisibility(android.view.View.VISIBLE);
+			heart[index].setVisibility(android.view.View.VISIBLE);
+			text01[index].setVisibility(android.view.View.VISIBLE);
+			text02[index].setVisibility(android.view.View.VISIBLE);
 
-				total = Integer.parseInt(w.getWater());
-				percent = (float) total / MainFragment.totalWater;
-				text01[index].setText(String.valueOf((int) (percent * 100)));
-				text02[index].setText(String.valueOf(total));
+			total = Integer.parseInt(w.getWater());
+			percent = (float) total / MainFragment.totalWater;
+			text01[index].setText(String.valueOf((int) (percent * 100)));
+			text02[index].setText(String.valueOf(total));
 
-				ViewHelper.setAlpha(heart[index], percent);
-				date = calendar.getTime();
-				index++;
-				
-				if (index == 6)
-					break;
-			}
+			ViewHelper.setAlpha(heart[index], percent);
+			date = calendar.getTime();
+			index++;
+
+			if (index == 6)
+				break;
 			calendar.add(Calendar.DATE, -1);
 
 		}

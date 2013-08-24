@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/historyview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:shrinkColumns="*"
-    android:stretchColumns="*"
-    android:id="@+id/historyview">
+    android:stretchColumns="*" >
 
     <TableRow
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
             <!--
             하트 안의 텍스트뷰는 01, 02 로 나뉜다
             01에는 퍼센트 값, 02에는 ml값
-            하트가 눌러졌을때는 이 텍스트뷰를 담고 있는 리니어레이아웃들이 교체된다
+            하트가 눌러졌을때는 이 텍스트뷰를 담고 있는 리니어레이아웃들이 교체된다
             -->
 
             <LinearLayout
@@ -70,6 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1000"
+                    android:textColor="#466eaa"
                     android:textSize="30sp" />
 
                 <ImageView
@@ -104,6 +105,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="100"
+                    android:textColor="#466eaa"
                     android:textSize="30sp" />
 
                 <ImageView
@@ -126,6 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1000"
+                    android:textColor="#466eaa"
                     android:textSize="30sp" />
 
                 <ImageView
@@ -167,6 +170,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="100"
+                    android:textColor="#466eaa"
                     android:textSize="30sp" />
 
                 <ImageView
@@ -189,6 +193,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1000"
+                    android:textColor="#466eaa"
                     android:textSize="30sp" />
 
                 <ImageView
@@ -223,6 +228,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="100"
+                    android:textColor="#466eaa"
                     android:textSize="30sp" />
 
                 <ImageView
@@ -245,6 +251,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1000"
+                    android:textColor="#466eaa"
                     android:textSize="30sp" />
 
                 <ImageView
@@ -286,6 +293,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="100"
+                    android:textColor="#466eaa"
                     android:textSize="30sp" />
 
                 <ImageView
@@ -308,6 +316,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1000"
+                    android:textColor="#466eaa"
                     android:textSize="30sp" />
 
                 <ImageView
@@ -342,6 +351,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="100"
+                    android:textColor="#466eaa"
                     android:textSize="30sp" />
 
                 <ImageView
@@ -364,6 +374,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1000"
+                    android:textColor="#466eaa"
                     android:textSize="30sp" />
 
                 <ImageView

@@ -110,10 +110,14 @@ public class HistoryFragment extends SherlockFragment {
 
 			total = Integer.parseInt(w.getWater());
 			percent = (float) total / MainFragment.totalWater;
+			
 			text01[index].setText(String.valueOf((int) (percent * 100)));
 			text02[index].setText(String.valueOf(total));
 
-			ViewHelper.setAlpha(heart[index], percent);
+			if (total == 0)
+				ViewHelper.setAlpha(heart[index], 0.2f);	
+			else
+				ViewHelper.setAlpha(heart[index], percent);
 			date = calendar.getTime();
 			index++;
 

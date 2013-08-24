@@ -103,15 +103,15 @@ public class HeartManager {
 		List<Write> writes = db.getCompleteWrites();
 		String s;
 
-		calendar.add(Calendar.DATE, -7);
-		date = calendar.getTime();
-
-		s = String.valueOf(dateFormat.format(date));
-		for (Write w : writes) {
-			if (w.getDate().equals(s)) {
-				db.oldDatadelete(s);
-			}
-		}
+//		calendar.add(Calendar.DATE, -7);
+//		date = calendar.getTime();
+//
+//		s = String.valueOf(dateFormat.format(date));
+//		for (Write w : writes) {
+//			if (w.getDate().equals(s)) {
+//				db.oldDatadelete(s);
+//			}
+//		}
 		// 7일전 데이터베이스 삭제 필요
 
 		return writes;

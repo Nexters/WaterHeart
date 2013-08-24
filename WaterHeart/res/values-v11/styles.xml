@@ -10,10 +10,16 @@
 	<style name="Theme.Styled" parent="Theme.Sherlock.Light">
         <item name="actionBarStyle">@style/Widget.Styled.ActionBar</item>
         <item name="android:actionBarStyle">@style/Widget.Styled.ActionBar</item>
+        <item name="actionButtonStyle">@style/MyActionButtonStyle</item>
+        <item name="android:actionButtonStyle">@style/MyActionButtonStyle</item>
     </style>
     <style name="Widget.Styled.ActionBar" parent="Widget.Sherlock.Light.ActionBar.Solid.Inverse">
         <item name="background">@drawable/actionbar</item>
         <item name="android:background">@drawable/actionbar</item>
         
+    </style>
+    <style name="MyActionButtonStyle" parent="Widget.Sherlock.Light.ActionButton">
+        <item name="android:minWidth">32dip</item>
+        <item name="android:padding">0dip</item>
     </style>
 </resources>

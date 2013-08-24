@@ -522,6 +522,7 @@ int string app_name 0x7f0a000d
 int string hello_world 0x7f0a000f
 int style AppBaseTheme 0x7f0b0059
 int style AppTheme 0x7f0b005a
+int style MyActionButtonStyle 0x7f0b005d
 int style Sherlock___TextAppearance_Small 0x7f0b0046
 int style Sherlock___Theme 0x7f0b0051
 int style Sherlock___Theme_DarkActionBar 0x7f0b0053

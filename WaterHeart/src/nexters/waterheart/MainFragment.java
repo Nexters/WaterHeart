@@ -49,14 +49,18 @@ public class MainFragment extends SherlockFragment {
 
 	static final int totalWater = 2000;
 	ImageView[] heartImg = new ImageView[15];
-	int[] value = new int[15];
+	float[] value = new float[15];
+	float[] logicValue = new float[15];
 	private int valueA = totalWater / 2 / 12;
 	private int valueB = totalWater / 10 * 6 / 12;
 	private int valueC = totalWater / 2 * 5 / 12;
 	ArrayList<Integer> numList = new ArrayList<Integer>();
 	Random random = new Random();
-	int scope = 14, tmp, index = 0;
+	int scope = 14, index = 0;
+	float tmp;
 	int heartWater;
+	int divisor = 3;
+	int currentWater = 0;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -114,11 +118,12 @@ public class MainFragment extends SherlockFragment {
 				heartImg[i] = (ImageView) getActivity().findViewById(
 						R.id.main_heart01 + i);
 				if (i == 0 || i == 4)
-					value[i] = valueA;
+					value[i] = valueA / divisor;
 				else if (i == 10 || i == 13)
-					value[i] = valueC;
+					value[i] = valueC / divisor;
 				else
-					value[i] = valueB;
+					value[i] = valueB / divisor;
+				logicValue[i] = value[i];
 				ViewHelper.setAlpha(heartImg[i], 0.05f);
 			}
 
@@ -144,7 +149,7 @@ public class MainFragment extends SherlockFragment {
 		heartTextML.setText(String.valueOf(heartWater));
 		heartTextPercent.setText(String.valueOf((int) ((float) heartWater
 				/ totalWater * 100)));
-		
+
 		heartLogic(heartWater);
 	}
 
@@ -185,8 +190,16 @@ public class MainFragment extends SherlockFragment {
 					water = msg.arg1;
 
 				if (msg.what == 5) {
-					for (int i = 0; i < scope; i++)
+					for (int i = 0; i < scope; i++) {
 						ViewHelper.setAlpha(heartImg[i], 0.05f);
+						if (i == 0 || i == 4)
+							value[i] = valueA / divisor;
+						else if (i == 10 || i == 13)
+							value[i] = valueC / divisor;
+						else
+							value[i] = valueB / divisor;
+					}
+					divisor = 3;
 					index = 0;
 					heartWater = water;
 					heartTextML.setText(String.valueOf(heartWater));
@@ -201,7 +214,6 @@ public class MainFragment extends SherlockFragment {
 							.setText(String.valueOf((int) ((float) heartWater
 									/ totalWater * 100)));
 				}
-				
 				heartLogic(water);
 
 			}
@@ -211,27 +223,42 @@ public class MainFragment extends SherlockFragment {
 	void heartLogic(int water) {
 
 		float opacityPercentage = 0;
+		currentWater += water;
+		
 		while (water != 0) {
+			
 			if (index == 14)
 				break;
 			else if (tmp <= water) { // tmp는 하트조각의 남은 용량
-				ViewHelper.setAlpha(heartImg[numList.get(index)], 0.8f); // 채워지고
+				ViewHelper.setAlpha(heartImg[numList.get(index)],
+						(float) 0.8f / divisor); // 채워지고
 				water -= tmp; // 물의 양이 변화
 				index++;
 				// numList.remove(0);
 				if (!(index == 14))
 					tmp = value[numList.get(index)]; // 새로운 하트 조각의 용량 받기
 			}
-
 			else { // 하트조각의 용량이 입력된 물의 양보다 작으면
-				opacityPercentage = (float) water / tmp;
+				opacityPercentage = (float) water / tmp / divisor;
+				if (opacityPercentage <= 0.05)
+					opacityPercentage = 0.08f;
 				tmp -= water;// 하트조각의 남은 용량이 변화하고
 				ViewHelper.setAlpha(heartImg[numList.get(index)],
 						opacityPercentage);
 				water = 0;
 			}
-
+			int w = 0;
+			for (int i = 0; i < scope; i++)
+				w += value[i];
+			if (totalWater / divisor < currentWater && w < currentWater && divisor > 1) { 
+				divisor--; //divisor--, value[] += value[] or init()에서 따로 떼던가 해야함
+				for (int i = 0; i < scope; i++)
+					value[i] += logicValue[i];
+				index = 0;
+			}
 		}
+
+		
 
 	}
 

@@ -148,7 +148,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="45"
-                    android:textSize="45sp" />
+                    android:textSize="35sp"
+                    android:textColor="#466eaa" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -171,7 +172,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1350"
-                    android:textSize="45sp" />
+                    android:textSize="35sp"
+                    android:textColor="#466eaa" />
 
                 <ImageView
                     android:layout_width="wrap_content"

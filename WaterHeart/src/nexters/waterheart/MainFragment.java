@@ -3,9 +3,11 @@ package nexters.waterheart;
 import java.util.ArrayList;
 import java.util.Random;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -25,6 +27,7 @@ import com.nineoldandroids.view.ViewHelper;
 
 public class MainFragment extends SherlockFragment {
 
+	View mainView;
 	HeartManager heartManager;
 	ViewFlipper tutorialFlipper;
 	TutorialManager tutorial;
@@ -62,12 +65,12 @@ public class MainFragment extends SherlockFragment {
 		 * setHasOptionsMenu(true)가 지정되어야만 fragment내에서 액션바 메뉴를 설정할 수 있다
 		 */
 		setHasOptionsMenu(true);
-		View view = inflater.inflate(R.layout.mainview, container, false);
+		mainView = inflater.inflate(R.layout.mainview, container, false);
 		clickManager = new ClickManager(ONCLICK_NUM, getActivity(),
 				fillWaterHandler);
 		cupManager = new CupManager(getActivity());
 		tutorial = new TutorialManager();
-		return view;
+		return mainView;
 	}
 
 	@Override
@@ -234,6 +237,7 @@ public class MainFragment extends SherlockFragment {
 
 	OnLongClickListener longClick = new OnLongClickListener() {
 
+		@SuppressLint("NewApi")
 		@Override
 		public boolean onLongClick(View v) {
 			// TODO Auto-generated method stub

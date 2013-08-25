@@ -2,7 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clickable="true">
+    android:clickable="true"
+    android:id="@+id/cupcustomizingMainView">
 	<LinearLayout 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -74,25 +75,35 @@
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:inputType="number"
-	            android:gravity="center"/>
+	            android:textSize="35sp"
+	            android:textColor="#ffffff"
+	            android:gravity="center"
+	            android:layout_centerHorizontal="true"
+	            android:layout_marginTop="10dp"
+	            android:layout_marginRight="5dp"/>
 	        <ImageView 
 	            android:src="@drawable/cupcustomizing_ml"
 	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"/>
-	        <SeekBar 
-	            android:layout_alignParentBottom="true"
-	            android:layout_centerHorizontal="true"
-	            android:layout_width="200dp"
 	            android:layout_height="wrap_content"
-	            android:max="1000"
-	            android:id="@+id/cupcustomizing_seekbar"
-	             /> <!--  일단 컵 하나당 용량 최대치는 1000으로정해둠! -->
-	           
+	            android:layout_toRightOf="@id/cupcustomizing_amountEdit"
+	            android:layout_alignBaseline="@id/cupcustomizing_amountEdit"/>
+	        
 	    </RelativeLayout>
 	    <LinearLayout
 	        android:layout_width="match_parent"
 	        android:layout_height="0px"
-	        android:layout_weight="1"></LinearLayout>
+	        android:layout_weight="1"
+	        android:gravity="top|center_horizontal">
+	        <SeekBar 
+	            android:layout_gravity="top|center_horizontal"
+	            android:layout_width="200dp"
+	            android:layout_height="wrap_content"
+	            android:max="500"
+	            android:id="@+id/cupcustomizing_seekbar"/>
+	           <!-- android:progressDrawable="@drawable/seekbar_progress"
+	             /> 일단 컵 하나당 용량 최대치는 1000으로정해둠! -->
+	           
+	    </LinearLayout>
 	    <LinearLayout 
 	        android:layout_width="match_parent"
 	        android:layout_height="0px"
@@ -138,5 +149,46 @@
 	            android:alpha="0.1"
 	            android:clickable="true"/>
 	    </LinearLayout>
+
+	    <RelativeLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="0px"
+	        android:layout_weight="1"
+	        android:gravity="bottom" >
+	        <ImageView
+	            android:id="@+id/indicator_01"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentBottom="true"
+	            android:layout_alignParentLeft="true"
+	            android:layout_marginLeft="59dp"
+	            android:src="@drawable/cupcustomizing_indicator" />
+	        <ImageView
+	            android:id="@+id/indicator_02"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentBottom="true"
+	            android:layout_marginLeft="34dp"
+	            android:layout_toRightOf="@+id/indicator_01"
+	            android:src="@drawable/cupcustomizing_indicator" />
+	        <ImageView
+	            android:id="@+id/indicator_03"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentBottom="true"
+	            android:layout_marginLeft="34dp"
+	            android:layout_toRightOf="@+id/indicator_02"
+	            android:src="@drawable/cupcustomizing_indicator" />
+	        <ImageView
+	            android:id="@+id/indicator_04"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentBottom="true"
+	            android:layout_marginLeft="34dp"
+	            android:layout_toRightOf="@+id/indicator_03"
+	            android:src="@drawable/cupcustomizing_indicator" />
+
+	    </RelativeLayout>
+
 	</LinearLayout>
 </FrameLayout>

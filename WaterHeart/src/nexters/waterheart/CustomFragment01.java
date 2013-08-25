@@ -48,6 +48,7 @@ public class CustomFragment01 extends SherlockFragment {
 			navi[i].setTag("unselected");
 			edit[i] = (EditText)view.findViewById(R.id.custom_name+i);
 			edit[i].setTypeface(tf);
+			edit[i].setHintTextColor(0x88ffffff);
 			edit[i].addTextChangedListener(mTextWatcher);
 			edit[i].setOnFocusChangeListener(focusChange);
 		}

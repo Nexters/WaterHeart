@@ -2,11 +2,9 @@ package nexters.waterheart;
 
 import android.annotation.SuppressLint;
 import android.app.FragmentManager;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.text.method.TextKeyListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +27,7 @@ public class CupCustomizingFragment extends SherlockFragment implements
 	Handler mHandler;
 	ImageView[] cups_on_main;
 	ImageView[] cups_on_customizing;
+	ImageView[] indicator = new ImageView[4];
 	EditText amountEdit;
 	SeekBar seekBar;
 	CupManager cupManager;
@@ -51,6 +50,7 @@ public class CupCustomizingFragment extends SherlockFragment implements
 		setHasOptionsMenu(true);
 		cupManager = new CupManager(getActivity());
 		View view = inflater.inflate(R.layout.cupcustomizing, container, false);
+		
 		cups_on_main = new ImageView[] {
 				(ImageView) getActivity().findViewById(R.id.main_cup_drop),
 				(ImageView) getActivity().findViewById(R.id.main_cup_bottle),
@@ -61,8 +61,10 @@ public class CupCustomizingFragment extends SherlockFragment implements
 				(ImageView) view.findViewById(R.id.cup_bottle_customizing),
 				(ImageView) view.findViewById(R.id.cup_cup_customizing),
 				(ImageView) view.findViewById(R.id.cup_coffee_customizing) };
+		for(int i = 0; i<4; i++) indicator[i] = (ImageView)view.findViewById(R.id.indicator_01+i);
 		amountEdit = (EditText) view
 				.findViewById(R.id.cupcustomizing_amountEdit);
+		amountEdit.setTypeface(Typeface.createFromAsset(getActivity().getAssets(),"neutratexttfbook.ttf"));
 		seekBar = (SeekBar) view.findViewById(R.id.cupcustomizing_seekbar);
 
 		seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
@@ -133,6 +135,10 @@ public class CupCustomizingFragment extends SherlockFragment implements
 		cups_on_main[2].setImageResource(cupManager.cup_three_image);
 		cups_on_main[3].setImageResource(cupManager.cup_four_image);
 
+		for(int i = 0; i<4; i++){
+			indicator[i].setVisibility(View.INVISIBLE);
+			if(i == whichCup) indicator[i].setVisibility(View.VISIBLE);
+		}
 	}
 
 	public void onClick(View v) {
@@ -147,21 +153,6 @@ public class CupCustomizingFragment extends SherlockFragment implements
 					ViewHelper.setAlpha(img, unselected);
 			}
 			break;
-		/*
-		 * case R.id.main_cup_drop: case R.id.main_cup_bottle: case
-		 * R.id.main_cup_cup: case R.id.main_cup_coffee:
-		 * cups_on_main[0].setImageResource(R.drawable.cup_drop);
-		 * cups_on_main[1].setImageResource(R.drawable.cup_bottle);
-		 * cups_on_main[2].setImageResource(R.drawable.cup_cup);
-		 * cups_on_main[3].setImageResource(R.drawable.cup_coffee); ImageView
-		 * img = (ImageView)v; img.setImageResource(R.drawable.cup_selected);
-		 * 
-		 * getActivity().getSupportFragmentManager().beginTransaction()
-		 * 
-		 * .add(android.R.id.content, new
-		 * CupCustomizingFragment(fillWaterHandler,CUP_ONE))
-		 * .addToBackStack(null).commit(); break;
-		 */
 		}
 
 	}

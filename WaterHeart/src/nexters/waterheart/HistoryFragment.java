@@ -114,10 +114,28 @@ public class HistoryFragment extends SherlockFragment {
 			text01[index].setText(String.valueOf((int) (percent * 100)));
 			text02[index].setText(String.valueOf(total));
 
-			if (total == 0)
+			if (percent >= 0 && percent < 0.1)
 				ViewHelper.setAlpha(heart[index], 0.2f);	
-			else
-				ViewHelper.setAlpha(heart[index], percent);
+			else if (percent >= 0.1 && percent < 0.2)
+				ViewHelper.setAlpha(heart[index], 0.25f);	
+			else if (percent >= 0.2 && percent < 0.3)
+				ViewHelper.setAlpha(heart[index], 0.3f);	
+			else if (percent >= 0.3 && percent < 0.4)
+				ViewHelper.setAlpha(heart[index], 0.35f);	
+			else if (percent >= 0.4 && percent < 0.5)
+				ViewHelper.setAlpha(heart[index], 0.4f);	
+			else if (percent >= 0.5 && percent < 0.6)
+				ViewHelper.setAlpha(heart[index], 0.45f);	
+			else if (percent >= 0.6 && percent < 0.7)
+				ViewHelper.setAlpha(heart[index], 0.5f);	
+			else if (percent >= 0.7 && percent < 0.8)
+				ViewHelper.setAlpha(heart[index], 0.55f);	
+			else if (percent >= 0.8 && percent < 0.9)
+				ViewHelper.setAlpha(heart[index], 0.6f);	
+			else if (percent >= 0.9 && percent < 1)
+				ViewHelper.setAlpha(heart[index], 0.65f);	
+			else if (percent == 1)
+				ViewHelper.setAlpha(heart[index], 0.7f);	
 			date = calendar.getTime();
 			index++;
 

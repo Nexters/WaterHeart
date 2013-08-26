@@ -1,11 +1,13 @@
 package nexters.waterheart;
 
 import android.annotation.SuppressLint;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
+import android.view.TouchDelegate;
 import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
@@ -93,6 +95,7 @@ public class MainFragment extends SherlockFragment {
 		if (main_heart == null) {
 			main_heart = getActivity().findViewById(R.id.main_heart_layout);
 			undo = (ImageView) getActivity().findViewById(R.id.main_undo);
+			expandTouchArea(mainView, undo, 50);
 			// 그 외 imageview들을 다 여기서 객체화
 			heartTextPercent = (TextView) getActivity().findViewById(
 					R.id.main_heart_percent);
@@ -172,6 +175,21 @@ public class MainFragment extends SherlockFragment {
 		//heartLogic(heartWater);
 	}
 
+	public static void expandTouchArea(final View bigView, final View smallView, final int extraPadding) {
+		bigView.post(new Runnable() {
+		    @Override
+		    public void run() {
+		        Rect rect = new Rect();
+		        smallView.getHitRect(rect);
+		        rect.top -= extraPadding;
+		        rect.left -= extraPadding;
+		        rect.right += extraPadding;
+		        rect.bottom += extraPadding;
+		        bigView.setTouchDelegate(new TouchDelegate(rect, smallView));
+		    }
+		});
+	}
+	
 	/*
 	 * ClickManager에서 db를통해 물의 총량을 받아오면 그 물의 양을 이 핸들러로 넘겨주고 여기서 하트에 물을 채운다.
 	 */

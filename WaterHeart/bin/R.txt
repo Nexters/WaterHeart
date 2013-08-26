@@ -1,6 +1,7 @@
 int anim intro_fadeout 0x7f040000
 int anim main_fadein 0x7f040001
 int anim show_custom 0x7f040002
+int anim text_show 0x7f040003
 int attr actionBarDivider 0x7f01000e
 int attr actionBarItemBackground 0x7f01000f
 int attr actionBarSize 0x7f01000d

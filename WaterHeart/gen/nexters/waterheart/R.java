@@ -12,6 +12,7 @@ public final class R {
         public static final int intro_fadeout=0x7f040000;
         public static final int main_fadein=0x7f040001;
         public static final int show_custom=0x7f040002;
+        public static final int text_show=0x7f040003;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 

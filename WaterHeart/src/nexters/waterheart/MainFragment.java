@@ -53,27 +53,14 @@ public class MainFragment extends SherlockFragment {
 	private static final int FROM_CUSTOM = 11;
 
 	static int totalWater = 2000;
-	float valueA = totalWater / 20; //제일 작은 조각 한개의 용량
-	float valueB = totalWater / 20;	//중간 크기 조각 한개의 용량
-	float valueC = totalWater / 5;	//제일 큰 조각 한개의 용량
+	float valueA = totalWater / 20; // 제일 작은 조각 한개의 용량
+	float valueB = totalWater / 20; // 중간 크기 조각 한개의 용량
+	float valueC = totalWater / 5; // 제일 큰 조각 한개의 용량
 	int water;
 	float[] originalValue = new float[14];
 	float[] currentValue = new float[14];
 	float[] eachWater = new float[14];
 	ImageView[] heartImg = new ImageView[14];
-	//static final int totalWater = 2000;
-	//float[] value = new float[15];
-	//float[] logicValue = new float[15];
-	//private int valueA = totalWater / 2 / 12;
-	//private int valueB = totalWater / 10 * 6 / 12;
-	//private int valueC = totalWater / 2 * 5 / 12;
-	//ArrayList<Integer> numList = new ArrayList<Integer>();
-	//Random random = new Random();
-	//int scope = 14, index = 0;
-	//float tmp;
-	//int heartWater;
-	//int divisor = 3;
-	//int currentWater = 0;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,8 +74,9 @@ public class MainFragment extends SherlockFragment {
 				fillWaterHandler);
 		cupManager = new CupManager(getActivity());
 		tutorial = new TutorialManager();
-		toastText = (TextView)mainView.findViewById(R.id.toastText);
-		toastAni = AnimationUtils.loadAnimation(getSherlockActivity(), R.anim.text_show);
+		toastText = (TextView) mainView.findViewById(R.id.toastText);
+		toastAni = AnimationUtils.loadAnimation(getSherlockActivity(),
+				R.anim.text_show);
 		return mainView;
 	}
 
@@ -130,10 +118,12 @@ public class MainFragment extends SherlockFragment {
 			try {
 				FileInputStream fis = getActivity().openFileInput("name.txt");
 				byte[] data = new byte[fis.available()];
-				while(fis.read(data)!=-1){;}
+				while (fis.read(data) != -1) {
+					;
+				}
 				yourName = new String(data);
 				fis.close();
-			} catch(Exception e){
+			} catch (Exception e) {
 				yourName = "";
 			}
 			// 이 밑으로는 다 init()에서 희조가 추가한 부분
@@ -141,77 +131,61 @@ public class MainFragment extends SherlockFragment {
 			for (int i = 0; i < 14; i++) {
 				heartImg[i] = (ImageView) getActivity().findViewById(
 						R.id.main_heart01 + i);
-				/*
-				if (i == 0 || i == 1)
-					originalValue[i] = valueA; //젤 작은거
-				else if (i == 12 || i == 13)
-					originalValue[i] = valueC; //젤 큰거
-				else
-					originalValue[i] = valueB;
-					*/
-				//logicValue[i] = value[i];
+
 				ViewHelper.setAlpha(heartImg[i], 0.05f);
 			}
-			//여기는 일단 임시로
-			//totalWater 가 2000으로 고정됬을거라고 가정했을 시:
-			originalValue[0] = 80; originalValue[1] = 120; originalValue[2] = 60; originalValue[3] = 140;
-			originalValue[4] = 75; originalValue[5] = 125; originalValue[6] = 90; originalValue[7] = 110;
-			originalValue[8] = 85; originalValue[9] = 115; originalValue[10] = 50; originalValue[11] = 150;
-			originalValue[12] = 450; originalValue[13] = 350;
-			
-			
-			
-			// 일단 겹치는 것 없이 모든 숫자를 랜덤으로 뽑았음, 일단 init()메소드에 넣었음
-			/*
-			boolean check;
-			while (numList.size() != scope) {
-				int value = random.nextInt(scope);
-				check = true;
-				for (int i = 0; i < numList.size(); i++)
-					if (numList.get(i).equals(value)) {
-						check = false;
-						break;
-					}
-				if (check)
-					numList.add(value);
-			}
+			// 여기는 일단 임시로
+			// totalWater 가 2000으로 고정됬을거라고 가정했을 시:
+			originalValue[0] = 80;
+			originalValue[1] = 120;
+			originalValue[2] = 60;
+			originalValue[3] = 140;
+			originalValue[4] = 75;
+			originalValue[5] = 125;
+			originalValue[6] = 90;
+			originalValue[7] = 110;
+			originalValue[8] = 85;
+			originalValue[9] = 115;
+			originalValue[10] = 50;
+			originalValue[11] = 150;
+			originalValue[12] = 450;
+			originalValue[13] = 350;
 
-			tmp = value[numList.get(0)];
-			*/
 			heartManager = new HeartManager(getActivity());
-			heartManager.init();	
+			heartManager.init();
 		}
-		//heartManager = new HeartManager(getActivity());
-		//heartManager.init();
+
 		water = heartManager.mainHeartShow();
 		heartTextML.setText(String.valueOf(water));
 		heartTextPercent.setText(String.valueOf((int) ((float) water
 				/ totalWater * 100)));
-														//여기서 heartLogic()을 호출해야한다!!
+		// 여기서 heartLogic()을 호출해야한다!!
 		heartLogic();
-		//heartLogic(heartWater);
+		// heartLogic(heartWater);
 	}
 
-	public static void expandTouchArea(final View bigView, final View smallView, final int extraPadding) {
+	public static void expandTouchArea(final View bigView,
+			final View smallView, final int extraPadding) {
 		bigView.post(new Runnable() {
-		    @Override
-		    public void run() {
-		        Rect rect = new Rect();
-		        smallView.getHitRect(rect);
-		        rect.top -= extraPadding;
-		        rect.left -= extraPadding;
-		        rect.right += extraPadding;
-		        rect.bottom += extraPadding;
-		        bigView.setTouchDelegate(new TouchDelegate(rect, smallView));
-		    }
+			@Override
+			public void run() {
+				Rect rect = new Rect();
+				smallView.getHitRect(rect);
+				rect.top -= extraPadding;
+				rect.left -= extraPadding;
+				rect.right += extraPadding;
+				rect.bottom += extraPadding;
+				bigView.setTouchDelegate(new TouchDelegate(rect, smallView));
+			}
 		});
 	}
-	
+
 	/*
 	 * ClickManager에서 db를통해 물의 총량을 받아오면 그 물의 양을 이 핸들러로 넘겨주고 여기서 하트에 물을 채운다.
 	 */
 	Handler fillWaterHandler = new Handler() {
 		String toastString = "";
+
 		public void handleMessage(Message msg) {
 
 			if (msg.what == FROM_CUPCUSTOM) {
@@ -223,248 +197,135 @@ public class MainFragment extends SherlockFragment {
 					cups[i].setOnClickListener(clickManager);
 					cups[i].setOnLongClickListener(longClick);
 				}
-				if(msg.arg2 == 1){
-				toastText.setText("설정 완료! 컵의 용량이 "+msg.arg1+" ml로 변경되었습니다!");
-				toastText.startAnimation(toastAni);
+				if (msg.arg2 == 1) {
+					toastText.setText("설정 완료! 컵의 용량이 " + msg.arg1
+							+ " ml로 변경되었습니다!");
+					toastText.startAnimation(toastAni);
 				}
 			} else if (msg.what == FROM_CUSTOM) {
 				getActivity().findViewById(R.id.pager_title_strip)
 						.setVisibility(View.VISIBLE);
 				getActivity().findViewById(R.id.main_undo).setVisibility(
 						View.VISIBLE);
-				if(msg.arg1 == 1){
+				if (msg.arg1 == 1) {
 					toastText.setText("정보 입력 완료");
 					toastText.startAnimation(toastAni);
 					try {
-						FileInputStream fis = getActivity().openFileInput("name.txt");
+						FileInputStream fis = getActivity().openFileInput(
+								"name.txt");
 						byte[] data = new byte[fis.available()];
-						while(fis.read(data)!=-1){;}
+						while (fis.read(data) != -1) {
+							;
+						}
 						yourName = new String(data);
 						fis.close();
-					} catch(Exception e){
+					} catch (Exception e) {
 						yourName = "";
 					}
 				}
-				
+
 			} else {
 				cupManager.getAllCupStates();
-				//Toast.makeText(getSherlockActivity(), "" + msg.arg1, 1000)
-						//.show();
-				
-				switch(msg.what){
+				// Toast.makeText(getSherlockActivity(), "" + msg.arg1, 1000)
+				// .show();
+
+				switch (msg.what) {
 				case CUP_ONE:
-					toastString = ""+cupManager.cup_one;
-					toastText.setText(yourName+"님이 "+toastString+"을 마셨습니다!");
+					toastString = "" + cupManager.cup_one;
+					toastText.setText(yourName + "님이 " + toastString
+							+ "을 마셨습니다!");
 					break;
 				case CUP_TWO:
-					toastString = ""+cupManager.cup_two;
-					toastText.setText(yourName+"님이 "+toastString+"을 마셨습니다!");
+					toastString = "" + cupManager.cup_two;
+					toastText.setText(yourName + "님이 " + toastString
+							+ "을 마셨습니다!");
 					break;
 				case CUP_THREE:
-					toastString = ""+cupManager.cup_three;
-					toastText.setText(yourName+"님이 "+toastString+"을 마셨습니다!");
+					toastString = "" + cupManager.cup_three;
+					toastText.setText(yourName + "님이 " + toastString
+							+ "을 마셨습니다!");
 					break;
 				case CUP_FOUR:
-					toastString = ""+cupManager.cup_four;
-					toastText.setText(yourName+"님이 "+toastString+"을 마셨습니다!");
+					toastString = "" + cupManager.cup_four;
+					toastText.setText(yourName + "님이 " + toastString
+							+ "을 마셨습니다!");
 					break;
-				case 5:		//undo버튼이 눌렸을때
+				case 5: // undo버튼이 눌렸을때
 					toastText.setText("취소버튼이 눌렸슴다");
 					break;
 				case 6:
 					toastText.setText("개인정보를 내놓아주세영.");
-					//toastText.startAnimation(toastAni);
+					// toastText.startAnimation(toastAni);
 					break;
-					
+
 				}
 				toastText.startAnimation(toastAni);
 				water = msg.arg1;
 				heartLogic();
-				/*
-				 * 
-				 * int totalWater = 2000;
-				 * float valueA = totalWater / 20;
-				 * float valueB = totalWater / 5;
-				 * float valueC = totalWater / 20;
-				 * int water;
-				 * float[] originalValue = new float[14]; //맨 위에 정의
-				 * float[] currentValue = new float[14]; //맨 위에 정의
-				 * float[] eachWater = new float[14]; //맨 위에다가 정의해둔다.
-				 * 
-				 *	//이 밑의 코드들은
-				 *	//어플이 다시 시작되었을때도 다시 불려야할 코드들이다.
-				 *	//어플이 시작되면서 water 변수에 지금까지 마신 물의 양을 넘겨주면
-				 *	//이 밑에서 다시 알아서 처리
-				 *	//따라서 따로 메소드에 정의해놓는다!
-				 *
-				 *public void heartLogic(){
-				 * for(int i = 0; i<14; i++) eachWater[i] = water / 14; //물 마실때마다 호출해야하는 반복문
-				 * 							//주의할점: water는 지금 한번 마셨을때 그 컵의 물의 용량이 아니라
-				 * 							//지금까지 마신 물의 총량이다!
-				 * 
-				 * for(int i = 0; i<14; i++){
-				 * 	if(currentValue[i] == originalValue[i]){	//0번째 하트가 꽉 찼을 때는 더 채우지말고
-				 * 		if(i == 13) break;
-				 * 		eachWater[i+1] += eachWater[i];	//1번째 하트에 채울 물에 더해준다. 
-				 * 	} else{								//0번째 하트가 꽉 안찼을경우에는
-				 * 		currentValue[i] == eachWater[i];	//0번쨰 하트의 물 양을 갱신한다.
-				 * 		if(currentValue[i] > originalValue[i]){		//한편 originalValue보다 더 많이 채워졌을경우엔
-				 * 			float tmp = currentValue[i] - originalValue[i];
-				 * 			currentValue[i] = originalValue[i];		//currentValue는 originalValue값으로 맞춰주고 
-				 * 			if(i == 13) break;
-				 * 			eachWater[i+1] += tmp;		//여유분을 다음 물 양에 추가해준다.
-				 * 		}
-				 * 	}
-				 * }
-				 *	//반복문을 통해 각 하트 조각들의 currentValue들에 물을 채웠으면
-				 *	//이제 for문 밖에서 setHeartAlpha()값으로
-				 *	//각각 하트 조각들마다의 currentValue값을 참조해서
-				 *	//그에 알맞게 opacity를 조절한다. 
-				 *
-				 *	setHeartAlpha();
-				 * } 										//heartLogic() 메소드 끝
-				 * 
-				 * public void setHeartAlpha(){
-				 * float alphaValue = 0.0f;
-				 * 	for(int i = 0; i<14; i++){
-				 * 		alphaValue = currentValue[i] / originalValue[i];
-				 * 		heartImg[i].setAlpha(alphaValue);
-				 * 	}
-				 * }
-				 * 
-				 * 
-				 */
-				
-				/*
-				if (msg.what == 5) {
-					for (int i = 0; i < scope; i++) {
-						ViewHelper.setAlpha(heartImg[i], 0.05f);
-						if (i == 0 || i == 4)
-							value[i] = valueA / divisor;
-						else if (i == 10 || i == 13)
-							value[i] = valueC / divisor;
-						else
-							value[i] = valueB / divisor;
-					}
-					divisor = 3;
-					index = 0;
-					heartWater = newWater;
-					heartTextML.setText(String.valueOf(heartWater));
-					heartTextPercent
-							.setText(String.valueOf((int) ((float) heartWater
-									/ totalWater * 100)));
 
-				} else {
-					heartWater += newWater;
-					heartTextML.setText(String.valueOf(heartWater));
-					heartTextPercent
-							.setText(String.valueOf((int) ((float) heartWater
-									/ totalWater * 100)));
-				}
-				heartLogic(newWater);
-				*/
 			}
-			
+
 		}
-		
+
 	};
-	public void heartLogic(){
-		 for(int i = 0; i<14; i++) eachWater[i] = water / 14; //물 마실때마다 호출해야하는 반복문
-		 						//주의할점: water는 지금 한번 마셨을때 그 컵의 물의 용량이 아니라
-		 						//지금까지 마신 물의 총량이다!
-		 
-		 for(int i = 0; i<14; i++){
-		  		currentValue[i] = eachWater[i];	//0번쨰 하트의 물 양을 갱신한다.
-		  		if(currentValue[i] > originalValue[i]){		//한편 originalValue보다 더 많이 채워졌을경우엔
-		  			float tmp = currentValue[i] - originalValue[i];
-		  			currentValue[i] = originalValue[i];		//currentValue는 originalValue값으로 맞춰주고 
-		  			if(i == 13) break;
-		  			eachWater[i+1] += tmp;		//여유분을 다음 물 양에 추가해준다.
-		  		
-		  	}
-		  }
-		 heartTextML.setText(String.valueOf(water));
-			heartTextPercent.setText(String.valueOf((int) ((float) water
-					/ totalWater * 100)));
-			//반복문을 통해 각 하트 조각들의 currentValue들에 물을 채웠으면
-		 	//이제 for문 밖에서 setHeartAlpha()값으로
-		 	//각각 하트 조각들마다의 currentValue값을 참조해서
-		 	//그에 알맞게 opacity를 조절한다. 
-		 
-		 	setHeartAlpha();
-	} 										//heartLogic() 메소드 끝
-	
-	public void setHeartAlpha(){
-		  float alphaValue = 0.0f;
-		  	for(int i = 0; i<14; i++){
-		  		alphaValue = currentValue[i] / originalValue[i];
-		  		if (alphaValue >= 0 && alphaValue < 0.1)
-					ViewHelper.setAlpha(heartImg[i], 0.1f);	
-				else if (alphaValue >= 0.1 && alphaValue < 0.2)
-					ViewHelper.setAlpha(heartImg[i], 0.2f);	
-				else if (alphaValue >= 0.2 && alphaValue < 0.3)
-					ViewHelper.setAlpha(heartImg[i], 0.3f);	
-				else if (alphaValue >= 0.3 && alphaValue < 0.4)
-					ViewHelper.setAlpha(heartImg[i], 0.4f);	
-				else if (alphaValue >= 0.4 && alphaValue < 0.5)
-					ViewHelper.setAlpha(heartImg[i], 0.5f);	
-				else if (alphaValue >= 0.5 && alphaValue < 0.6)
-					ViewHelper.setAlpha(heartImg[i], 0.55f);	
-				else if (alphaValue >= 0.6 && alphaValue < 0.7)
-					ViewHelper.setAlpha(heartImg[i], 0.6f);	
-				else if (alphaValue >= 0.7 && alphaValue < 0.8)
-					ViewHelper.setAlpha(heartImg[i], 0.65f);	
-				else if (alphaValue >= 0.8 && alphaValue < 0.9)
-					ViewHelper.setAlpha(heartImg[i], 0.7f);	
-				else if (alphaValue >= 0.9 && alphaValue < 0.95)
-					ViewHelper.setAlpha(heartImg[i], 0.75f);	
-				else if (alphaValue >= 0.95)
-					ViewHelper.setAlpha(heartImg[i], 0.8f);
-		  	}
-		  }
-/*
-	void heartLogic(int water) {
 
-		float opacityPercentage = 0;
-		currentWater += water;
-		
-		while (water != 0) {
-			
-			if (index == 14)
-				break;
-			else if (tmp <= water) { // tmp는 하트조각의 남은 용량
-				ViewHelper.setAlpha(heartImg[numList.get(index)],
-						(float) 0.8f / divisor); // 채워지고
-				water -= tmp; // 물의 양이 변화
-				index++;
-				// numList.remove(0);
-				if (!(index == 14))
-					tmp = value[numList.get(index)]; // 새로운 하트 조각의 용량 받기
-			}
-			else { // 하트조각의 용량이 입력된 물의 양보다 작으면
-				opacityPercentage = (float) water / tmp / divisor;
-				if (opacityPercentage <= 0.05)
-					opacityPercentage = 0.08f;
-				tmp -= water;// 하트조각의 남은 용량이 변화하고
-				ViewHelper.setAlpha(heartImg[numList.get(index)],
-						opacityPercentage);
-				water = 0;
-			}
-			int w = 0;
-			for (int i = 0; i < scope; i++)
-				w += value[i];
-			if (totalWater / divisor < currentWater && w < currentWater && divisor > 1) { 
-				divisor--; //divisor--, value[] += value[] or init()에서 따로 떼던가 해야함
-				for (int i = 0; i < scope; i++)
-					value[i] += logicValue[i];
-				index = 0;
+	public void heartLogic() {
+		for (int i = 0; i < 14; i++)
+			eachWater[i] = water / 14; // 물 마실때마다 호출해야하는 반복문
+		// 주의할점: water는 지금 한번 마셨을때 그 컵의 물의 용량이 아니라
+		// 지금까지 마신 물의 총량이다!
+
+		for (int i = 0; i < 14; i++) {
+			currentValue[i] = eachWater[i]; // 0번쨰 하트의 물 양을 갱신한다.
+			if (currentValue[i] > originalValue[i]) { // 한편 originalValue보다 더 많이
+														// 채워졌을경우엔
+				float tmp = currentValue[i] - originalValue[i];
+				currentValue[i] = originalValue[i]; // currentValue는
+													// originalValue값으로 맞춰주고
+				if (i == 13)
+					break;
+				eachWater[i + 1] += tmp; // 여유분을 다음 물 양에 추가해준다.
 			}
 		}
+		heartTextML.setText(String.valueOf(water));
+		heartTextPercent.setText(String.valueOf((int) ((float) water
+				/ totalWater * 100)));
+		// 반복문을 통해 각 하트 조각들의 currentValue들에 물을 채웠으면
+		// 이제 for문 밖에서 setHeartAlpha()값으로
+		// 각각 하트 조각들마다의 currentValue값을 참조해서
+		// 그에 알맞게 opacity를 조절한다.
 
-		
+		setHeartAlpha();
+	} // heartLogic() 메소드 끝
 
+	public void setHeartAlpha() {
+		float alphaValue = 0.0f;
+		for (int i = 0; i < 14; i++) {
+			alphaValue = currentValue[i] / originalValue[i];
+			if (alphaValue >= 0 && alphaValue < 0.1)
+				ViewHelper.setAlpha(heartImg[i], 0.1f);
+			else if (alphaValue >= 0.1 && alphaValue < 0.2)
+				ViewHelper.setAlpha(heartImg[i], 0.2f);
+			else if (alphaValue >= 0.2 && alphaValue < 0.3)
+				ViewHelper.setAlpha(heartImg[i], 0.3f);
+			else if (alphaValue >= 0.3 && alphaValue < 0.4)
+				ViewHelper.setAlpha(heartImg[i], 0.4f);
+			else if (alphaValue >= 0.4 && alphaValue < 0.5)
+				ViewHelper.setAlpha(heartImg[i], 0.5f);
+			else if (alphaValue >= 0.5 && alphaValue < 0.6)
+				ViewHelper.setAlpha(heartImg[i], 0.55f);
+			else if (alphaValue >= 0.6 && alphaValue < 0.7)
+				ViewHelper.setAlpha(heartImg[i], 0.6f);
+			else if (alphaValue >= 0.7 && alphaValue < 0.8)
+				ViewHelper.setAlpha(heartImg[i], 0.65f);
+			else if (alphaValue >= 0.8 && alphaValue < 0.9)
+				ViewHelper.setAlpha(heartImg[i], 0.7f);
+			else if (alphaValue >= 0.9 && alphaValue < 0.95)
+				ViewHelper.setAlpha(heartImg[i], 0.75f);
+			else if (alphaValue >= 0.95)
+				ViewHelper.setAlpha(heartImg[i], 0.8f);
+		}
 	}
-	*/
 
 	OnLongClickListener longClick = new OnLongClickListener() {
 

@@ -7,6 +7,7 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.TouchDelegate;
@@ -52,10 +53,10 @@ public class MainFragment extends SherlockFragment {
 	private static final int FROM_CUPCUSTOM = 10;
 	private static final int FROM_CUSTOM = 11;
 
-	static int totalWater = 2000;
-	float valueA = totalWater / 20; //제일 작은 조각 한개의 용량
-	float valueB = totalWater / 20;	//중간 크기 조각 한개의 용량
-	float valueC = totalWater / 5;	//제일 큰 조각 한개의 용량
+	static int totalWater = 2500;
+	float a; //제일 작은 조각 한개의 용량
+	float b;	//중간 크기 조각 한개의 용량
+	float c;	//제일 큰 조각 한개의 용량
 	int water;
 	float[] originalValue = new float[14];
 	float[] currentValue = new float[14];
@@ -154,11 +155,10 @@ public class MainFragment extends SherlockFragment {
 			}
 			//여기는 일단 임시로
 			//totalWater 가 2000으로 고정됬을거라고 가정했을 시:
-			originalValue[0] = 80; originalValue[1] = 120; originalValue[2] = 60; originalValue[3] = 140;
-			originalValue[4] = 75; originalValue[5] = 125; originalValue[6] = 90; originalValue[7] = 110;
-			originalValue[8] = 85; originalValue[9] = 115; originalValue[10] = 50; originalValue[11] = 150;
-			originalValue[12] = 450; originalValue[13] = 350;
-			
+			//originalValue[0] = 80; originalValue[1] = 120; originalValue[2] = 60; originalValue[3] = 140;
+			//originalValue[4] = 75; originalValue[5] = 125; originalValue[6] = 90; originalValue[7] = 110;
+			//originalValue[8] = 85; originalValue[9] = 115; originalValue[10] = 50; originalValue[11] = 150;
+			//originalValue[12] = 450; originalValue[13] = 350;
 			
 			
 			// 일단 겹치는 것 없이 모든 숫자를 랜덤으로 뽑았음, 일단 init()메소드에 넣었음
@@ -187,6 +187,29 @@ public class MainFragment extends SherlockFragment {
 		heartTextML.setText(String.valueOf(water));
 		heartTextPercent.setText(String.valueOf((int) ((float) water
 				/ totalWater * 100)));
+					//init()에서 if문 밖에 valueA, B, C를 재정의해야한다
+					//왜냐하면 실행 도중에 사용자 정보를 바꿀 시 init()을 다시 호출할것이기때문!
+					//그에 이어 각 하트 조각의 용량도 여기서 재정의한다.
+					//아래의 로직은 totalWater가 최소한 2000 이상일때라 가정한다.
+					
+		
+					//근데 생각보다 효과가 별로... 다른걸해봐야하나
+		a = totalWater / 20; //제일 작은 조각 한개의 용량
+		b = totalWater / 20;	//중간 크기 조각 한개의 용량
+		c = totalWater / 5;	//제일 큰 조각 한개의 용량
+		float[] array = new float[]{
+				a, a, b, b, b, b, b, b, b, b, b, b, c, c
+		};
+		Time time = new Time();
+		time.setToNow();
+		int forRandom = time.weekDay;
+		for(int i = 0; i<14; i++){
+			if((i % 2) == 0){
+				originalValue[i] = array[i] - (forRandom*i);
+			} else{
+				originalValue[i] = array[i] + (forRandom*(i-1));
+			}
+		}
 														//여기서 heartLogic()을 호출해야한다!!
 		heartLogic();
 		//heartLogic(heartWater);

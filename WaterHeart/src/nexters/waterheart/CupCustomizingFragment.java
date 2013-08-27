@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ public class CupCustomizingFragment extends SherlockFragment implements
 	SeekBar seekBar;
 	CupManager cupManager;
 	ClickManager clickManager;
+	boolean isChecked;
 	int whichCup; // 메인에서 롱클릭한 컵이 무엇인지를 판단하기위한 변수
 	float unselected = 0.1f, selected = 0.9f; // 선택된 컵의 알파값을 조절하기 위한 변수
 	private static final int CUP_ONE = 0, CUP_TWO = 1, CUP_THREE = 2,
@@ -172,6 +174,7 @@ public class CupCustomizingFragment extends SherlockFragment implements
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
+		isChecked = true;
 		int imageId = 0;
 		for (int i = 0; i < 4; i++) {
 			if (ViewHelper.getAlpha(cups_on_customizing[i]) == selected) {
@@ -202,11 +205,15 @@ public class CupCustomizingFragment extends SherlockFragment implements
 			break;
 		}
 		init();
+		Message msg = Message.obtain(mHandler, FROM_CUPCUSTOM, Integer.parseInt(amountEdit.getText().toString()), 1);
+		mHandler.sendMessage(msg);
+		/*
 		Toast.makeText(
 				getSherlockActivity(),
 				"Done! Image changed! Amount: "
 						+ amountEdit.getText().toString() + " ml",
 				Toast.LENGTH_LONG).show();
+		*/
 		getActivity().getSupportFragmentManager().beginTransaction()
 		.remove(CupCustomizingFragment.this).commit();
 		getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
@@ -217,7 +224,10 @@ public class CupCustomizingFragment extends SherlockFragment implements
 	public void onPause() {
 		// TODO Auto-generated method stub
 		getSherlockActivity().getSupportActionBar().setTitle("WaterHeart");
-		mHandler.sendEmptyMessage(FROM_CUPCUSTOM);
+		if(isChecked == false){
+		Message msg = Message.obtain(mHandler, FROM_CUPCUSTOM, Integer.parseInt(amountEdit.getText().toString()), 0);
+		mHandler.sendMessage(msg);
+		}
 		init();
 		getActivity().getSupportFragmentManager().beginTransaction()
 				.remove(CupCustomizingFragment.this).commit();

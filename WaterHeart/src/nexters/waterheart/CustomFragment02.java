@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -187,7 +188,6 @@ public class CustomFragment02 extends SherlockFragment implements OnClickListene
 		isClickedOkay=true;
 		getActivity().getSupportFragmentManager().beginTransaction()
 		.remove(CustomFragment02.this).commit();
-		Toast.makeText(getSherlockActivity(), "Done!", 1000).show();
 		getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 		return super.onOptionsItemSelected(item);
 	}
@@ -231,8 +231,10 @@ public class CustomFragment02 extends SherlockFragment implements OnClickListene
 	public void onPause() {
 		// TODO Auto-generated method stub
 		getSherlockActivity().getSupportActionBar().setTitle("WaterHeart");
-		if(isClickedOkay)
-		mHandler.sendEmptyMessage(FROM_CUSTOM);
+		if(isClickedOkay){
+			Message msg = Message.obtain(mHandler, FROM_CUSTOM, 1, 0);
+			mHandler.sendMessage(msg);
+		}
 		getActivity().getSupportFragmentManager().beginTransaction()
 		.remove(CustomFragment02.this).commit();
 		//getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);

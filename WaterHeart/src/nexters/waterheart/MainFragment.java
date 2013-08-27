@@ -1,5 +1,7 @@
 package nexters.waterheart;
 
+import java.io.FileInputStream;
+
 import android.annotation.SuppressLint;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -12,6 +14,8 @@ import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +38,9 @@ public class MainFragment extends SherlockFragment {
 	ImageView[] cups;
 	ImageView undo;
 	ClickManager clickManager;
+	Animation toastAni;
+	TextView toastText;
+	static String yourName;
 
 	TextView heartTextPercent;
 	TextView heartTextML;
@@ -80,6 +87,8 @@ public class MainFragment extends SherlockFragment {
 				fillWaterHandler);
 		cupManager = new CupManager(getActivity());
 		tutorial = new TutorialManager();
+		toastText = (TextView)mainView.findViewById(R.id.toastText);
+		toastAni = AnimationUtils.loadAnimation(getSherlockActivity(), R.anim.text_show);
 		return mainView;
 	}
 
@@ -118,7 +127,15 @@ public class MainFragment extends SherlockFragment {
 				cups[i].setOnClickListener(clickManager);
 				cups[i].setOnLongClickListener(longClick);
 			}
-
+			try {
+				FileInputStream fis = getActivity().openFileInput("name.txt");
+				byte[] data = new byte[fis.available()];
+				while(fis.read(data)!=-1){;}
+				yourName = new String(data);
+				fis.close();
+			} catch(Exception e){
+				yourName = "";
+			}
 			// 이 밑으로는 다 init()에서 희조가 추가한 부분
 			// 하트 이미지뷰설정 및 하트 조각별 용량 설정, 그리고 초기 투명도 10퍼로 설정
 			for (int i = 0; i < 14; i++) {
@@ -194,6 +211,7 @@ public class MainFragment extends SherlockFragment {
 	 * ClickManager에서 db를통해 물의 총량을 받아오면 그 물의 양을 이 핸들러로 넘겨주고 여기서 하트에 물을 채운다.
 	 */
 	Handler fillWaterHandler = new Handler() {
+		String toastString = "";
 		public void handleMessage(Message msg) {
 
 			if (msg.what == FROM_CUPCUSTOM) {
@@ -205,29 +223,61 @@ public class MainFragment extends SherlockFragment {
 					cups[i].setOnClickListener(clickManager);
 					cups[i].setOnLongClickListener(longClick);
 				}
+				if(msg.arg2 == 1){
+				toastText.setText("설정 완료! 컵의 용량이 "+msg.arg1+" ml로 변경되었습니다!");
+				toastText.startAnimation(toastAni);
+				}
 			} else if (msg.what == FROM_CUSTOM) {
 				getActivity().findViewById(R.id.pager_title_strip)
 						.setVisibility(View.VISIBLE);
 				getActivity().findViewById(R.id.main_undo).setVisibility(
 						View.VISIBLE);
+				if(msg.arg1 == 1){
+					toastText.setText("정보 입력 완료");
+					toastText.startAnimation(toastAni);
+					try {
+						FileInputStream fis = getActivity().openFileInput("name.txt");
+						byte[] data = new byte[fis.available()];
+						while(fis.read(data)!=-1){;}
+						yourName = new String(data);
+						fis.close();
+					} catch(Exception e){
+						yourName = "";
+					}
+				}
+				
 			} else {
 				cupManager.getAllCupStates();
-				Toast.makeText(getSherlockActivity(), "" + msg.arg1, 1000)
-						.show();
-				/*
-				int newWater = 0;
-				if (msg.what == CUP_ONE)
-					newWater = cupManager.cup_one;
-				else if (msg.what == CUP_TWO)
-					newWater = cupManager.cup_two;
-				else if (msg.what == CUP_THREE)
-					newWater = cupManager.cup_three;
-				else if (msg.what == CUP_FOUR)
-					newWater = cupManager.cup_four;
-				else if (msg.what == 5)
-					newWater = msg.arg1;
-				*/							//이건 필요없을듯?
-											//그냥 바로 msg.arg1으로 받은 값으로 처리하면될듯
+				//Toast.makeText(getSherlockActivity(), "" + msg.arg1, 1000)
+						//.show();
+				
+				switch(msg.what){
+				case CUP_ONE:
+					toastString = ""+cupManager.cup_one;
+					toastText.setText(yourName+"님이 "+toastString+"을 마셨습니다!");
+					break;
+				case CUP_TWO:
+					toastString = ""+cupManager.cup_two;
+					toastText.setText(yourName+"님이 "+toastString+"을 마셨습니다!");
+					break;
+				case CUP_THREE:
+					toastString = ""+cupManager.cup_three;
+					toastText.setText(yourName+"님이 "+toastString+"을 마셨습니다!");
+					break;
+				case CUP_FOUR:
+					toastString = ""+cupManager.cup_four;
+					toastText.setText(yourName+"님이 "+toastString+"을 마셨습니다!");
+					break;
+				case 5:		//undo버튼이 눌렸을때
+					toastText.setText("취소버튼이 눌렸슴다");
+					break;
+				case 6:
+					toastText.setText("개인정보를 내놓아주세영.");
+					//toastText.startAnimation(toastAni);
+					break;
+					
+				}
+				toastText.startAnimation(toastAni);
 				water = msg.arg1;
 				heartLogic();
 				/*

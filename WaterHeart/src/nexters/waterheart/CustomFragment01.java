@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -224,8 +225,10 @@ public class CustomFragment01 extends SherlockFragment {
 	
 	public void onPause(){
 		getSherlockActivity().getSupportActionBar().setTitle("WaterHeart");
-		if(!isClickedOkay)
-		mHandler.sendEmptyMessage(FROM_CUSTOM);
+		if(!isClickedOkay){
+			Message msg = Message.obtain(mHandler, FROM_CUSTOM, 0, 0);
+			mHandler.sendMessage(msg);
+		}
 		getActivity().getSupportFragmentManager().beginTransaction()
 		.remove(CustomFragment01.this).commit();
 		//getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);

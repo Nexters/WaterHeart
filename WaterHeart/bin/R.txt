@@ -373,9 +373,9 @@ int id abs__submit_area 0x7f05002f
 int id abs__textButton 0x7f050013
 int id abs__title 0x7f05001b
 int id abs__up 0x7f05000b
-int id action_pencil 0x7f05008e
-int id action_question 0x7f05008f
-int id action_question_history 0x7f05008d
+int id action_pencil 0x7f05008f
+int id action_question 0x7f050090
+int id action_question_history 0x7f05008e
 int id cup_bottle_customizing 0x7f050038
 int id cup_coffee_customizing 0x7f05003a
 int id cup_cup_customizing 0x7f050039
@@ -412,10 +412,10 @@ int id indicator_04 0x7f05003e
 int id listMode 0x7f050002
 int id main_change_01 0x7f050084
 int id main_change_02 0x7f050086
-int id main_cup_bottle 0x7f050089
-int id main_cup_coffee 0x7f05008b
-int id main_cup_cup 0x7f05008a
-int id main_cup_drop 0x7f050088
+int id main_cup_bottle 0x7f05008a
+int id main_cup_coffee 0x7f05008c
+int id main_cup_cup 0x7f05008b
+int id main_cup_drop 0x7f050089
 int id main_heart01 0x7f050075
 int id main_heart02 0x7f050077
 int id main_heart03 0x7f050078
@@ -475,7 +475,8 @@ int id showCustom 0x7f050008
 int id showHome 0x7f050005
 int id showTitle 0x7f050007
 int id tabMode 0x7f050003
-int id tutorialFlipper 0x7f05008c
+int id toastText 0x7f050088
+int id tutorialFlipper 0x7f05008d
 int id useLogo 0x7f050004
 int id wrap_content 0x7f050000
 int integer abs__max_action_buttons 0x7f090000

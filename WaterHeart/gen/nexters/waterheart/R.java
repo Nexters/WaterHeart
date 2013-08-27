@@ -1046,9 +1046,9 @@ containing a value of this type.
         public static final int abs__textButton=0x7f050013;
         public static final int abs__title=0x7f05001b;
         public static final int abs__up=0x7f05000b;
-        public static final int action_pencil=0x7f05008e;
-        public static final int action_question=0x7f05008f;
-        public static final int action_question_history=0x7f05008d;
+        public static final int action_pencil=0x7f05008f;
+        public static final int action_question=0x7f050090;
+        public static final int action_question_history=0x7f05008e;
         public static final int cup_bottle_customizing=0x7f050038;
         public static final int cup_coffee_customizing=0x7f05003a;
         public static final int cup_cup_customizing=0x7f050039;
@@ -1085,10 +1085,10 @@ containing a value of this type.
         public static final int listMode=0x7f050002;
         public static final int main_change_01=0x7f050084;
         public static final int main_change_02=0x7f050086;
-        public static final int main_cup_bottle=0x7f050089;
-        public static final int main_cup_coffee=0x7f05008b;
-        public static final int main_cup_cup=0x7f05008a;
-        public static final int main_cup_drop=0x7f050088;
+        public static final int main_cup_bottle=0x7f05008a;
+        public static final int main_cup_coffee=0x7f05008c;
+        public static final int main_cup_cup=0x7f05008b;
+        public static final int main_cup_drop=0x7f050089;
         public static final int main_heart01=0x7f050075;
         public static final int main_heart02=0x7f050077;
         public static final int main_heart03=0x7f050078;
@@ -1148,7 +1148,8 @@ containing a value of this type.
         public static final int showHome=0x7f050005;
         public static final int showTitle=0x7f050007;
         public static final int tabMode=0x7f050003;
-        public static final int tutorialFlipper=0x7f05008c;
+        public static final int toastText=0x7f050088;
+        public static final int tutorialFlipper=0x7f05008d;
         public static final int useLogo=0x7f050004;
         public static final int wrap_content=0x7f050000;
     }

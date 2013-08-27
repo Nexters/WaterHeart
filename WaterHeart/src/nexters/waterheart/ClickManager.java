@@ -36,6 +36,11 @@ public class ClickManager implements View.OnClickListener {
 			historySwap(v.getId());
 		} else if (onclick_num == MAIN_CLICK) {
 			// 이 밑은 메인페이지에서 클릭이벤트를 받을 때
+			if(MainFragment.yourName.equals("")){
+				msg = Message.obtain(mHandler, 6, 0, 0);
+				mHandler.sendMessage(msg);
+				return;
+			} else{
 			cupManager.getAllCupStates();
 			switch (v.getId()) {
 			case R.id.main_heart_layout:
@@ -77,6 +82,7 @@ public class ClickManager implements View.OnClickListener {
 				mHandler.sendMessage(msg);
 				break;
 			}
+		}
 		}
 
 	}

@@ -98,7 +98,7 @@ public class HistoryFragment extends SherlockFragment {
 		Calendar calendar = new GregorianCalendar(Locale.KOREA);
 
 		int total = 0;
-		int index = 0;
+		int index = 5;
 		float percent = 0;
 		calendar.add(Calendar.DATE, -1);
 		date = calendar.getTime();
@@ -137,9 +137,9 @@ public class HistoryFragment extends SherlockFragment {
 			else if (percent == 1)
 				ViewHelper.setAlpha(heart[index], 0.7f);	
 			date = calendar.getTime();
-			index++;
+			index--;
 
-			if (index == 6)
+			if (index == -1)
 				break;
 			calendar.add(Calendar.DATE, -1);
 

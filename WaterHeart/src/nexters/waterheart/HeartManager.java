@@ -46,19 +46,33 @@ public class HeartManager {
 		String s = String.valueOf(dateFormat.format(date));
 		Write write = db.getWrite(no);
 
-		if (!(String.valueOf((write.getDate())).equals(s))) {
-			write.setComplete("true");
-			db.addWrite(write);
-
-			write.setWater("0");
-			write.setComplete("false");
-			write.setDate(dateFormat.format(date));
-			db.addWrite(write);
-			
-			return 0;
-		}
+//		if (!(String.valueOf((write.getDate())).equals(s))) {
+//			write.setComplete("true");
+//			db.addWrite(write);
+//
+//			write.setWater("0");
+//			write.setComplete("false");
+//			write.setDate(dateFormat.format(date));
+//			db.addWrite(write);
+//			
+//			return 0;
+//		}
 
 		return Integer.parseInt(write.getWater());
+	}
+	
+	public void historyHeartShow() {
+		int no = db.getWritesCount();
+		Date date = new Date();
+		Write write = db.getWrite(no);
+		
+		write.setComplete("true");
+		db.addWrite(write);
+
+		write.setWater("0");
+		write.setComplete("false");
+		write.setDate(dateFormat.format(date));
+		db.addWrite(write);
 	}
 
 	public int mainOnCupClicked(int cup) { // 한솔아 cup의 용량을 넘겨줘

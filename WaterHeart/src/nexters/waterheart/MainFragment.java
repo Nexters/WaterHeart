@@ -139,8 +139,7 @@ public class MainFragment extends SherlockFragment {
 			heartManager = new HeartManager(getActivity());
 			heartManager.init();
 		}
-		// heartManager = new HeartManager(getActivity());
-		// heartManager.init();
+
 		water = heartManager.mainHeartShow();
 		heartTextML.setText(String.valueOf(water));
 		heartTextPercent.setText(String.valueOf((int) ((float) water

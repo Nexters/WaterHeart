@@ -8,24 +8,35 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
     <!-- 튜토리얼이 최상단에 오게 하기 위한 퍼미션 -->
-	<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/> 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/actionbar_logo"
         android:label="@string/app_name"
-        android:theme="@style/Theme.Styled">
+        android:theme="@style/Theme.Styled" >
         <activity
             android:name="nexters.waterheart.MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
         </activity>
-        <activity android:name="IntroActivity"
-            android:theme="@style/Theme.Sherlock.Light.NoActionBar">
+        <activity
+            android:name="IntroActivity"
+            android:theme="@style/Theme.Sherlock.Light.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER"/>
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".AlarmReceiver" android:process=":remote" />
+
+        <receiver
+            android:name="nexters.waterheart.MainActivity$AlarmReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="ALARM" >
+                </action>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

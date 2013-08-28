@@ -51,7 +51,7 @@ public class CustomFragment01 extends SherlockFragment {
 			edit[i].setTypeface(tf);
 			edit[i].setHintTextColor(0x88ffffff);
 			edit[i].addTextChangedListener(mTextWatcher);
-			edit[i].setOnFocusChangeListener(focusChange);
+			//edit[i].setOnFocusChangeListener(focusChange);
 		}
 		return view;
 	}
@@ -120,6 +120,8 @@ public class CustomFragment01 extends SherlockFragment {
 		@Override
 		public void afterTextChanged(Editable s) {
 			// TODO Auto-generated method stub
+			int howMany = 0;
+			/*
 			if(s.toString().equals("")){
 				for(int i=3; i>=0; i--){
 					if((String)(navi[i].getTag()) == "selected"){
@@ -129,13 +131,23 @@ public class CustomFragment01 extends SherlockFragment {
 					}
 				}
 			}
+			*/
+			for(int i = 0; i<4; i++){
+				navi[i].setImageResource(R.drawable.navi_unselected);
+				navi[i].setTag("unselected");
+				if(edit[i].getText().length() > 0) howMany++;
+			}
+			for(int j = 0; j<howMany; j++){
+				navi[j].setImageResource(R.drawable.navi_selected);
+				navi[j].setTag("selected");
+			}
 		}
 		public void beforeTextChanged(CharSequence s, int start, int count,
 				int after) {}
 		public void onTextChanged(CharSequence s, int start, int before,
 				int count) {}		
 	};
-	
+	/*
 	OnFocusChangeListener focusChange = new OnFocusChangeListener(){
 
 		@Override
@@ -155,6 +167,7 @@ public class CustomFragment01 extends SherlockFragment {
 		}
 		
 	};
+	*/
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -173,14 +186,14 @@ public class CustomFragment01 extends SherlockFragment {
 		if((String)(navi[3].getTag()) != "selected"){
 			Toast.makeText(getActivity(), "입력을 마치세요", 1000).show();
 			return true;
-		} else {
-			for(int i = 0; i<4; i++){
-				if(edit[i].getText().toString().equals("")) {
-					Toast.makeText(getActivity(), "입력을 마치세요", 1000).show();
-					return true;
-				}
-			}
-		}
+		} //else {
+			//for(int i = 0; i<4; i++){
+			//	if(edit[i].getText().toString().equals("")) {
+			//		Toast.makeText(getActivity(), "입력을 마치세요", 1000).show();
+			//		return true;
+			//	}
+			//}
+		//}
 		saveAllData();
 		isClickedOkay=true;
 		getSherlockActivity().getSupportFragmentManager()

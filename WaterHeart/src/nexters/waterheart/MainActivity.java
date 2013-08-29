@@ -4,15 +4,14 @@ import java.util.Calendar;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 
@@ -30,12 +29,17 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
+		alarm(MainActivity.this);
+	}
+
+	public void alarm(Context context) {
 
 		final AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+		AlarmReceiver mReceiver = new AlarmReceiver(MainActivity.this);
 		Intent intent = new Intent("ALARM");
 		final PendingIntent sender = PendingIntent.getBroadcast(
 				MainActivity.this, 0, intent, 0);
-
+		
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(System.currentTimeMillis());
 		calendar.set(Calendar.HOUR_OF_DAY, 24);
@@ -46,16 +50,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
 				calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, sender);
 	}
-	
-	private class AlarmReceiver extends BroadcastReceiver {
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			// TODO Auto-generated method stub
-			HeartManager heartManager = new HeartManager(MainActivity.this);
-			heartManager.historyHeartShow();
-		}
-		
-	}
+
 	public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
 		public SectionsPagerAdapter(FragmentManager fm) {

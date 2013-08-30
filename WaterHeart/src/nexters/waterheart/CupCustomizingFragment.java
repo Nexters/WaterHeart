@@ -6,15 +6,18 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -167,7 +170,19 @@ public class CupCustomizingFragment extends SherlockFragment implements
 		menu.removeItem(R.id.action_question_history);
 		menu.add("Check").setIcon(R.drawable.icon_checking)
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		getSherlockActivity().getSupportActionBar().setTitle("Cup Setting");
+		//getSherlockActivity().getSupportActionBar().setTitle("Cup Setting");
+		ActionBar action = getSherlockActivity().getSupportActionBar();
+		action.setDisplayShowTitleEnabled(false);
+		
+		LayoutInflater inflater02 = LayoutInflater.from(getSherlockActivity());
+		View titleView = inflater02.inflate(R.layout.actionbar_title,null);
+		
+		TextView titleText = (TextView)titleView.findViewById(R.id.actionBar_CupSetting);
+		titleText.setVisibility(View.VISIBLE);
+		titleText.setTypeface(Typeface.createFromAsset(getSherlockActivity().getAssets(),"neutratexttfbook.ttf"));
+		
+		action.setCustomView(titleView);
+		action.setDisplayShowCustomEnabled(true);
 		super.onCreateOptionsMenu(menu, inflater);
 	}
 
@@ -214,9 +229,17 @@ public class CupCustomizingFragment extends SherlockFragment implements
 						+ amountEdit.getText().toString() + " ml",
 				Toast.LENGTH_LONG).show();
 		*/
+		getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+		FragmentTransaction transaction = getSherlockActivity()
+				.getSupportFragmentManager().beginTransaction();
+		transaction.setCustomAnimations(R.anim.fragment_enter, 
+				R.anim.fragment_exit, 0, R.anim.fragment_exit);
+		transaction.remove(CupCustomizingFragment.this).commit();
+		/*
 		getActivity().getSupportFragmentManager().beginTransaction()
 		.remove(CupCustomizingFragment.this).commit();
 		getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+		*/
 		return super.onOptionsItemSelected(item);
 	}
 

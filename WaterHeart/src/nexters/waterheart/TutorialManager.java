@@ -3,24 +3,24 @@ package nexters.waterheart;
 import android.app.Activity;
 import android.app.Service;
 import android.graphics.PixelFormat;
-import android.view.MotionEvent;
-import android.view.View;
+import android.view.Gravity;
 import android.view.WindowManager;
-import android.view.View.OnTouchListener;
 import android.widget.ViewFlipper;
 
 public class TutorialManager {
 	ViewFlipper tutorial;
 	WindowManager wm=null;
 	Activity mActivity;
-	public ViewFlipper getTutorial(int which, Activity activity){ //0:MainFragment 1:StampFragment 2:HistoryFragment
+	
+	public ViewFlipper getTutorial(int which, Activity activity){ //0:MainFragment01 1:MainFragment02 2:HistoryFragment
 		mActivity=activity;
 		wm=(WindowManager)mActivity.getSystemService(Service.WINDOW_SERVICE);
 		switch(which){
 		case 0:
-			tutorial = (ViewFlipper)mActivity.getLayoutInflater().inflate(R.layout.tutorial, null);
+			tutorial = (ViewFlipper)mActivity.getLayoutInflater().inflate(R.layout.tutorial_main01, null);
 			break;
 		case 1:
+			tutorial = (ViewFlipper)mActivity.getLayoutInflater().inflate(R.layout.tutorial_main02, null);
 			break;
 		case 2:
 			break;
@@ -41,6 +41,7 @@ public class TutorialManager {
 			wm=(WindowManager)mActivity.getSystemService(Service.WINDOW_SERVICE);
 		}
 		WindowManager.LayoutParams param = new WindowManager.LayoutParams();
+		param.gravity=Gravity.LEFT | Gravity.TOP;
 		param.x=0; param.y=0;
 		param.width=WindowManager.LayoutParams.MATCH_PARENT;
 		param.height=WindowManager.LayoutParams.MATCH_PARENT;
@@ -59,8 +60,8 @@ public class TutorialManager {
 		//튜토리얼이 끝났을 때 viewflipper를 다시 처음상태를 보여주도록하고
 		//windowmanager에서 뷰를 없앤다.
 		if(wm!=null){
-		tutorial.setDisplayedChild(0);
 		wm.removeView(tutorial);
+		tutorial.setDisplayedChild(0);
 		wm=null;
 		}
 		

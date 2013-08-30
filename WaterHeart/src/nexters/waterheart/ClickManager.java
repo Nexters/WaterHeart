@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
-import android.widget.Toast;
 
 public class ClickManager implements View.OnClickListener {
 	int onclick_num;

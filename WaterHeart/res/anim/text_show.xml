@@ -7,7 +7,7 @@
     <alpha 
         android:fromAlpha="1.0"
         android:toAlpha="0.0"
-        android:startOffset="1500"
+        android:startOffset="1200"
         android:duration="400"
         />
 </set>

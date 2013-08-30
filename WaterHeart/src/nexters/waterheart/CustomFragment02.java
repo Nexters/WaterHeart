@@ -7,17 +7,21 @@ import java.io.IOException;
 
 import android.annotation.SuppressLint;
 import android.app.FragmentManager;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -173,7 +177,19 @@ public class CustomFragment02 extends SherlockFragment implements OnClickListene
 		menu.removeItem(R.id.action_question_history);
 		menu.add("CheckButton").setIcon(R.drawable.icon_checking)
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		getSherlockActivity().getSupportActionBar().setTitle("Heart Setting");
+		//getSherlockActivity().getSupportActionBar().setTitle("Heart Setting");
+		ActionBar action = getSherlockActivity().getSupportActionBar();
+		action.setDisplayShowTitleEnabled(false);
+		
+		LayoutInflater inflater02 = LayoutInflater.from(getSherlockActivity());
+		View titleView = inflater02.inflate(R.layout.actionbar_title,null);
+		
+		TextView titleText = (TextView)titleView.findViewById(R.id.actionBar_HeartSetting);
+		titleText.setVisibility(View.VISIBLE);
+		titleText.setTypeface(Typeface.createFromAsset(getSherlockActivity().getAssets(),"neutratexttfbook.ttf"));
+		
+		action.setCustomView(titleView);
+		action.setDisplayShowCustomEnabled(true);
 		super.onCreateOptionsMenu(menu, inflater);
 	}
 
@@ -186,9 +202,17 @@ public class CustomFragment02 extends SherlockFragment implements OnClickListene
 		}
 		saveAllData();  						//CustomFragment01이랑 메소드 이름이 똑같으면 좀 그런가..?
 		isClickedOkay=true;
+		android.support.v4.app.FragmentManager manager = getSherlockActivity().getSupportFragmentManager();
+		manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+		FragmentTransaction transaction = manager.beginTransaction();
+		transaction.setCustomAnimations(0, 
+				R.anim.fragment_exit, 0, 0);
+		transaction.remove(CustomFragment02.this).commit();
+		/*
 		getActivity().getSupportFragmentManager().beginTransaction()
 		.remove(CustomFragment02.this).commit();
 		getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+		*/
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -201,6 +225,7 @@ public class CustomFragment02 extends SherlockFragment implements OnClickListene
 		  * 
 		  */
 		 int which = 0;
+		 MainFragment.counter++;
 		 FileOutputStream fos = null;
 		 try{
 			 fos = getActivity().openFileOutput("gender.txt", 0);
@@ -216,6 +241,9 @@ public class CustomFragment02 extends SherlockFragment implements OnClickListene
 				 }
 			 }
 			 fos.write(which);
+			 
+			 fos = getActivity().openFileOutput("counter", 0);
+			 fos.write(MainFragment.counter);
 		 }catch(Exception e){}finally{
 				try {
 					if(fos != null)

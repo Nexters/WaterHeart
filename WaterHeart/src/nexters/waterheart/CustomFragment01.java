@@ -10,6 +10,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -18,8 +19,10 @@ import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -175,9 +178,21 @@ public class CustomFragment01 extends SherlockFragment {
 		menu.removeItem(R.id.action_pencil);
 		menu.removeItem(R.id.action_question);
 		menu.removeItem(R.id.action_question_history);
-		menu.add("Check").setIcon(R.drawable.icon_checking)
+		menu.add("Check").setIcon(R.drawable.next)
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		getSherlockActivity().getSupportActionBar().setTitle("Heart Setting");
+		//getSherlockActivity().getSupportActionBar().setTitle("Heart Setting");
+		ActionBar action = getSherlockActivity().getSupportActionBar();
+		action.setDisplayShowTitleEnabled(false);
+		
+		LayoutInflater inflater02 = LayoutInflater.from(getSherlockActivity());
+		View titleView = inflater02.inflate(R.layout.actionbar_title,null);
+		
+		TextView titleText = (TextView)titleView.findViewById(R.id.actionBar_HeartSetting);
+		titleText.setVisibility(View.VISIBLE);
+		titleText.setTypeface(Typeface.createFromAsset(getSherlockActivity().getAssets(),"neutratexttfbook.ttf"));
+		
+		action.setCustomView(titleView);
+		action.setDisplayShowCustomEnabled(true);
 		super.onCreateOptionsMenu(menu, inflater);
 	}
 
@@ -196,9 +211,19 @@ public class CustomFragment01 extends SherlockFragment {
 		//}
 		saveAllData();
 		isClickedOkay=true;
+		FragmentTransaction transaction = getSherlockActivity()
+				.getSupportFragmentManager().beginTransaction();
+		transaction.setCustomAnimations(R.anim.fragment_enter, 
+				R.anim.fragment_exit, 0, R.anim.fragment_exit);
+		
+		CustomFragment02 fragment = new CustomFragment02(mHandler);
+		transaction.replace(android.R.id.content, fragment);
+		transaction.addToBackStack(null).commit();
+		/*
 		getSherlockActivity().getSupportFragmentManager()
 		.beginTransaction().replace(android.R.id.content, new CustomFragment02(mHandler))
 		.addToBackStack(null).commit();
+		*/
 		return super.onOptionsItemSelected(item);
 	}
 	

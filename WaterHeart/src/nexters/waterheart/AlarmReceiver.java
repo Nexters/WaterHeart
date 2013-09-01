@@ -29,26 +29,26 @@ public class AlarmReceiver extends BroadcastReceiver {
 		HeartManager heartManager = new HeartManager(activity);
 		heartManager.heartReset();
 
-		if (intent.getAction().equals("FAIL")) {
+		//if (intent.getAction().equals("FAIL")) {
 			NotificationManager notifier = (NotificationManager) context
 					.getSystemService(Context.NOTIFICATION_SERVICE);
 
 			Notification notify = new Notification(R.drawable.actionbar_logo,
-					"목표달성에 실패했어요.", System.currentTimeMillis());
+					"오늘이 5분 남았어요!!", System.currentTimeMillis());
 
 			Intent intent2 = new Intent(context, MainActivity.class);
 			PendingIntent pender = PendingIntent.getActivity(context, 0,
 					intent2, 0);
 
-			notify.setLatestEventInfo(context, "Water Heart", s, pender);
+			notify.setLatestEventInfo(context, "Water Heart", "오늘이 5분 남았어요!! 오늘의 달성도를 볼까요?", pender);
 
 			notify.flags |= Notification.FLAG_AUTO_CANCEL;
-			notify.vibrate = new long[] { 200, 200, 500, 300 };
+			notify.vibrate = new long[] { 200, 100, 500, 300 };
 			// notify.sound=Uri.parse("file:/");
 			notify.number++;
 
 			notifier.notify(1, notify);
-		}
+		//}
 	}
 
 }

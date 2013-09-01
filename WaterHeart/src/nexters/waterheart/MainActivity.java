@@ -1,18 +1,14 @@
 package nexters.waterheart;
 
 import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Locale;
 import java.util.Random;
 
 import android.app.AlarmManager;
-import android.app.Notification;
-import android.app.NotificationManager;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -28,6 +24,9 @@ public class MainActivity extends SherlockFragmentActivity {
 	String s;
 	AlarmReceiver mReceiver = null;
 	HeartManager heartManager = null;
+	private static final String FRAGMENT_TAG_CUPCUSTOM = "CUPCUSTOM";
+	private static final String FRAGMENT_TAG_CUSTOM = "CUSTOM";
+	private static final String FRAGMENT_TAG_CUSTOM02 = "CUSTOM02";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +92,34 @@ public class MainActivity extends SherlockFragmentActivity {
 		heartManager.init();
 	}
 
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		CupCustomizingFragment fragment01 = null;
+		CustomFragment01 fragment02 = null;
+		CustomFragment02 fragment03 = null;
+		fragment01 = (CupCustomizingFragment)getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG_CUPCUSTOM);
+		fragment02 = (CustomFragment01)getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG_CUSTOM);
+		fragment03 = (CustomFragment02)getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG_CUSTOM02);
+		if((fragment01 == null) && (fragment02 == null) && (fragment03 == null)){
+			new AlertDialog.Builder(this)
+			.setTitle("정말 종료하시겠습니까?")
+			.setMessage("종료하실꺼유? ㅠㅠ")
+			.setNegativeButton("아니오", null)
+			.setPositiveButton("네", new DialogInterface.OnClickListener(){
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					finish();
+				}
+			}).show();
+		}else{
+			super.onBackPressed();
+		
+		}
+	}
+	
 	@Override
 	public void onPause() {
 		super.onPause();

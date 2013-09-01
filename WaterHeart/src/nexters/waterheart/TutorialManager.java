@@ -23,6 +23,7 @@ public class TutorialManager {
 			tutorial = (ViewFlipper)mActivity.getLayoutInflater().inflate(R.layout.tutorial_main02, null);
 			break;
 		case 2:
+			tutorial = (ViewFlipper)mActivity.getLayoutInflater().inflate(R.layout.tutorial_history, null);
 			break;
 		}
 		return tutorial;

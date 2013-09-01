@@ -11,10 +11,13 @@ import nexters.waterheart.dto.Write;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
@@ -23,13 +26,15 @@ import com.actionbarsherlock.view.MenuItem;
 import com.nineoldandroids.view.ViewHelper;
 
 public class HistoryFragment extends SherlockFragment {
-	private static final int TUTORIAL_NUMBER = 2;
+	private static final int TUTORIAL_NUMBER03 = 2;
 	private static final int ONCLICK_NUM = 1;
 	ImageView[] heart = new ImageView[6];
 	TextView[] text01 = new TextView[6];
 	TextView[] text02 = new TextView[6];
 	ImageView[] ml = new ImageView[6];
 	ClickManager clickManager;
+	TutorialManager tutorial;
+	ViewFlipper tutorialFlipper;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +45,7 @@ public class HistoryFragment extends SherlockFragment {
 		setHasOptionsMenu(true);
 		View view = inflater.inflate(R.layout.historyview, container, false);
 		clickManager = new ClickManager(ONCLICK_NUM, getActivity(), null);
+		tutorial = new TutorialManager();
 		/*
 		 * 나중에 할 것: 위 percent* 변수들에 DB의 값을 불러와서 대입한다.
 		 */
@@ -166,8 +172,32 @@ public class HistoryFragment extends SherlockFragment {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
-
+		tutorialFlipper = tutorial.getTutorial(
+				TUTORIAL_NUMBER03, getActivity());
+		tutorialFlipper
+				.setOnTouchListener(mOnTouchListener);
+		//whichTutorial = TUTORIAL_NUMBER02;
+		tutorial.showTutorial();
 		return super.onOptionsItemSelected(item);
 	}
+	
+	OnTouchListener mOnTouchListener = new OnTouchListener(){
+
+		@Override
+		public boolean onTouch(View v, MotionEvent event) {
+			// TODO Auto-generated method stub
+			if (event.getAction() == MotionEvent.ACTION_DOWN) {
+			if (tutorialFlipper.getCurrentView() == tutorialFlipper
+					.getChildAt(1)) { // 튜토리얼 페이지가 2개밖에 없기때문에
+				tutorial.finishTutorial(); // 지금은 getChildAt(1) 로
+				return true;
+			}
+			tutorial.showNext();
+			
+		}
+			return true;
+		}
+		
+	};
 
 }

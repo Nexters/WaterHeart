@@ -36,6 +36,7 @@ public class CustomFragment01 extends SherlockFragment {
 	boolean isClickedOkay;
 	EditText[] edit = new EditText[4]; //name, age, height, weight 순서
 	ImageView[] navi = new ImageView[4];
+	private static final String FRAGMENT_TAG_CUSTOM02 = "CUSTOM02";
 	
 	public CustomFragment01(Handler handler){
 		mHandler=handler;
@@ -217,7 +218,7 @@ public class CustomFragment01 extends SherlockFragment {
 				R.anim.fragment_exit, 0, R.anim.fragment_exit);
 		
 		CustomFragment02 fragment = new CustomFragment02(mHandler);
-		transaction.replace(android.R.id.content, fragment);
+		transaction.replace(android.R.id.content, fragment, FRAGMENT_TAG_CUSTOM02);
 		transaction.addToBackStack(null).commit();
 		/*
 		getSherlockActivity().getSupportFragmentManager()

@@ -59,6 +59,8 @@ public class MainFragment extends SherlockFragment {
 	private static final int ONCLICK_NUM = 0;
 	private static final int FROM_CUPCUSTOM = 10;
 	private static final int FROM_CUSTOM = 11;
+	private static final String FRAGMENT_TAG_CUPCUSTOM = "CUPCUSTOM";
+	private static final String FRAGMENT_TAG_CUSTOM = "CUSTOM";
 
 	static int totalWater = 2500;
 	float a; // 제일 작은 조각 한개의 용량
@@ -399,7 +401,7 @@ public class MainFragment extends SherlockFragment {
 			switch (v.getId()) {
 			case R.id.main_cup_drop:
 				fragment = new CupCustomizingFragment(fillWaterHandler, CUP_ONE);
-				transaction.add(android.R.id.content, fragment)
+				transaction.add(android.R.id.content, fragment, FRAGMENT_TAG_CUPCUSTOM)
 						.addToBackStack(null).commit();
 				/*
 				 * getActivity() .getSupportFragmentManager()
@@ -410,7 +412,7 @@ public class MainFragment extends SherlockFragment {
 				return true;
 			case R.id.main_cup_bottle:
 				fragment = new CupCustomizingFragment(fillWaterHandler, CUP_TWO);
-				transaction.add(android.R.id.content, fragment)
+				transaction.add(android.R.id.content, fragment, FRAGMENT_TAG_CUPCUSTOM)
 						.addToBackStack(null).commit();
 				/*
 				 * getActivity() .getSupportFragmentManager()
@@ -422,7 +424,7 @@ public class MainFragment extends SherlockFragment {
 			case R.id.main_cup_cup:
 				fragment = new CupCustomizingFragment(fillWaterHandler,
 						CUP_THREE);
-				transaction.add(android.R.id.content, fragment)
+				transaction.add(android.R.id.content, fragment, FRAGMENT_TAG_CUPCUSTOM)
 						.addToBackStack(null).commit();
 				/*
 				 * getActivity() .getSupportFragmentManager()
@@ -434,7 +436,7 @@ public class MainFragment extends SherlockFragment {
 			case R.id.main_cup_coffee:
 				fragment = new CupCustomizingFragment(fillWaterHandler,
 						CUP_FOUR);
-				transaction.add(android.R.id.content, fragment)
+				transaction.add(android.R.id.content, fragment, FRAGMENT_TAG_CUPCUSTOM)
 						.addToBackStack(null).commit();
 				/*
 				 * getActivity() .getSupportFragmentManager()
@@ -486,7 +488,7 @@ public class MainFragment extends SherlockFragment {
 					R.anim.fragment_exit);
 
 			CustomFragment01 fragment = new CustomFragment01(fillWaterHandler);
-			transaction.add(android.R.id.content, fragment);
+			transaction.add(android.R.id.content, fragment, FRAGMENT_TAG_CUSTOM);
 			transaction.addToBackStack(null).commit();
 			/*
 			 * getActivity() .getSupportFragmentManager() .beginTransaction()
@@ -523,7 +525,7 @@ public class MainFragment extends SherlockFragment {
 					}
 				case 1:
 					if (tutorialFlipper.getCurrentView() == tutorialFlipper
-							.getChildAt(6)) { // 튜토리얼 페이지가 2개밖에 없기때문에
+							.getChildAt(4)) { // 튜토리얼 페이지가 2개밖에 없기때문에
 						tutorial.finishTutorial(); // 지금은 getChildAt(1) 로
 						return true;
 					}

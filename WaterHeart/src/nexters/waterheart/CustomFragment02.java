@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import android.annotation.SuppressLint;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,6 +37,7 @@ public class CustomFragment02 extends SherlockFragment implements OnClickListene
 	ImageButton[] gender = new ImageButton[2];
 	ImageView[] navi = new ImageView[2];
 	ImageButton[] goal = new ImageButton[6];
+	
 	
 	public CustomFragment02(Handler handler){
 		mHandler = handler;
@@ -57,6 +60,12 @@ public class CustomFragment02 extends SherlockFragment implements OnClickListene
 			goal[i].setOnClickListener(this);
 			goal[i].setTag("unselected");
 		}
+		view.postDelayed(new Runnable(){
+			public void run(){
+				InputMethodManager inputManager = (InputMethodManager) getSherlockActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+				inputManager.hideSoftInputFromWindow(getView().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+			}
+		}, 100);
 		return view;
 	}
 	

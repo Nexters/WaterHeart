@@ -28,25 +28,27 @@ public class AlarmReceiver extends BroadcastReceiver {
 		// TODO Auto-generated method stub
 		HeartManager heartManager = new HeartManager(activity);
 		heartManager.heartReset();
-		
-		NotificationManager notifier = (NotificationManager) context
-				.getSystemService(Context.NOTIFICATION_SERVICE);
 
-		Notification notify = new Notification(R.drawable.actionbar_logo, "목표달성에 실패했어요.",
-				System.currentTimeMillis()); 
+		if (intent.getAction().equals("FAIL")) {
+			NotificationManager notifier = (NotificationManager) context
+					.getSystemService(Context.NOTIFICATION_SERVICE);
 
-		Intent intent2 = new Intent(context, MainActivity.class);
-		PendingIntent pender = PendingIntent
-				.getActivity(context, 0, intent2, 0);
+			Notification notify = new Notification(R.drawable.actionbar_logo,
+					"목표달성에 실패했어요.", System.currentTimeMillis());
 
-		notify.setLatestEventInfo(context, "Water Heart", s, pender);
+			Intent intent2 = new Intent(context, MainActivity.class);
+			PendingIntent pender = PendingIntent.getActivity(context, 0,
+					intent2, 0);
 
-		notify.flags |= Notification.FLAG_AUTO_CANCEL;
-		notify.vibrate = new long[] { 200, 200, 500, 300 };
-		// notify.sound=Uri.parse("file:/");
-		notify.number++;
+			notify.setLatestEventInfo(context, "Water Heart", s, pender);
 
-		notifier.notify(1, notify);
+			notify.flags |= Notification.FLAG_AUTO_CANCEL;
+			notify.vibrate = new long[] { 200, 200, 500, 300 };
+			// notify.sound=Uri.parse("file:/");
+			notify.number++;
+
+			notifier.notify(1, notify);
+		}
 	}
 
 }

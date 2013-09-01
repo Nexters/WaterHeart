@@ -34,7 +34,8 @@
             android:name=".AlarmReceiver"
             android:exported="false" >
             <intent-filter>
-                <action android:name="ALARM" >
+                <action android:name="ALARM" />
+                <action android:name="FAIL" >
                 </action>
             </intent-filter>
         </receiver>

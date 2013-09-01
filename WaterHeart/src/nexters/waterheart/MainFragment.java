@@ -46,9 +46,9 @@ public class MainFragment extends SherlockFragment {
 	TextView toastText;
 	static String yourName;
 	static int whichTutorial;
-	static int counter;					//첫 실행 시, 즉 사용자정보가
-								//하나도 없을 때에는 counter 가 0이다. 
-							//counter가 0일때 ~~ 조치를 취한다...
+	static int counter; // 첫 실행 시, 즉 사용자정보가
+	// 하나도 없을 때에는 counter 가 0이다.
+	// counter가 0일때 ~~ 조치를 취한다...
 
 	TextView heartTextPercent;
 	TextView heartTextML;
@@ -124,22 +124,15 @@ public class MainFragment extends SherlockFragment {
 				cups[i].setOnLongClickListener(longClick);
 			}
 			/*
-			try {
-				FileInputStream fis = getActivity().openFileInput("name.txt");
-				byte[] data = new byte[fis.available()];
-				while (fis.read(data) != -1) {
-					;
-				}
-				yourName = new String(data);
-				
-				fis = getActivity().openFileInput("counter");
-				counter = fis.read();
-				fis.close();
-			} catch (Exception e) {
-				yourName = "";
-				counter = 0;
-			}
-			*/
+			 * try { FileInputStream fis =
+			 * getActivity().openFileInput("name.txt"); byte[] data = new
+			 * byte[fis.available()]; while (fis.read(data) != -1) { ; }
+			 * yourName = new String(data);
+			 * 
+			 * fis = getActivity().openFileInput("counter"); counter =
+			 * fis.read(); fis.close(); } catch (Exception e) { yourName = "";
+			 * counter = 0; }
+			 */
 			// 이 밑으로는 다 init()에서 희조가 추가한 부분
 			// 하트 이미지뷰설정 및 하트 조각별 용량 설정, 그리고 초기 투명도 10퍼로 설정
 			for (int i = 0; i < 14; i++) {
@@ -150,9 +143,9 @@ public class MainFragment extends SherlockFragment {
 			}
 
 			heartManager = new HeartManager(getActivity());
-			heartManager.init();
+			// heartManager.init();
 		}
-		
+
 		try {
 			FileInputStream fis = getActivity().openFileInput("name.txt");
 			byte[] data = new byte[fis.available()];
@@ -160,7 +153,7 @@ public class MainFragment extends SherlockFragment {
 				;
 			}
 			yourName = new String(data);
-			
+
 			fis = getActivity().openFileInput("counter");
 			counter = fis.read();
 			fis.close();
@@ -232,8 +225,7 @@ public class MainFragment extends SherlockFragment {
 					cups[i].setOnLongClickListener(longClick);
 				}
 				if (msg.arg2 == 1) {
-					toastText.setText("컵의 용량이 " + msg.arg1
-							+ " ml로 변경되었습니다!");
+					toastText.setText("컵의 용량이 " + msg.arg1 + " ml로 변경되었습니다!");
 					toastText.startAnimation(toastAni);
 				}
 			} else if (msg.what == FROM_CUSTOM) {
@@ -243,34 +235,29 @@ public class MainFragment extends SherlockFragment {
 				getActivity().findViewById(R.id.main_undo).setVisibility(
 						View.VISIBLE);
 				if ((msg.arg1 == 1) && (counter != 2)) {
-					toastText.setText("목표가 " +totalWater+" ml 로 변경되었어요!");
+					toastText.setText("목표가 " + totalWater + " ml 로 변경되었어요!");
 					toastText.startAnimation(toastAni);
 					/*
-					try {
-						FileInputStream fis = getActivity().openFileInput(
-								"name.txt");
-						byte[] data = new byte[fis.available()];
-						while (fis.read(data) != -1) {
-							;
-						}
-						yourName = new String(data);
-						fis.close();
-					} catch (Exception e) {
-						yourName = "";
-					}
-					*/
-				} else if((msg.arg1 == 1) && (counter == 2)){
-					toastText.setText("안녕하세요 "+yourName+"님!");
+					 * try { FileInputStream fis = getActivity().openFileInput(
+					 * "name.txt"); byte[] data = new byte[fis.available()];
+					 * while (fis.read(data) != -1) { ; } yourName = new
+					 * String(data); fis.close(); } catch (Exception e) {
+					 * yourName = ""; }
+					 */
+				} else if ((msg.arg1 == 1) && (counter == 2)) {
+					toastText.setText("안녕하세요 " + yourName + "님!");
 					toastText.startAnimation(toastAni);
-					toastText.postDelayed(new Runnable(){
-						public void run(){
-							toastText.setText("매일 "+ totalWater+" ml 마실 수 있죠?");
+					toastText.postDelayed(new Runnable() {
+						public void run() {
+							toastText.setText("매일 " + totalWater
+									+ " ml 마실 수 있죠?");
 							toastText.startAnimation(toastAni);
-							toastText.postDelayed(new Runnable(){
-								public void run(){
-									tutorialFlipper = tutorial.getTutorial(TUTORIAL_NUMBER02,
-											getActivity());
-									tutorialFlipper.setOnTouchListener(mOnTouchListener);
+							toastText.postDelayed(new Runnable() {
+								public void run() {
+									tutorialFlipper = tutorial.getTutorial(
+											TUTORIAL_NUMBER02, getActivity());
+									tutorialFlipper
+											.setOnTouchListener(mOnTouchListener);
 									whichTutorial = TUTORIAL_NUMBER02;
 									tutorial.showTutorial();
 								}
@@ -283,46 +270,44 @@ public class MainFragment extends SherlockFragment {
 				cupManager.getAllCupStates();
 				// Toast.makeText(getSherlockActivity(), "" + msg.arg1, 1000)
 				// .show();
-				if((msg.what >= 0) && (msg.what <4)){
-				switch (msg.what) {
-				case CUP_ONE:
-					toastString = "" + cupManager.cup_one;
-					toastText.setText(toastString
-							+ " ml 마시셨어요!");
-					break;
-				case CUP_TWO:
-					toastString = "" + cupManager.cup_two;
-					toastText.setText(toastString
-							+ " ml 마시셨어요!");
-					break;
-				case CUP_THREE:
-					toastString = "" + cupManager.cup_three;
-					toastText.setText(toastString
-							+ " ml 마시셨어요!");
-					break;
-				case CUP_FOUR:
-					toastString = "" + cupManager.cup_four;
-					toastText.setText(toastString
-							+ " ml 마시셨어요!");
-					break;
-				}
-				toastText.startAnimation(toastAni);
-				}
-				
-				if(msg.what == 5){
-					toastText.setText("취소버튼이 눌렸슴다");
+				if ((msg.what >= 0) && (msg.what < 4)) {
+					switch (msg.what) {
+					case CUP_ONE:
+						toastString = "" + cupManager.cup_one;
+						toastText.setText(toastString + " ml 마셨어요!");
+						break;
+					case CUP_TWO:
+						toastString = "" + cupManager.cup_two;
+						toastText.setText(toastString + " ml 마셨어요!");
+						break;
+					case CUP_THREE:
+						toastString = "" + cupManager.cup_three;
+						toastText.setText(toastString + " ml 마셨어요!");
+						break;
+					case CUP_FOUR:
+						toastString = "" + cupManager.cup_four;
+						toastText.setText(toastString + " ml 마셨어요!");
+						break;
+					}
 					toastText.startAnimation(toastAni);
-				}else if(msg.what == 6){
-					if(counter == 0){
-						tutorialFlipper = tutorial.getTutorial(TUTORIAL_NUMBER01,
-							getActivity());
+				}
+
+				if (msg.what == 5) {
+					toastText.setText("분발하세요~");
+					if (msg.arg1 == 0)
+						toastText.setText("더이상 취소할 수 없어요~");
+					toastText.startAnimation(toastAni);
+				} else if (msg.what == 6) {
+					if (counter == 0) {
+						tutorialFlipper = tutorial.getTutorial(
+								TUTORIAL_NUMBER01, getActivity());
 						tutorialFlipper.setOnTouchListener(mOnTouchListener);
 						whichTutorial = TUTORIAL_NUMBER01;
 						tutorial.showTutorial();
 						counter++;
-					} else if(counter == 1){
-					toastText.setText("개인정보를 내놓아주세요.");
-					toastText.startAnimation(toastAni);
+					} else if (counter == 1) {
+						toastText.setText("좌측 상단의 연필아이콘을 이용해 개인정보를 입력해 주세요!");
+						toastText.startAnimation(toastAni);
 					}
 				}
 				water = msg.arg1;
@@ -404,62 +389,59 @@ public class MainFragment extends SherlockFragment {
 					View.INVISIBLE);
 			FragmentTransaction transaction = getSherlockActivity()
 					.getSupportFragmentManager().beginTransaction();
-			transaction.setCustomAnimations(R.anim.fragment_enter, 
-					R.anim.fragment_exit, R.anim.fragment_enter, R.anim.fragment_exit);
-			
+			transaction.setCustomAnimations(R.anim.fragment_enter,
+					R.anim.fragment_exit, R.anim.fragment_enter,
+					R.anim.fragment_exit);
+
 			Fragment fragment;
-			//transaction.add(android.R.id.content, fragment);
-			//transaction.addToBackStack(null).commit();
+			// transaction.add(android.R.id.content, fragment);
+			// transaction.addToBackStack(null).commit();
 			switch (v.getId()) {
 			case R.id.main_cup_drop:
 				fragment = new CupCustomizingFragment(fillWaterHandler, CUP_ONE);
-				transaction.add(android.R.id.content, fragment).addToBackStack(null).commit();
+				transaction.add(android.R.id.content, fragment)
+						.addToBackStack(null).commit();
 				/*
-				getActivity()
-						.getSupportFragmentManager()
-						.beginTransaction()
-						.add(android.R.id.content,
-								new CupCustomizingFragment(fillWaterHandler,
-										CUP_ONE)).addToBackStack(null).commit();
-										*/
+				 * getActivity() .getSupportFragmentManager()
+				 * .beginTransaction() .add(android.R.id.content, new
+				 * CupCustomizingFragment(fillWaterHandler,
+				 * CUP_ONE)).addToBackStack(null).commit();
+				 */
 				return true;
 			case R.id.main_cup_bottle:
 				fragment = new CupCustomizingFragment(fillWaterHandler, CUP_TWO);
-				transaction.add(android.R.id.content, fragment).addToBackStack(null).commit();
+				transaction.add(android.R.id.content, fragment)
+						.addToBackStack(null).commit();
 				/*
-				getActivity()
-						.getSupportFragmentManager()
-						.beginTransaction()
-						.add(android.R.id.content,
-								new CupCustomizingFragment(fillWaterHandler,
-										CUP_TWO)).addToBackStack(null).commit();
-										*/
+				 * getActivity() .getSupportFragmentManager()
+				 * .beginTransaction() .add(android.R.id.content, new
+				 * CupCustomizingFragment(fillWaterHandler,
+				 * CUP_TWO)).addToBackStack(null).commit();
+				 */
 				return true;
 			case R.id.main_cup_cup:
-				fragment = new CupCustomizingFragment(fillWaterHandler, CUP_THREE);
-				transaction.add(android.R.id.content, fragment).addToBackStack(null).commit();
+				fragment = new CupCustomizingFragment(fillWaterHandler,
+						CUP_THREE);
+				transaction.add(android.R.id.content, fragment)
+						.addToBackStack(null).commit();
 				/*
-				getActivity()
-						.getSupportFragmentManager()
-						.beginTransaction()
-						.add(android.R.id.content,
-								new CupCustomizingFragment(fillWaterHandler,
-										CUP_THREE)).addToBackStack(null)
-						.commit();
-						*/
+				 * getActivity() .getSupportFragmentManager()
+				 * .beginTransaction() .add(android.R.id.content, new
+				 * CupCustomizingFragment(fillWaterHandler,
+				 * CUP_THREE)).addToBackStack(null) .commit();
+				 */
 				return true;
 			case R.id.main_cup_coffee:
-				fragment = new CupCustomizingFragment(fillWaterHandler, CUP_FOUR);
-				transaction.add(android.R.id.content, fragment).addToBackStack(null).commit();
+				fragment = new CupCustomizingFragment(fillWaterHandler,
+						CUP_FOUR);
+				transaction.add(android.R.id.content, fragment)
+						.addToBackStack(null).commit();
 				/*
-				getActivity()
-						.getSupportFragmentManager()
-						.beginTransaction()
-						.add(android.R.id.content,
-								new CupCustomizingFragment(fillWaterHandler,
-										CUP_FOUR)).addToBackStack(null)
-						.commit();
-						*/
+				 * getActivity() .getSupportFragmentManager()
+				 * .beginTransaction() .add(android.R.id.content, new
+				 * CupCustomizingFragment(fillWaterHandler,
+				 * CUP_FOUR)).addToBackStack(null) .commit();
+				 */
 				return true;
 			}
 			return false;
@@ -473,14 +455,16 @@ public class MainFragment extends SherlockFragment {
 		inflater.inflate(R.menu.main, menu);
 		ActionBar action = getSherlockActivity().getSupportActionBar();
 		action.setDisplayShowTitleEnabled(false);
-		
+
 		LayoutInflater inflater02 = LayoutInflater.from(getSherlockActivity());
-		View titleView = inflater02.inflate(R.layout.actionbar_title,null);
-		
-		TextView titleText = (TextView)titleView.findViewById(R.id.actionBar_WaterHeart);
+		View titleView = inflater02.inflate(R.layout.actionbar_title, null);
+
+		TextView titleText = (TextView) titleView
+				.findViewById(R.id.actionBar_WaterHeart);
 		titleText.setVisibility(View.VISIBLE);
-		titleText.setTypeface(Typeface.createFromAsset(getSherlockActivity().getAssets(),"neutratexttfbook.ttf"));
-		
+		titleText.setTypeface(Typeface.createFromAsset(getSherlockActivity()
+				.getAssets(), "neutratexttfbook.ttf"));
+
 		action.setCustomView(titleView);
 		action.setDisplayShowCustomEnabled(true);
 		super.onCreateOptionsMenu(menu, inflater);
@@ -497,20 +481,19 @@ public class MainFragment extends SherlockFragment {
 					View.INVISIBLE);
 			FragmentTransaction transaction = getSherlockActivity()
 					.getSupportFragmentManager().beginTransaction();
-			transaction.setCustomAnimations(R.anim.fragment_enter, 
-					R.anim.fragment_exit, R.anim.fragment_enter, R.anim.fragment_exit);
-			
+			transaction.setCustomAnimations(R.anim.fragment_enter,
+					R.anim.fragment_exit, R.anim.fragment_enter,
+					R.anim.fragment_exit);
+
 			CustomFragment01 fragment = new CustomFragment01(fillWaterHandler);
 			transaction.add(android.R.id.content, fragment);
 			transaction.addToBackStack(null).commit();
 			/*
-			getActivity()
-					.getSupportFragmentManager()
-					.beginTransaction()
-					.add(android.R.id.content,
-							new CustomFragment01(fillWaterHandler))
-					.addToBackStack(null).commit();
-					*/
+			 * getActivity() .getSupportFragmentManager() .beginTransaction()
+			 * .add(android.R.id.content, new
+			 * CustomFragment01(fillWaterHandler))
+			 * .addToBackStack(null).commit();
+			 */
 			return true;
 		case R.id.action_question:
 			tutorialFlipper = tutorial.getTutorial(TUTORIAL_NUMBER02,
@@ -531,16 +514,16 @@ public class MainFragment extends SherlockFragment {
 		@Override
 		public boolean onTouch(View v, MotionEvent event) {
 			if (event.getAction() == MotionEvent.ACTION_DOWN) {
-				switch(whichTutorial){
+				switch (whichTutorial) {
 				case 0:
 					if (tutorialFlipper.getCurrentView() == tutorialFlipper
-					.getChildAt(0)) { // 튜토리얼 페이지가 2개밖에 없기때문에
+							.getChildAt(0)) { // 튜토리얼 페이지가 2개밖에 없기때문에
 						tutorial.finishTutorial(); // 지금은 getChildAt(1) 로
 						return true;
 					}
 				case 1:
 					if (tutorialFlipper.getCurrentView() == tutorialFlipper
-					.getChildAt(6)) { // 튜토리얼 페이지가 2개밖에 없기때문에
+							.getChildAt(6)) { // 튜토리얼 페이지가 2개밖에 없기때문에
 						tutorial.finishTutorial(); // 지금은 getChildAt(1) 로
 						return true;
 					}

@@ -295,7 +295,7 @@ public class MainFragment extends SherlockFragment {
 				}
 
 				if (msg.what == 5) {
-					toastText.setText("분발하세요~");
+					toastText.setText(yourName + "님 분발하세요~");
 					if (msg.arg1 == 0)
 						toastText.setText("더이상 취소할 수 없어요~");
 					toastText.startAnimation(toastAni);

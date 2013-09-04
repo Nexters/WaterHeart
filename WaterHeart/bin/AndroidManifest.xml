@@ -10,6 +10,7 @@
     <!-- 튜토리얼이 최상단에 오게 하기 위한 퍼미션 -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -35,8 +36,7 @@
             android:exported="false" >
             <intent-filter>
                 <action android:name="ALARM" />
-                <action android:name="FAIL" >
-                </action>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
     </application>

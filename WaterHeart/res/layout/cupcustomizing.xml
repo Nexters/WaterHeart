@@ -15,11 +15,14 @@
         android:layout_height="0px"
         android:layout_weight="1"
         android:gravity="center_horizontal|bottom">
-    <ImageView 
-        android:src="@drawable/cupcustomizing_toast"
+    <TextView
+        android:id="@+id/cupcustom_toast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:text="선택한 컵의 용량과 아이콘을 변경하세요."
+        android:textColor="#fff"
+        android:visibility="invisible"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

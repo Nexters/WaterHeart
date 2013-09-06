@@ -9,14 +9,16 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.view.View;
 import android.view.WindowManager;
 
+import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 
 public class MainActivity extends SherlockFragmentActivity {
@@ -25,6 +27,7 @@ public class MainActivity extends SherlockFragmentActivity {
 	String s;
 	AlarmReceiver mReceiver = null;
 	HeartManager heartManager = null;
+	Fragment fragment;
 	private static final String FRAGMENT_TAG_CUPCUSTOM = "CUPCUSTOM";
 	private static final String FRAGMENT_TAG_CUSTOM = "CUSTOM";
 	private static final String FRAGMENT_TAG_CUSTOM02 = "CUSTOM02";
@@ -44,7 +47,38 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
+		mViewPager.setOnPageChangeListener(mPageChangeListener);
 	}
+	
+	OnPageChangeListener mPageChangeListener = new OnPageChangeListener(){
+
+		@Override
+		public void onPageScrollStateChanged(int arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onPageScrolled(int arg0, float arg1, int arg2) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onPageSelected(int arg0) {
+			// TODO Auto-generated method stub
+			HistoryFragment frag = (HistoryFragment)fragment;
+			if(arg0 == 1){
+				frag.showAnimation();
+			} else{
+				for(int j = 0; j < 6; j ++){
+					frag.heart[j].setVisibility(View.INVISIBLE);
+					frag.text01[j].setVisibility(View.INVISIBLE);
+				}
+			}
+		}
+		
+	};
 
 	public void alarm(Context context) {
 		Random r = new Random();
@@ -154,7 +188,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		@Override
 		public Fragment getItem(int position) {
 			// TODO Auto-generated method stub
-			Fragment fragment = new Fragment();
+			//fragment = new Fragment();
 			switch (position) {
 			case 0:
 				fragment = new MainFragment();

@@ -21,29 +21,35 @@
             <ImageView
                 android:src="@drawable/navi_selected"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:padding="2dp"/>
             <ImageView
                 android:src="@drawable/navi_selected"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:padding="2dp"/>
             <ImageView
                 android:src="@drawable/navi_selected"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:padding="2dp"/>
             <ImageView
                 android:src="@drawable/navi_selected"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:padding="2dp"/>
             <ImageView
                 android:id="@+id/navi05_01"
                 android:src="@drawable/navi_unselected"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:padding="2dp"/>
             <ImageView
                 android:id="@+id/navi06_01"
                 android:src="@drawable/navi_unselected"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:padding="2dp"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout

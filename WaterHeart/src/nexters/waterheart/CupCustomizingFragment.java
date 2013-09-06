@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -36,6 +37,7 @@ public class CupCustomizingFragment extends SherlockFragment implements
 	SeekBar seekBar;
 	CupManager cupManager;
 	ClickManager clickManager;
+	TextView toastText;
 	boolean isChecked;
 	int whichCup; // 메인에서 롱클릭한 컵이 무엇인지를 판단하기위한 변수
 	float unselected = 0.1f, selected = 0.9f; // 선택된 컵의 알파값을 조절하기 위한 변수
@@ -55,6 +57,7 @@ public class CupCustomizingFragment extends SherlockFragment implements
 		setHasOptionsMenu(true);
 		cupManager = new CupManager(getActivity());
 		View view = inflater.inflate(R.layout.cupcustomizing, container, false);
+		toastText = (TextView)view.findViewById(R.id.cupcustom_toast);
 		
 		cups_on_main = new ImageView[] {
 				(ImageView) getActivity().findViewById(R.id.main_cup_drop),
@@ -104,6 +107,8 @@ public class CupCustomizingFragment extends SherlockFragment implements
 	public void onResume() {
 		// TODO Auto-generated method stub
 		init();
+		toastText.startAnimation(AnimationUtils.loadAnimation(getSherlockActivity(),
+				R.anim.text_show));
 		cups_on_main[whichCup].setImageResource(R.drawable.cup_selected);
 		ViewHelper.setAlpha(cups_on_customizing[whichCup], selected);
 		for (int i = 0; i < 4; i++) {

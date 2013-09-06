@@ -28,6 +28,7 @@
     </style>    
     <style name="MyActionButtonStyle" parent="Widget.Sherlock.Light.ActionButton">
         <item name="android:minWidth">32dip</item>
+        <item name="android:maxWidth">38dip</item>
         <item name="android:padding">0dip</item>
     </style>
 </resources>

@@ -52,6 +52,7 @@ public class MainFragment extends SherlockFragment {
 
 	TextView heartTextPercent;
 	TextView heartTextML;
+	TextView heartTextTotal;
 
 	private static final int TUTORIAL_NUMBER01 = 0, TUTORIAL_NUMBER02 = 1;
 	private static final int CUP_ONE = 0, CUP_TWO = 1, CUP_THREE = 2,
@@ -106,8 +107,15 @@ public class MainFragment extends SherlockFragment {
 			// 그 외 imageview들을 다 여기서 객체화
 			heartTextPercent = (TextView) getActivity().findViewById(
 					R.id.main_heart_percent);
+			heartTextPercent.setTypeface(Typeface.createFromAsset(getSherlockActivity().getAssets(),
+					"helveticaneueltstdbdcn.ttf"));
 			heartTextML = (TextView) getActivity().findViewById(
 					R.id.main_heart_ml);
+			heartTextML.setTypeface(Typeface.createFromAsset(getSherlockActivity().getAssets(), 
+					"neutratexttfboldalt.ttf"));
+			heartTextTotal = (TextView)getActivity().findViewById(R.id.main_heart_total);
+			heartTextTotal.setTypeface(Typeface.createFromAsset(getSherlockActivity().getAssets(), 
+					"neutratexttfbookalt.ttf"));
 			cups = new ImageView[] {
 					(ImageView) getActivity().findViewById(R.id.main_cup_drop),
 					(ImageView) getActivity()
@@ -308,7 +316,7 @@ public class MainFragment extends SherlockFragment {
 						tutorial.showTutorial();
 						counter++;
 					} else if (counter == 1) {
-						toastText.setText("좌측 상단의 연필아이콘을 이용해 개인정보를 입력해 주세요!");
+						toastText.setText("좌측 상단의 연필아이콘을 이용해 \n개인정보를 입력해 주세요!");
 						toastText.startAnimation(toastAni);
 					}
 				}

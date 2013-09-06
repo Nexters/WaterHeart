@@ -9,14 +9,18 @@ import java.util.Locale;
 
 import nexters.waterheart.dto.Write;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.actionbarsherlock.app.SherlockFragment;
@@ -35,6 +39,8 @@ public class HistoryFragment extends SherlockFragment {
 	ClickManager clickManager;
 	TutorialManager tutorial;
 	ViewFlipper tutorialFlipper;
+	Animation[] ani = new Animation[6];
+	int howMany;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,6 +52,7 @@ public class HistoryFragment extends SherlockFragment {
 		View view = inflater.inflate(R.layout.historyview, container, false);
 		clickManager = new ClickManager(ONCLICK_NUM, getActivity(), null);
 		tutorial = new TutorialManager();
+		for(int i = 0; i < 6; i++)ani[i] = AnimationUtils.loadAnimation(getSherlockActivity(), R.anim.history_animation);
 		/*
 		 * 나중에 할 것: 위 percent* 변수들에 DB의 값을 불러와서 대입한다.
 		 */
@@ -54,6 +61,10 @@ public class HistoryFragment extends SherlockFragment {
 
 	public void onResume() {
 		init();
+		for(int j = 0; j < 6; j ++){
+			heart[j].setVisibility(View.INVISIBLE);
+			text01[j].setVisibility(View.INVISIBLE);
+		}
 		super.onResume();
 	}
 
@@ -110,6 +121,7 @@ public class HistoryFragment extends SherlockFragment {
 		date = calendar.getTime();
 
 		for (Write w : writes) {
+			howMany++;
 			heart[index].setVisibility(android.view.View.VISIBLE);
 			text01[index].setVisibility(android.view.View.VISIBLE);
 			text02[index].setVisibility(android.view.View.VISIBLE);
@@ -152,6 +164,22 @@ public class HistoryFragment extends SherlockFragment {
 		}
 	}
 
+	public void showAnimation(){
+		heart[0].post(new Runnable(){
+			int i = 6;
+			public void run(){
+				--i;
+				if(i>=(6-howMany)){
+				heart[i].startAnimation(ani[i]);
+				heart[i].setVisibility(View.VISIBLE);
+				text01[i].startAnimation(ani[i]);
+				text01[i].setVisibility(View.VISIBLE);
+				heart[i].postDelayed(this, 150);
+				}
+			}
+		});
+	}
+	
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		// TODO Auto-generated method stub

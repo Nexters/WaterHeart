@@ -4,12 +4,11 @@ import java.util.Calendar;
 import java.util.Random;
 
 import android.app.AlarmManager;
-import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -17,8 +16,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 
 public class MainActivity extends SherlockFragmentActivity {
@@ -28,6 +27,7 @@ public class MainActivity extends SherlockFragmentActivity {
 	AlarmReceiver mReceiver = null;
 	HeartManager heartManager = null;
 	Fragment fragment;
+	boolean isFinishing;
 	private static final String FRAGMENT_TAG_CUPCUSTOM = "CUPCUSTOM";
 	private static final String FRAGMENT_TAG_CUSTOM = "CUSTOM";
 	private static final String FRAGMENT_TAG_CUSTOM02 = "CUSTOM02";
@@ -151,6 +151,18 @@ public class MainActivity extends SherlockFragmentActivity {
 				.findFragmentByTag(FRAGMENT_TAG_CUSTOM02);
 		if ((fragment01 == null) && (fragment02 == null)
 				&& (fragment03 == null)) {
+			if(isFinishing == false){
+				isFinishing = true;
+				Toast.makeText(getApplicationContext(), "한번 더 누르면 종료된당께", Toast.LENGTH_SHORT).show();
+				new Handler().postDelayed(new Runnable(){
+					public void run(){
+						isFinishing = false;
+					}
+				}, 2000);
+			} else if(isFinishing == true) finish();
+			
+			
+			/*
 			new AlertDialog.Builder(this)
 					.setTitle("정말 종료하시겠습니까?")
 					.setMessage("종료하실꺼유? ㅠㅠ")
@@ -165,6 +177,8 @@ public class MainActivity extends SherlockFragmentActivity {
 									finish();
 								}
 							}).show();
+							*/
+			
 		} else {
 			super.onBackPressed();
 

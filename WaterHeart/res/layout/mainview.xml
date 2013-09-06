@@ -45,10 +45,10 @@
             android:clickable="true" >
 
             <ImageView
-                android:id="@+id/main_heart01"
+                android:id="@+id/main_heart04"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/top_left_01"
+                android:src="@drawable/top_left_04"
                 android:layout_gravity="center" />
             
             <ImageView
@@ -66,25 +66,25 @@
                 android:layout_gravity="center" />
 
             <ImageView
-                android:id="@+id/main_heart03"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/top_left_03"
-                android:layout_gravity="center" />
-
-            <ImageView
-                android:id="@+id/main_heart04"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/top_left_04"
-                android:layout_gravity="center" />
-
-            <ImageView
                 android:id="@+id/main_heart06"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/top_right_02"
                 android:layout_gravity="center" />
+
+            <ImageView
+                android:id="@+id/main_heart01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/top_left_01"
+                android:layout_gravity="center" />
+            
+            <ImageView
+                android:id="@+id/main_heart12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bottom_right_01" 
+                android:layout_gravity="center"/>
 
             <ImageView
                 android:id="@+id/main_heart07"
@@ -94,17 +94,17 @@
                 android:layout_gravity="center" />
 
             <ImageView
-                android:id="@+id/main_heart08"
+                android:id="@+id/main_heart14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/top_right_04" 
+                android:src="@drawable/bottom_right_03" 
                 android:layout_gravity="center"/>
-
+            
             <ImageView
-                android:id="@+id/main_heart09"
+                android:id="@+id/main_heart13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/bottom_left_01" 
+                android:src="@drawable/bottom_right_02" 
                 android:layout_gravity="center"/>
 
             <ImageView
@@ -115,17 +115,17 @@
                 android:layout_gravity="center"/>
 
             <ImageView
-                android:id="@+id/main_heart12"
+                android:id="@+id/main_heart03"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/bottom_right_01" 
-                android:layout_gravity="center"/>
+                android:src="@drawable/top_left_03"
+                android:layout_gravity="center" />
 
             <ImageView
-                android:id="@+id/main_heart13"
+                android:id="@+id/main_heart09"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/bottom_right_02" 
+                android:src="@drawable/bottom_left_01" 
                 android:layout_gravity="center"/>
             
             <ImageView
@@ -136,10 +136,10 @@
                 android:layout_gravity="center"/>
 
             <ImageView
-                android:id="@+id/main_heart14"
+                android:id="@+id/main_heart08"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/bottom_right_03" 
+                android:src="@drawable/top_right_04" 
                 android:layout_gravity="center"/>
 
             <ImageView

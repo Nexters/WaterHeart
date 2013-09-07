@@ -147,7 +147,7 @@ public class MainFragment extends SherlockFragment {
 			// 하트 이미지뷰설정 및 하트 조각별 용량 설정, 그리고 초기 투명도 10퍼로 설정
 			for (int i = 0; i < 14; i++) {
 				heartImg[i] = (ImageView) getActivity().findViewById(
-						R.id.main_heart01 + i);
+						R.id.main_heart04 + i);
 
 				ViewHelper.setAlpha(heartImg[i], 0.05f);
 			}

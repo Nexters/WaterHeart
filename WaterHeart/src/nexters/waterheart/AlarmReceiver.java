@@ -8,10 +8,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 
 public class AlarmReceiver extends BroadcastReceiver {
 	private static Activity activity;
 	private String s = null;
+	boolean success = true;
 	
 	public AlarmReceiver() {
 		super();
@@ -25,12 +27,23 @@ public class AlarmReceiver extends BroadcastReceiver {
 	public void onReceive(Context context, Intent intent) {
 		// TODO Auto-generated method stub
 		if ("android.intent.action.BOOT_COMPLETED".equals(intent.getAction())) {
-			Log.e("TAG", "Boot completed");
+			Log.e("WTFDUDE", "Boot completed");
 		}
+		if(activity == null){
+			//MainActivity main = new MainActivity();
+			//activity = main.getThisFuckinActivity();
+			//main.alarm();
+		}else{
 		HeartManager heartManager = new HeartManager(activity);
+		if (heartManager.mainHeartShow() < MainFragment.totalWater)
+			success = false;
+		else
+			success = true;
 		heartManager.heartReset();
 		s = intent.getStringExtra("s");
-		if (intent.getBooleanExtra("success", true) == false) {
+		
+		
+		if (success == false) {
 			NotificationManager notifier = (NotificationManager) context
 					.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -49,6 +62,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 			notify.number++;
 
 			notifier.notify(1, notify);
+		}
 		}
 
 	}

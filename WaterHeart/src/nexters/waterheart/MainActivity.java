@@ -3,6 +3,7 @@ package nexters.waterheart;
 import java.util.Calendar;
 import java.util.Random;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -34,6 +35,10 @@ public class MainActivity extends SherlockFragmentActivity {
 
 	public MainActivity() {
 		super();
+	}
+	
+	public Activity getThisFuckinActivity(){
+		return MainActivity.this;
 	}
 
 	@Override
@@ -78,7 +83,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		
 	};
 
-	public void alarm(Context context) {
+	public void alarm() {
 		Random r = new Random();
 		int num = r.nextInt(3) + 1;
 		switch (num) {
@@ -101,10 +106,10 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		final AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 		Intent intent = new Intent("ALARM");
-		if (heartManager.mainHeartShow() < MainFragment.totalWater)
-			intent.putExtra("success", false);
-		else
-			intent.putExtra("success", true);
+		//if (heartManager.mainHeartShow() < MainFragment.totalWater)
+		//	intent.putExtra("success", false);
+		//else
+		//	intent.putExtra("success", true);
 		intent.putExtra("s", s);
 
 		final PendingIntent sender = PendingIntent
@@ -186,7 +191,7 @@ public class MainActivity extends SherlockFragmentActivity {
 	@Override
 	public void onPause() {
 		super.onPause();
-		alarm(this);
+		alarm();
 		// this.unregisterReceiver(mReceiver);
 	}
 

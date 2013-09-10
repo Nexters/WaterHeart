@@ -1,10 +1,7 @@
 package nexters.waterheart;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -12,19 +9,19 @@ import java.util.Locale;
 
 import nexters.waterheart.db.DBManager;
 import nexters.waterheart.dto.Write;
-import android.app.Activity;
+import android.content.Context;
 
 public class HeartManager {
-
-	Activity activity;
+	Context context;
+	//Activity activity;
 	DBManager db = null;
 
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	Calendar calendar = new GregorianCalendar(Locale.KOREA);
 	
-	public HeartManager(Activity activity) {
-		this.activity = activity;
-		db = new DBManager(this.activity, DBManager.DATABASE_VERSION);
+	public HeartManager(Context context) {
+		this.context = context;
+		db = new DBManager(context, DBManager.DATABASE_VERSION);
 		db.open();
 	}
 

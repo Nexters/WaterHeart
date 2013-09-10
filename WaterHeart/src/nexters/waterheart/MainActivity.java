@@ -29,6 +29,7 @@ public class MainActivity extends SherlockFragmentActivity {
 	HeartManager heartManager = null;
 	Fragment fragment;
 	boolean isFinishing;
+	private static MainActivity mainActivity;
 	private static final String FRAGMENT_TAG_CUPCUSTOM = "CUPCUSTOM";
 	private static final String FRAGMENT_TAG_CUSTOM = "CUSTOM";
 	private static final String FRAGMENT_TAG_CUSTOM02 = "CUSTOM02";
@@ -37,8 +38,8 @@ public class MainActivity extends SherlockFragmentActivity {
 		super();
 	}
 	
-	public Activity getThisFuckinActivity(){
-		return MainActivity.this;
+	public static MainActivity getThisFuckinActivity(){
+		return mainActivity;
 	}
 
 	@Override
@@ -131,6 +132,7 @@ public class MainActivity extends SherlockFragmentActivity {
 	public void onResume() {
 		// TODO Auto-generated method stub
 		init();
+		mainActivity = this;
 		// alarm(this);
 		super.onResume();
 	}
@@ -190,8 +192,9 @@ public class MainActivity extends SherlockFragmentActivity {
 
 	@Override
 	public void onPause() {
-		super.onPause();
 		alarm();
+		mainActivity = null;
+		super.onPause();
 		// this.unregisterReceiver(mReceiver);
 	}
 

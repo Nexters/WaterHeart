@@ -1,6 +1,5 @@
 package nexters.waterheart;
 
-import nexters.waterheart.R.id;
 import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
@@ -43,66 +42,62 @@ public class ClickManager implements View.OnClickListener {
 			} else {
 				cupManager.getAllCupStates();
 
-				if (heartManager.mainOnCupClicked(0) == MainFragment.totalWater) {
-					msg = Message.obtain(mHandler, 7, MainFragment.totalWater,
-							0);
-					mHandler.sendMessage(msg); // 하트 다 찼을 때
-				} else {
-					switch (v.getId()) {
-					case R.id.main_heart_layout:
-						if (mActivity.findViewById(R.id.main_change_01)
-								.getVisibility() == View.VISIBLE) {
-							mActivity.findViewById(R.id.main_change_01)
-									.setVisibility(View.GONE);
-							mActivity.findViewById(R.id.main_change_02)
-									.setVisibility(View.VISIBLE);
-						} else {
-							mActivity.findViewById(R.id.main_change_01)
-									.setVisibility(View.VISIBLE);
-							mActivity.findViewById(R.id.main_change_02)
-									.setVisibility(View.GONE);
-						}
-						break;
-					case R.id.main_cup_drop:
-						water = heartManager
-								.mainOnCupClicked(cupManager.cup_one);
-						msg = Message.obtain(mHandler, CUP_ONE, water, 0);
-						mHandler.sendMessage(msg);
-						break;
-					case R.id.main_cup_bottle:
-						water = heartManager
-								.mainOnCupClicked(cupManager.cup_two);
-						msg = Message.obtain(mHandler, CUP_TWO, water, 0);
-						mHandler.sendMessage(msg);
-						break;
-					case R.id.main_cup_cup:
-						water = heartManager
-								.mainOnCupClicked(cupManager.cup_three);
-						msg = Message.obtain(mHandler, CUP_THREE, water, 0);
-						mHandler.sendMessage(msg);
-						break;
-					case R.id.main_cup_coffee:
-						water = heartManager
-								.mainOnCupClicked(cupManager.cup_four);
-						msg = Message.obtain(mHandler, CUP_FOUR, water, 0);
-						mHandler.sendMessage(msg);
-						break;
-					// case R.id.main_undo:
-					// water = heartManager.mainOnBackClicked();
-					// msg = Message.obtain(mHandler, 5, water, 0);
-					// mHandler.sendMessage(msg);
-					// break;
+				switch (v.getId()) {
+				case R.id.main_heart_layout:
+					if (mActivity.findViewById(R.id.main_change_01)
+							.getVisibility() == View.VISIBLE) {
+						mActivity.findViewById(R.id.main_change_01)
+								.setVisibility(View.GONE);
+						mActivity.findViewById(R.id.main_change_02)
+								.setVisibility(View.VISIBLE);
+					} else {
+						mActivity.findViewById(R.id.main_change_01)
+								.setVisibility(View.VISIBLE);
+						mActivity.findViewById(R.id.main_change_02)
+								.setVisibility(View.GONE);
 					}
+					break;
+				case R.id.main_cup_drop:
+					water = heartManager.mainOnCupClicked(cupManager.cup_one);
 
-				}
-				if (v.getId() == R.id.main_undo) {
-					 water = heartManager.mainOnBackClicked();
-					 msg = Message.obtain(mHandler, 5, water, 0);
-					 mHandler.sendMessage(msg);
+					if (water == MainFragment.totalWater)
+						msg = Message.obtain(mHandler, 7, water, 0);
+					else
+						msg = Message.obtain(mHandler, CUP_ONE, water, 0);
+					mHandler.sendMessage(msg);
+					break;
+				case R.id.main_cup_bottle:
+					water = heartManager.mainOnCupClicked(cupManager.cup_two);
+					if (water == MainFragment.totalWater)
+						msg = Message.obtain(mHandler, 7, water, 0);
+					else
+						msg = Message.obtain(mHandler, CUP_TWO, water, 0);
+					mHandler.sendMessage(msg);
+					break;
+				case R.id.main_cup_cup:
+					water = heartManager.mainOnCupClicked(cupManager.cup_three);
+					if (water == MainFragment.totalWater)
+						msg = Message.obtain(mHandler, 7, water, 0);
+					else
+						msg = Message.obtain(mHandler, CUP_THREE, water, 0);
+					mHandler.sendMessage(msg);
+					break;
+				case R.id.main_cup_coffee:
+					water = heartManager.mainOnCupClicked(cupManager.cup_four);
+					if (water == MainFragment.totalWater)
+						msg = Message.obtain(mHandler, 7, water, 0);
+					else
+						msg = Message.obtain(mHandler, CUP_FOUR, water, 0);
+					mHandler.sendMessage(msg);
+					break;
+				case R.id.main_undo:
+					water = heartManager.mainOnBackClicked();
+					msg = Message.obtain(mHandler, 5, water, 0);
+					mHandler.sendMessage(msg);
+					break;
 				}
 			}
 		}
-
 	}
 
 	public void historySwap(int resId) {

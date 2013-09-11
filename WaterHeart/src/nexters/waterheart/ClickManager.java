@@ -1,5 +1,6 @@
 package nexters.waterheart;
 
+import nexters.waterheart.R.id;
 import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
@@ -86,12 +87,18 @@ public class ClickManager implements View.OnClickListener {
 						msg = Message.obtain(mHandler, CUP_FOUR, water, 0);
 						mHandler.sendMessage(msg);
 						break;
-					case R.id.main_undo:
-						water = heartManager.mainOnBackClicked();
-						msg = Message.obtain(mHandler, 5, water, 0);
-						mHandler.sendMessage(msg);
-						break;
+					// case R.id.main_undo:
+					// water = heartManager.mainOnBackClicked();
+					// msg = Message.obtain(mHandler, 5, water, 0);
+					// mHandler.sendMessage(msg);
+					// break;
 					}
+
+				}
+				if (v.getId() == R.id.main_undo) {
+					 water = heartManager.mainOnBackClicked();
+					 msg = Message.obtain(mHandler, 5, water, 0);
+					 mHandler.sendMessage(msg);
 				}
 			}
 		}

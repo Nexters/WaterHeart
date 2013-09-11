@@ -3,7 +3,6 @@ package nexters.waterheart;
 import java.util.Calendar;
 import java.util.Random;
 
-import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -37,8 +36,8 @@ public class MainActivity extends SherlockFragmentActivity {
 	public MainActivity() {
 		super();
 	}
-	
-	public static MainActivity getThisFuckinActivity(){
+
+	public static MainActivity getThisFuckinActivity() {
 		return mainActivity;
 	}
 
@@ -55,8 +54,8 @@ public class MainActivity extends SherlockFragmentActivity {
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 		mViewPager.setOnPageChangeListener(mPageChangeListener);
 	}
-	
-	OnPageChangeListener mPageChangeListener = new OnPageChangeListener(){
+
+	OnPageChangeListener mPageChangeListener = new OnPageChangeListener() {
 
 		@Override
 		public void onPageScrollStateChanged(int arg0) {
@@ -71,17 +70,17 @@ public class MainActivity extends SherlockFragmentActivity {
 		@Override
 		public void onPageSelected(int arg0) {
 			// TODO Auto-generated method stub
-			HistoryFragment frag = (HistoryFragment)fragment;
-			if(arg0 == 1){
+			HistoryFragment frag = (HistoryFragment) fragment;
+			if (arg0 == 1) {
 				frag.showAnimation();
-			} else{
-				for(int j = 0; j < 6; j ++){
+			} else {
+				for (int j = 0; j < 6; j++) {
 					frag.heart[j].setVisibility(View.INVISIBLE);
 					frag.text01[j].setVisibility(View.INVISIBLE);
 				}
 			}
 		}
-		
+
 	};
 
 	public void alarm() {
@@ -99,18 +98,8 @@ public class MainActivity extends SherlockFragmentActivity {
 			break;
 		}
 
-		mReceiver = new AlarmReceiver(MainActivity.this);
-		// IntentFilter filler = new IntentFilter();
-		// filler.addAction("ALARM");
-		// filler.addAction("android.intent.action.BOOT_COMPLETED");
-		// this.registerReceiver(mReceiver, filler);
-
 		final AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 		Intent intent = new Intent("ALARM");
-		//if (heartManager.mainHeartShow() < MainFragment.totalWater)
-		//	intent.putExtra("success", false);
-		//else
-		//	intent.putExtra("success", true);
 		intent.putExtra("s", s);
 
 		final PendingIntent sender = PendingIntent
@@ -133,7 +122,6 @@ public class MainActivity extends SherlockFragmentActivity {
 		// TODO Auto-generated method stub
 		init();
 		mainActivity = this;
-		// alarm(this);
 		super.onResume();
 	}
 
@@ -156,34 +144,18 @@ public class MainActivity extends SherlockFragmentActivity {
 				.findFragmentByTag(FRAGMENT_TAG_CUSTOM02);
 		if ((fragment01 == null) && (fragment02 == null)
 				&& (fragment03 == null)) {
-			if(isFinishing == false){
+			if (isFinishing == false) {
 				isFinishing = true;
-				Toast.makeText(getApplicationContext(), "한번 더 누르면 종료된당께", Toast.LENGTH_SHORT).show();
-				new Handler().postDelayed(new Runnable(){
-					public void run(){
+				Toast.makeText(getApplicationContext(), "한번 더 누르면 종료된당께",
+						Toast.LENGTH_SHORT).show();
+				new Handler().postDelayed(new Runnable() {
+					public void run() {
 						isFinishing = false;
 					}
 				}, 2000);
-			} else if(isFinishing == true) finish();
-			
-			
-			/*
-			new AlertDialog.Builder(this)
-					.setTitle("정말 종료하시겠습니까?")
-					.setMessage("종료하실꺼유? ㅠㅠ")
-					.setNegativeButton("아니오", null)
-					.setPositiveButton("네",
-							new DialogInterface.OnClickListener() {
+			} else if (isFinishing == true)
+				finish();
 
-								@Override
-								public void onClick(DialogInterface dialog,
-										int which) {
-									// TODO Auto-generated method stub
-									finish();
-								}
-							}).show();
-							*/
-			
 		} else {
 			super.onBackPressed();
 
@@ -195,7 +167,6 @@ public class MainActivity extends SherlockFragmentActivity {
 		alarm();
 		mainActivity = null;
 		super.onPause();
-		// this.unregisterReceiver(mReceiver);
 	}
 
 	public class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -208,7 +179,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		@Override
 		public Fragment getItem(int position) {
 			// TODO Auto-generated method stub
-			//fragment = new Fragment();
+			// fragment = new Fragment();
 			switch (position) {
 			case 0:
 				fragment = new MainFragment();

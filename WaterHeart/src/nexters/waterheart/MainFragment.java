@@ -107,14 +107,18 @@ public class MainFragment extends SherlockFragment {
 			// 그 외 imageview들을 다 여기서 객체화
 			heartTextPercent = (TextView) getActivity().findViewById(
 					R.id.main_heart_percent);
-			heartTextPercent.setTypeface(Typeface.createFromAsset(getSherlockActivity().getAssets(),
+			heartTextPercent.setTypeface(Typeface.createFromAsset(
+					getSherlockActivity().getAssets(),
 					"helveticaneueltstdbdcn.ttf"));
 			heartTextML = (TextView) getActivity().findViewById(
 					R.id.main_heart_ml);
-			heartTextML.setTypeface(Typeface.createFromAsset(getSherlockActivity().getAssets(), 
+			heartTextML.setTypeface(Typeface.createFromAsset(
+					getSherlockActivity().getAssets(),
 					"neutratexttfboldalt.ttf"));
-			heartTextTotal = (TextView)getActivity().findViewById(R.id.main_heart_total);
-			heartTextTotal.setTypeface(Typeface.createFromAsset(getSherlockActivity().getAssets(), 
+			heartTextTotal = (TextView) getActivity().findViewById(
+					R.id.main_heart_total);
+			heartTextTotal.setTypeface(Typeface.createFromAsset(
+					getSherlockActivity().getAssets(),
 					"neutratexttfbookalt.ttf"));
 			cups = new ImageView[] {
 					(ImageView) getActivity().findViewById(R.id.main_cup_drop),
@@ -319,6 +323,9 @@ public class MainFragment extends SherlockFragment {
 						toastText.setText("좌측 상단의 연필아이콘을 이용해 \n개인정보를 입력해 주세요!");
 						toastText.startAnimation(toastAni);
 					}
+				} else if (msg.what == 7) {
+					toastText.setText("오늘의 목표는 이미 달성했어요!");
+					toastText.startAnimation(toastAni);
 				}
 				water = msg.arg1;
 				heartLogic();
@@ -409,8 +416,10 @@ public class MainFragment extends SherlockFragment {
 			switch (v.getId()) {
 			case R.id.main_cup_drop:
 				fragment = new CupCustomizingFragment(fillWaterHandler, CUP_ONE);
-				transaction.add(android.R.id.content, fragment, FRAGMENT_TAG_CUPCUSTOM)
-						.addToBackStack(null).commit();
+				transaction
+						.add(android.R.id.content, fragment,
+								FRAGMENT_TAG_CUPCUSTOM).addToBackStack(null)
+						.commit();
 				/*
 				 * getActivity() .getSupportFragmentManager()
 				 * .beginTransaction() .add(android.R.id.content, new
@@ -420,8 +429,10 @@ public class MainFragment extends SherlockFragment {
 				return true;
 			case R.id.main_cup_bottle:
 				fragment = new CupCustomizingFragment(fillWaterHandler, CUP_TWO);
-				transaction.add(android.R.id.content, fragment, FRAGMENT_TAG_CUPCUSTOM)
-						.addToBackStack(null).commit();
+				transaction
+						.add(android.R.id.content, fragment,
+								FRAGMENT_TAG_CUPCUSTOM).addToBackStack(null)
+						.commit();
 				/*
 				 * getActivity() .getSupportFragmentManager()
 				 * .beginTransaction() .add(android.R.id.content, new
@@ -432,8 +443,10 @@ public class MainFragment extends SherlockFragment {
 			case R.id.main_cup_cup:
 				fragment = new CupCustomizingFragment(fillWaterHandler,
 						CUP_THREE);
-				transaction.add(android.R.id.content, fragment, FRAGMENT_TAG_CUPCUSTOM)
-						.addToBackStack(null).commit();
+				transaction
+						.add(android.R.id.content, fragment,
+								FRAGMENT_TAG_CUPCUSTOM).addToBackStack(null)
+						.commit();
 				/*
 				 * getActivity() .getSupportFragmentManager()
 				 * .beginTransaction() .add(android.R.id.content, new
@@ -444,8 +457,10 @@ public class MainFragment extends SherlockFragment {
 			case R.id.main_cup_coffee:
 				fragment = new CupCustomizingFragment(fillWaterHandler,
 						CUP_FOUR);
-				transaction.add(android.R.id.content, fragment, FRAGMENT_TAG_CUPCUSTOM)
-						.addToBackStack(null).commit();
+				transaction
+						.add(android.R.id.content, fragment,
+								FRAGMENT_TAG_CUPCUSTOM).addToBackStack(null)
+						.commit();
 				/*
 				 * getActivity() .getSupportFragmentManager()
 				 * .beginTransaction() .add(android.R.id.content, new
@@ -496,7 +511,8 @@ public class MainFragment extends SherlockFragment {
 					R.anim.fragment_exit);
 
 			CustomFragment01 fragment = new CustomFragment01(fillWaterHandler);
-			transaction.add(android.R.id.content, fragment, FRAGMENT_TAG_CUSTOM);
+			transaction
+					.add(android.R.id.content, fragment, FRAGMENT_TAG_CUSTOM);
 			transaction.addToBackStack(null).commit();
 			/*
 			 * getActivity() .getSupportFragmentManager() .beginTransaction()

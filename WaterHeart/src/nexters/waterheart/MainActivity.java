@@ -44,7 +44,6 @@ public class MainActivity extends SherlockFragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// if (Intent.ACTION_BOOT_COMPLETED != null)
 		setContentView(R.layout.activity_main);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		mSectionsPagerAdapter = new SectionsPagerAdapter(
@@ -146,7 +145,7 @@ public class MainActivity extends SherlockFragmentActivity {
 				&& (fragment03 == null)) {
 			if (isFinishing == false) {
 				isFinishing = true;
-				Toast.makeText(getApplicationContext(), "한번 더 누르면 종료된당께",
+				Toast.makeText(getApplicationContext(), "'뒤로'버튼을 한번 더 누르면 종료됩니다.",
 						Toast.LENGTH_SHORT).show();
 				new Handler().postDelayed(new Runnable() {
 					public void run() {

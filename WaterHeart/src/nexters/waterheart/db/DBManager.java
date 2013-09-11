@@ -158,7 +158,7 @@ public class DBManager {
 	}
 
 	public void deleteWrite(int no) {
-		DBManager manager = new DBManager(null, DATABASE_VERSION);
+		//DBManager manager = new DBManager(null, DATABASE_VERSION);
 		db.delete(DATABASE_TABLE_MAIN_NAME, KEY_NO + " = ?",
 				new String[] { String.valueOf(no) });
 	}

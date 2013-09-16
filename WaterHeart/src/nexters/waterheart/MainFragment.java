@@ -45,6 +45,10 @@ public class MainFragment extends SherlockFragment {
 	Animation toastAni;
 	TextView toastText;
 	static String yourName;
+	int height;
+	int weight;
+	int gender; //0 또는 1
+	int goal; //0에서 5까지
 	static int whichTutorial;
 	static int counter; // 첫 실행 시, 즉 사용자정보가
 	// 하나도 없을 때에는 counter 가 0이다.
@@ -63,7 +67,7 @@ public class MainFragment extends SherlockFragment {
 	private static final String FRAGMENT_TAG_CUPCUSTOM = "CUPCUSTOM";
 	private static final String FRAGMENT_TAG_CUSTOM = "CUSTOM";
 
-	static int totalWater = 2500;
+	static int totalWater = 0;
 	float a; // 제일 작은 조각 한개의 용량
 	float b; // 중간 크기 조각 한개의 용량
 	float c; // 제일 큰 조각 한개의 용량
@@ -168,14 +172,64 @@ public class MainFragment extends SherlockFragment {
 			}
 			yourName = new String(data);
 
+			fis = getActivity().openFileInput("height.txt");
+			data = new byte[fis.available()];
+			while(fis.read(data)!=-1){;}
+			height = Integer.parseInt(new String(data));
+			
+			fis = getActivity().openFileInput("weight.txt");
+			data = new byte[fis.available()];
+			while(fis.read(data)!=-1){;}
+			weight = Integer.parseInt(new String(data));
+			
+			fis = getActivity().openFileInput("gender.txt");
+			gender = fis.read();
+			
+			fis = getActivity().openFileInput("goal.txt");
+			goal = fis.read();
+			
 			fis = getActivity().openFileInput("counter");
 			counter = fis.read();
 			fis.close();
 		} catch (Exception e) {
 			yourName = "";
 			counter = 0;
+			totalWater = 2000;
 		}
-
+		// totalWater 계산
+		if(yourName.length() > 0){
+			
+		float mGender = 0.0f;
+		float mGoal = 0.0f;
+		if(gender == 0) mGender = 1.0f;
+		else mGender = 1.1f;
+		
+		switch(goal){
+		case 0:
+			mGoal = 1.5f;
+			break;
+		case 1:
+			mGoal = 1.0f;
+			break;
+		case 2:
+			mGoal = 1.2f;		//당뇨 이거 멍미
+			break;
+		case 3:
+			mGoal = 1.4f;
+			break;
+		case 4:
+			mGoal = 1.5f;
+			break;
+		case 5:
+			mGoal = 1.2f;
+			break;
+		}
+		
+		totalWater = (int)(((weight + height)-100)*10*mGender*mGoal);
+		}
+		
+		// totalWater 계산
+		heartTextTotal.setText(""+totalWater);
 		water = heartManager.mainHeartShow();
 		heartTextML.setText(String.valueOf(water));
 		heartTextPercent.setText(String.valueOf((int) ((float) water

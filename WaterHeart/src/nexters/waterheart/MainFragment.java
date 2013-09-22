@@ -212,7 +212,7 @@ public class MainFragment extends SherlockFragment {
 			mGoal = 1.0f;
 			break;
 		case 2:
-			mGoal = 1.2f;		//당뇨 이거 멍미
+			mGoal = 1.8f;
 			break;
 		case 3:
 			mGoal = 1.4f;
